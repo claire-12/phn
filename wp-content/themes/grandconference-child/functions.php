@@ -115,3 +115,8 @@ require get_theme_file_path('/includes/elementor/functions-elementor.php');
  * functions acf
  */
 require get_theme_file_path('/includes/acf/acf-functions.php');
+
+/**
+ * functions admin event
+ */
+require get_theme_file_path('/admin/functions/admin-event.php');
