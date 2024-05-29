@@ -27,11 +27,12 @@ jQuery(document).ready(function(){
 		});
 	});
 
-	jQuery('.wpcf7-form-control.wpcf7-submit').click(function(e){ 
+	jQuery('#multiple-form .wpcf7-form-control.wpcf7-submit').click(function(e){ 
+		console.log('123123');
 		$jvcfpValidation 	=	jQuery(this).parents('form');		
 		if (!jQuery($jvcfpValidation).valid()){
 			e.preventDefault();
-			$topErrorPosition 		= jQuery('.wpcf7-form-control.error').offset().top;
+			$topErrorPosition 		= jQuery('#multiple-form .wpcf7-form-control.error').offset().top;
 			$topErrorPosition		= parseInt($topErrorPosition) - 100;
 			jQuery('body, html').animate({scrollTop:$topErrorPosition}, 'normal');
 		}else{
@@ -59,7 +60,8 @@ jQuery(document).ready(function(){
 		}
 	});	
 
-	jQuery('#multiple-form-room .wpcf7-form-control.wpcf7-submit.submit-room').click(function(e){ 
+	jQuery('#multiple-form-room .submit-room').click(function(e){ 
+		console.log("asdasdasd");
 		$jvcfpValidation 	=	jQuery(this).parents('form');		
 		if (!jQuery($jvcfpValidation).valid()){
 			e.preventDefault();
@@ -82,7 +84,7 @@ jQuery(document).ready(function(){
 					if(data.redirect){
 						jQuery('#next-form-room').trigger('click');
 					}else{
-						window.location.href = data.checkout_url;
+						window.location.href = data.room_checkout_url;
 					}
 				},
 				error: function(err){

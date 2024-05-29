@@ -76,12 +76,12 @@ if ( $results ) {
 				$hotelId = $hotel["hotelId"];
 				$roomTypes = [];
 				foreach ($hotel["roomTypes"] as $roomType) {
-					$id = intval($roomType["id"]);
+					$id = (int)$roomType["id"];
 					$roomName = $roomType["name"];
 					$price = $roomType["price"];
 					$pricenew = $roomType["pricenew"];
-					$quantity = intval($roomType["quantity"]);
-					$fooEvents = intval($roomType["fooEvents"]);
+					$quantity = (int)$roomType["quantity"];
+					$fooEvents = (int)$roomType["fooEvents"];
 					if ($id == $variation_id) {
                         $fooEvents = $fooEvents - $product_qty;
                     }
