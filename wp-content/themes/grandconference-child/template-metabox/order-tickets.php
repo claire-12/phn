@@ -38,7 +38,14 @@ $FooEvents_Orders_Helper = new FooEvents_Orders_Helper($config);
 								$ticket_id = $ticket['WooCommerceEventsTicketID'];
 								$information_user_each_ticket = information_user_each_ticket($ticket_id);
 								if($information_user_each_ticket){
+
 									foreach($information_user_each_ticket as $value){
+										if (is_serialized($value['value'])) {
+											$value['value'] = unserialize($value['value']);
+											if (is_array($value['value'])) {
+												$value['value'] = implode(', ', $value['value']);
+											}
+										}
 										?>
 										<tr>
 											<td><strong><?php echo esc_attr( $value['name'] ); ?>:</strong></td>
