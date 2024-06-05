@@ -377,10 +377,7 @@ function create_entry_infor_customer_buy_room($order_id)
 {
     session_start();
     if (isset($_SESSION['infor_room']) && $order_id && class_exists('vxcf_form')) {
-        global $wpdb;
-        // var_dump($wpdb);
         $field_name = [];
-        $rooms_id = [];
         $infor_room = $_SESSION['infor_room'];
         $form_id = (int) $infor_room[0]['_wpcf7'];
         $track = true;
@@ -388,41 +385,21 @@ function create_entry_infor_customer_buy_room($order_id)
         $tags = vxcf_form::get_form_fields('cf_' . $form_id);
         $vxcf_form = new vxcf_form();
         $form_arr = array('id' => $form_id, 'name' => $form_title, 'fields' => $tags);
-        $query = $wpdb->prepare("
-            SELECT product_id, product_qty,variation_id
-            FROM {$wpdb->prefix}wc_order_product_lookup
-            WHERE order_id = %d AND variation_id != 0
-        ", $order_id);
-
-        $results = $wpdb->get_results($query);
-
-        foreach ($results as $result) {
-            for ($i = 0; $i < $result->product_qty; $i++) {
-                $rooms_id[] = $result->variation_id;
-            }
-        }
-
-        // var_dump($rooms_id);
-        // var_dump($results);
         // var_dump($infor_room);
         if ($infor_room && $tags) {
-            $i = -1 ;
             foreach ($infor_room as $key => $value) {
-                $i++;
-                // echo $i;
                 foreach ($tags as $k => $v) {
-                    $field_name[$k] = $value[$k];
+                    $field_name[$k] = isset($value[$k]) ? $value[$k] : "";
                 }
                 $field_name['order_id'] = $order_id;
-                $field_name['rooms_id'] = $rooms_id[$i];
-                // echo $rooms_id[$i];
+                $field_name['rooms_id'] = $value['rooms_id'];
                 $lead = $field_name;
                 $entry_id = $vxcf_form->create_entry($lead, $form_arr, 'cf', '', $track);
                 update_column_entry_leads_room($entry_id, 12092001);
             }
         }
     }
-    unset($_SESSION['rooms_id']);
+    unset($_SESSION['infor_room']);
 }
 // add_action('wp', 'create_entry_infor_customer_buy_room');
 function update_column_entry_leads_room($entry_id, $room_id)
@@ -460,7 +437,7 @@ function create_entry_infor_customer_buy_ticket($order_id)
         $tags = vxcf_form::get_form_fields('cf_' . $form_id);
         $vxcf_form = new vxcf_form();
         $form_arr = array('id' => $form_id, 'name' => $form_title, 'fields' => $tags);
-        $sql = "SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = 'WooCommerceEventsOrderID' AND meta_value = $order_id";
+        $sql = $wpdb->prepare("SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = %s AND meta_value = %d", 'WooCommerceEventsOrderID', $order_id);
         $results = $wpdb->get_results($sql);
 
         if ($results) {
@@ -468,12 +445,14 @@ function create_entry_infor_customer_buy_ticket($order_id)
                 $ticket_id[] = (int) get_post_meta((int) $value->post_id, 'WooCommerceEventsTicketID', true);
             }
         }
-
+        // var_dump($wpdb);
+        // var_dump($ticket_id);
         if ($infor_ticket && $tags) {
             foreach ($infor_ticket as $key => $value) {
                 foreach ($tags as $k => $v) {
-                    $field_name[$k] = $value[$k];
+                    $field_name[$k] = isset($value[$k]) ? $value[$k] : "";
                 }
+                // echo $ticket_id[$key];
                 $field_name['order_id'] = $order_id;
                 $field_name['ticket_id'] = $ticket_id[$key];
                 $lead = $field_name;
@@ -484,7 +463,7 @@ function create_entry_infor_customer_buy_ticket($order_id)
     }
     unset($_SESSION['infor_ticket']);
 }
-
+// add_action('wp', 'create_entry_infor_customer_buy_ticket');
 // Update column entry leads
 function update_column_entry_leads($entry_id, $ticket_id)
 {
@@ -541,7 +520,7 @@ function export_data_entry_form($form_id)
             if ($result) {
                 $tags = vxcf_form::get_form_fields($id_form_room);
                 $tags['order_id'] = array('label' => 'Order id', 'values' => '');
-                $tags['room_id'] = array('label' => 'Room id', 'values' => '');
+                $tags['rooms_id'] = array('label' => 'Room id', 'values' => '');
                 $i = 0;
                 if ($tags) {
                     $field_titles[] = "#";
@@ -575,7 +554,7 @@ function export_data_entry_form($form_id)
                 }
             }
             fclose($fp);
-        }else{
+        } else {
             global $wpdb;
             header(
                 "Content-disposition: attachment; filename=" .
@@ -593,7 +572,7 @@ function export_data_entry_form($form_id)
             header("Content-Type: application/force-download");
             header("Content-Type: application/octet-stream");
             header("Content-Type: application/download");
-    
+
             $field_titles = [];
             $_row = [];
             $sql = "SELECT id,created FROM {$wpdb->prefix}vxcf_leads WHERE form_id = '$form_id'";
@@ -636,7 +615,7 @@ function export_data_entry_form($form_id)
             }
             fclose($fp);
         }
-        
+
         die();
     }
 }

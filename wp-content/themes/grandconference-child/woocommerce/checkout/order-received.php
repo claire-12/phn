@@ -21,7 +21,14 @@ defined( 'ABSPATH' ) || exit;
 global $wpdb;
 global $wp;
 $order_id = absint( $wp->query_vars['order-received'] );
+// if ( function_exists( 'create_entry_infor_customer_buy_ticket' ) ) {
+//     create_entry_infor_customer_buy_ticket($order_id);
 
+// }
+// if ( function_exists( 'create_entry_infor_customer_buy_room' ) ) {
+//     create_entry_infor_customer_buy_room( $order_id );
+
+// }
 $query_event = $wpdb->prepare( "
     SELECT product_id
     FROM {$wpdb->prefix}wc_order_product_lookup

@@ -84,7 +84,7 @@ function set_session_form_room(){
         $infor_room = $_SESSION['infor_room'];
         $count = count($infor_room);
         $number_room = number_room_in_cart();
-        
+        // var_dump($number_room);
         if($count == $number_room){
             $redirect = false;
         }else{
