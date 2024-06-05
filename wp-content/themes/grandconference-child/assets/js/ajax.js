@@ -1,6 +1,6 @@
-jQuery(function($){
+jQuery(function ($) {
     // add tickets to cart
-    $('.form-add-cart-tickets').on('click','.single_add_to_cart_button',function(e){  
+    $('.form-add-cart-tickets').on('click', '.single_add_to_cart_button', function (e) {
         e.preventDefault();
         var product_id = $(this).val();
         var quantity = $('.form-add-cart-tickets .qty').val();
@@ -8,31 +8,35 @@ jQuery(function($){
         $('.woocommerce-notices-wrapper').hide();
         $.ajax({
             url: jaxsr.url,
-            type :'POST',
-            data : {
-                action : 'add_tickets_to_cart',
+            type: 'POST',
+            data: {
+                action: 'add_tickets_to_cart',
                 product_id: product_id,
                 event_id: event_id,
                 quantity: quantity
             },
             success: function (response) {
                 var data = JSON.parse(response);
-                if(data.success){
-                    $('.woocommerce-notices-wrapper').html('<div class="woocommerce-message" role="alert">'+data.message+'</div>');
-                }else{
-                    $('.woocommerce-notices-wrapper').html('<ul class="woocommerce-error" role="alert"><li>'+data.message+'</li></ul>');
+                if (data.success) {
+                    $('.woocommerce-notices-wrapper').html('<div class="woocommerce-message" role="alert">' + data.message + '</div>');
+                } else {
+                    $('.woocommerce-notices-wrapper').html('<ul class="woocommerce-error" role="alert"><li>' + data.message + '</li></ul>');
                 }
                 $('.woocommerce-notices-wrapper').show();
                 $('.count-cart').html(data.quantity_total);
             },
-            error: function(err){
+            error: function (err) {
                 console.log(err);
             }
         });
-    }); 
-
+    });
+    // $('#multiple-form-room .toggle').each(function (index) {
+    //     var roomIdInput = $(this).find('input[name="room_id"]');
+    //     var productId = $(this).data('product-id');
+    //     roomIdInput.val(productId);
+    // });
     // add hotel to cart
-    $('.form-booking').on('click','.add_hotel_to_cart',function(e){  
+    $('.form-booking').on('click', '.add_hotel_to_cart', function (e) {
         e.preventDefault();
         var selectedOption = $('.form-booking #select_typeOfRoom').val();
         if (!selectedOption) {
@@ -50,9 +54,9 @@ jQuery(function($){
         $('.woocommerce-notices-wrapper').hide();
         $.ajax({
             url: jaxsr.url,
-            type :'POST',
-            data : {
-                action : 'add_hotel_to_cart',
+            type: 'POST',
+            data: {
+                action: 'add_hotel_to_cart',
                 product_id: product_id,
                 hotel_id: hotel_id,
                 quantity: quantity,
@@ -64,17 +68,17 @@ jQuery(function($){
             },
             success: function (response) {
                 var data = JSON.parse(response);
-                if(data.success){
-                    $('.woocommerce-notices-wrapper').html('<div class="woocommerce-message" role="alert">'+data.message+'</div>');
-                }else{
-                    $('.woocommerce-notices-wrapper').html('<ul class="woocommerce-error" role="alert"><li>'+data.message+'</li></ul>');
+                if (data.success) {
+                    $('.woocommerce-notices-wrapper').html('<div class="woocommerce-message" role="alert">' + data.message + '</div>');
+                } else {
+                    $('.woocommerce-notices-wrapper').html('<ul class="woocommerce-error" role="alert"><li>' + data.message + '</li></ul>');
                 }
                 $('.woocommerce-notices-wrapper').show();
                 $('.count-cart').html(data.quantity_total);
             },
-            error: function(err){
+            error: function (err) {
                 console.log(err);
             }
         });
-    }); 
+    });
 });

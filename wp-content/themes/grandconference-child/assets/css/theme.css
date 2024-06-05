@@ -5,6 +5,10 @@
     padding-top:0;
     padding-bottom:0;
 }
+#multiple-form-room .wpcf7-not-valid-tip,
+#multiple-form-room input.hidden{
+    display:none !important;
+}
 .menu-single-event {
     list-style: none;
     width: 100%;

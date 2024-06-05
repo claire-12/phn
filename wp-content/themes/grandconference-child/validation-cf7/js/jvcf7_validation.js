@@ -26,7 +26,6 @@ jQuery(document).ready(function(){
          	}
 		});
 	});
-
 	jQuery('#multiple-form .wpcf7-form-control.wpcf7-submit').click(function(e){ 
 		console.log('123123');
 		$jvcfpValidation 	=	jQuery(this).parents('form');		
@@ -71,6 +70,9 @@ jQuery(document).ready(function(){
 		}else{
 			e.preventDefault();
 			let formData = new FormData(jQuery(this).closest('.wpcf7-form')[0]);
+			var roomId = jQuery(this).closest('.toggle').data('room-id');
+			console.log('roomId',roomId);
+        	formData.append("rooms_id", roomId);
 			formData.append("action", "set_session_form_room");
 			jQuery.ajax({
 				url: '/wp-admin/admin-ajax.php',
@@ -94,6 +96,14 @@ jQuery(document).ready(function(){
 		}
 	});	
 });
+// jQuery(document).ready(function($) {
+// 	$('#multiple-form-room .toggle').each(function(index) {
+// 		var roomIdInput = $(this).find('input[name="room_id"]');
+// 		console.log(roomIdInput);
+// 		var productId = $(this).data('product-id');
+// 		roomIdInput.val(productId);
+// 	});
+// });
 
 jQuery.validator.addMethod("email", 
     function(value, element) {
