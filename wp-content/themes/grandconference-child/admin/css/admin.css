@@ -273,3 +273,167 @@ input:checked + .slider:before {
 .save-each-date-select {
     margin-top: 10px !important;
 }
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.box-meta-listhotel.active span {
+    margin-left: 20px;
+}
+
+.box-meta-listhotel span {
+    margin-left: 0px;
+}
+
+.box-meta-listhotel.active span svg {
+    animation: rotate 2s linear infinite;
+    display: inline-block;
+}
+
+.box-meta-listhotel span svg {
+    width: 30px;
+    display: none;
+
+}
+/*  */
+.save-event-data-button.active span {
+    margin-left: 10px;
+}
+
+.save-event-data-button span {
+    margin-left: 0px;
+}
+
+.save-event-data-button.active span svg {
+    animation: rotate 2s linear infinite;
+    display: inline-block;
+    fill:#fff;
+}
+
+.save-event-data-button span svg {
+    width: 15px;
+    display: none;
+
+}
+/*  */
+#save-event-data-button {
+    margin: 15px 0 10px 15px;
+}
+
+.wrap-label-select {
+    margin-left: 15px;
+}
+
+.wrap-label-select label {
+    display: block;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+#hotel-select {
+    margin: 15px 0 10px 15px;
+    width: calc(100% - 30px);
+    border-radius: 5px;
+    color: #444;
+    line-height: 28px;
+    font-size: 13px;
+}
+
+.box-typeOfRoom .spinner-border {
+    display: none;
+}
+
+#button-add-typeOfRoom {
+    margin: 15px 0 10px 15px;
+    display: block;
+}
+
+.box-typeOfRoom {
+    padding: 0 15px;
+    margin-top: 15px;
+    border-bottom: 1px solid #cccccc57;
+    padding-bottom: 15px;
+}
+
+.box-typeOfRoom .wrap_type-of-room {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    gap: 10px;
+}
+
+.box-typeOfRoom .wrap_type-of-room .box_type {
+    width: calc(100% / 3 - 10px);
+}
+
+.box-typeOfRoom .wrap_type-of-room .box_type input {
+    width: 100%;
+}
+
+.box-typeOfRoom .wrap_type-of-room .box_type p {
+    margin: 0;
+}
+
+.box-typeOfRoom .wrap_type-of-room .box_type .font-w-bold {
+    font-weight: 600;
+}
+
+.box-typeOfRoom .title-hotels {
+    margin-bottom: 0;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box-header .box-title {
+    display: flex;
+    align-items: center;
+}
+
+.box-header .box-action .button-remove {
+    color: red;
+    border-color: red;
+    margin-left: 10px;
+    border: 1px solid;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 2.15384615;
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+}
+
+.box-header .box-action .button-remove:hover {
+    background: #cccccc4a;
+}
+
+.box-typeOfRoom .box-content {
+    display: none;
+}
+
+.box-typeOfRoom .box-content.active {
+    display: block;
+}

@@ -52,7 +52,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                     update_post_meta($product_variation_id, 'attribute_type-of-rooms', $name);
                     update_post_meta($product_variation_id, '_price', $price);
                     update_post_meta($product_variation_id, '_regular_price', $price);
-                    update_post_meta($product_variation_id, '_manage_stock', 'yes');
+                    update_post_meta($product_variation_id, '_manage_stock', 'no');
                     update_post_meta($product_variation_id, '_stock', $quantity);
                     update_post_meta($product_variation_id, '_description', $description);
                 }
@@ -96,7 +96,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                     update_post_meta($product_variation_id, 'attribute_type-of-rooms', $name);
                     update_post_meta($product_variation_id, '_price', $price);
                     update_post_meta($product_variation_id, '_regular_price', $price);
-                    update_post_meta($product_variation_id, '_manage_stock', 'yes');
+                    update_post_meta($product_variation_id, '_manage_stock', 'no');
                     update_post_meta($product_variation_id, '_stock', $quantity);
                     update_post_meta($product_variation_id, '_description', $description);
                 }
@@ -114,7 +114,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                 '_regular_price' => $price,
                 '_price' => $price,
                 '_stock_status' => 'instock',
-                '_manage_stock' => 'yes',
+                '_manage_stock' => 'no',
                 'phn_type_product' => 'hotel',
                 '_stock' => $rooms,
                 '_thumbnail_id' => $thumbnail_image,

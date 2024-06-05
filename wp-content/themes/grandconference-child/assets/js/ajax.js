@@ -2,6 +2,7 @@ jQuery(function($){
     // add tickets to cart
     $('.form-add-cart-tickets').on('click','.single_add_to_cart_button',function(e){  
         e.preventDefault();
+        $("body").addClass("ajax-load");
         var product_id = $(this).val();
         var quantity = $('.form-add-cart-tickets .qty').val();
         var event_id = $('.form-add-cart-tickets .event_id').val();
@@ -24,6 +25,7 @@ jQuery(function($){
                 }
                 $('.woocommerce-notices-wrapper').show();
                 $('.count-cart').html(data.quantity_total);
+                $("body").removeClass("ajax-load");
             },
             error: function(err){
                 console.log(err);

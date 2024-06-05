@@ -211,6 +211,13 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                 margin-<?php echo is_rtl() ? 'left' : 'right'; ?>: 10px;
                 max-width: 100%;
             }
+            #body_content td ul.wc-item-meta li p {
+                padding: 0;
+            }
+            #body_content td ul.wc-item-meta li:nth-child(3),
+            #body_content td ul.wc-item-meta li:nth-child(4){
+                display: none;
+            }
         </style>
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -274,6 +281,7 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                         </thead>
                                                                         <tbody>
                                                                             <?php
+                                                                            $total_order = 0;
                                                                             foreach ( $items as $item_id => $item ) {
                                                                                 $product       = $item->get_product();
                                                                                 $sku           = '';
@@ -297,14 +305,27 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                                 if($type === "event"){
                                                                                     continue;
                                                                                 }
-                                                                                $total_order = 0;
-                                                                                $total_order += $order->get_line_subtotal( $item );
+
+                                                                                $total_order_sub = $item->get_total() + $item->get_subtotal_tax();
+                                                                                $total_order += $total_order_sub;
                                                                                 ?>
                                                                                 <tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">
                                                                                     <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap:break-word;">
                                                                                     <?php
 
                                                                                     echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $item->get_name(), $item, false ) );
+                                                                                    // allow other plugins to add additional product information here.
+                                                                                    do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
+
+                                                                                    wc_display_item_meta(
+                                                                                        $item,
+                                                                                        array(
+                                                                                            'label_before' => '<strong class="wc-item-meta-label" style="float: ' . esc_attr( $text_align ) . '; margin-' . esc_attr( $margin_side ) . ': .25em; clear: both">',
+                                                                                        )
+                                                                                    );
+
+                                                                                    // allow other plugins to add additional product information here.
+                                                                                    do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
 
                                                                                     ?>
                                                                                     </td>
@@ -330,37 +351,32 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                             ?>
                                                                         </tbody>
                                                                         <tfoot>
+                                                                            <tr>
+                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px;" align="left">Subtotal:</th>
+                                                                                <td class="" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px;" align="left">
+                                                                                <span><?php echo wc_price($total_order); ?></span>
+                                                                                </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left">Payment method:</th>
+                                                                                <td class="" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left"><?php echo $order->get_payment_method_title(); ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left">Total:</th>
+                                                                                <td class="" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left">
+                                                                                <span><?php echo wc_price($total_order); ?></span> 
+                                                                                </td>
+                                                                            </tr>
                                                                             <?php
-                                                                            $item_totals = $order->get_order_item_totals();
-                                                                            if ( $item_totals ) {
-                                                                                $i = 0;
-                                                                                foreach ( $item_totals as $total ) {
-                                                                                    $i++;
-                                                                                    if($total['label'] === "Subtotal:" || $total['label'] === "Total:"){
-                                                                                        ?>
-                                                                                        <tr>
-                                                                                            <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
-                                                                                            <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wc_price($total_order); ?></td>
-                                                                                        </tr>
-                                                                                        <?php
-                                                                                    }else{
-                                                                                        ?>
-                                                                                        <tr>
-                                                                                            <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['label'] ); ?></th>
-                                                                                            <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; <?php echo ( 1 === $i ) ? 'border-top-width: 4px;' : ''; ?>"><?php echo wp_kses_post( $total['value'] ); ?></td>
-                                                                                        </tr>
-                                                                                        <?php
-                                                                                    }
+                                                                                if ( $order->get_customer_note() ) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
+                                                                                        <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
+                                                                                    </tr>
+                                                                                    <?php
                                                                                 }
-                                                                            }
-                                                                            if ( $order->get_customer_note() ) {
-                                                                                ?>
-                                                                                <tr>
-                                                                                    <th class="td" scope="row" colspan="2" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php esc_html_e( 'Note:', 'woocommerce' ); ?></th>
-                                                                                    <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>;"><?php echo wp_kses_post( nl2br( wptexturize( $order->get_customer_note() ) ) ); ?></td>
-                                                                                </tr>
-                                                                                <?php
-                                                                            }
                                                                             ?>
                                                                         </tfoot>
                                                                     </table>

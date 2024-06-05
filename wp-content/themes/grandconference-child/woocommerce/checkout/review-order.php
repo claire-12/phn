@@ -66,6 +66,23 @@ if($id_ticket != 0){
 								}
 							}
 						}
+
+						if(isset($cart_item['maximum'])){
+							if($lan === 'french'){
+								$description_number = "Nombre maximum de personnes par chambre: ";
+							}else{
+								$description_number = "Maximum guest per room: ";
+							}
+							echo "<p style='padding: 0px;'>".$description_number.$cart_item['maximum']."</p>";
+						}
+
+						if(isset($cart_item['start_day']) && isset($cart_item['end_day'])){
+							if($cart_item['start_day_timestamp'] == $cart_item['end_day_timestamp']){
+								echo "<p style='padding: 0px;'>Date: ".$cart_item['start_day']."</p>";
+							}else{
+								echo "<p style='padding: 0px;'>Date: ".$cart_item['start_day']." to ".$cart_item['end_day']."</p>";
+							}
+						}
                         ?>
 					</td>
 					<td class="product-total">

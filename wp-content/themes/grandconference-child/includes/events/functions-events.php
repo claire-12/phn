@@ -289,12 +289,8 @@ function add_footer_to_single_event($html){
         $html = $html.$content_hotels;
     }
     if (class_exists("\\Elementor\\Plugin")) {
-         $post_id_footer = get_field('select_option_footer', 'option');
-        // $post_ID = 29052;
-        // $pluginElementor = \Elementor\Plugin::instance();
-        // $contentElementor = $pluginElementor->frontend->get_builder_content($post_ID);
+        $post_id_footer = get_field('select_option_footer', 'option');
         $html .= '<div id="footer" class="footer-content footer-content-single">';
-        // $html .= apply_filters('the_content',$contentElementor);
         $html .= do_shortcode('[SHORTCODE_ELEMENTOR id="' . $post_id_footer . '"]');
         $html .= '</div>';
     }
@@ -308,9 +304,6 @@ function partners_event_elementor($partners){
     ob_start();
     $html = '';
     if (class_exists("\\Elementor\\Plugin") && $partners) {
-        // $pluginElementor = \Elementor\Plugin::instance();
-        // $contentElementor = $pluginElementor->frontend->get_builder_content($partners);
-        // $html = apply_filters('the_content',$contentElementor);
         $html = do_shortcode('[SHORTCODE_ELEMENTOR id='.$partners.']');
     }
     ob_get_clean();
@@ -321,26 +314,10 @@ function partners_event_elementor($partners){
 function wc_remove_product_from_cart($product_id) {
     $cart = WC()->cart;
     $cart_items = $cart->get_cart();
-    
-    foreach ($cart_items as $cart_item_key => $cart_item) {
-        $product_id_cart = $cart_item['product_id'];
-        $type = get_post_meta($product_id_cart, 'phn_type_product', true);
-
-        if ($type === 'event') {
-            if ($product_id_cart != $product_id) {
-                $cart->remove_cart_item($cart_item_key);
-            }
-        } else {
-            $event_id = get_post_meta($product_id, 'events_of_product', true);
-            $hotels_event = get_field('hotels', $event_id);
-            $hotel_id_cart = get_post_meta($product_id_cart, 'hotels_of_product', true);
-            
-            if (!empty($hotels_event) && !in_array($hotel_id_cart, $hotels_event)) {
-                $cart->remove_cart_item($cart_item_key);
-            } elseif (empty($hotels_event)) {
-                $cart->remove_cart_item($cart_item_key);
-            }
-        }
+    $id_ticket = id_ticket_in_cart();
+    $event_id = get_post_meta($product_id, 'events_of_product', true);
+    if($id_ticket != $event_id){
+        WC()->cart->empty_cart();
     }
 }
 

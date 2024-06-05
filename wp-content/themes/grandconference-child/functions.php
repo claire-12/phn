@@ -74,7 +74,7 @@ require get_theme_file_path('/includes/events/functions-events.php');
 /**
  * functions events admin
  */
-require get_theme_file_path('/includes/events/functions-events-admin.php');
+// require get_theme_file_path('/includes/events/functions-events-admin.php');
 
 /**
  * ajax events
@@ -120,3 +120,8 @@ require get_theme_file_path('/includes/acf/acf-functions.php');
  * functions admin event
  */
 require get_theme_file_path('/admin/functions/admin-event.php');
+
+/**
+ * functions booking
+ */
+require get_theme_file_path('/booking/functions/booking.php');

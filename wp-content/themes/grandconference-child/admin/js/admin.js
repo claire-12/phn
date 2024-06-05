@@ -1,11 +1,27 @@
 jQuery(document).ready(function($) {
+    // string date to timestamp
+    function dateStringToTimestamp(dateString) {
+        // Parse the date string
+        var parts = dateString.split('-');
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+        var year = parseInt(parts[2], 10);
+        // Create a Date object
+        var date = new Date(year, month, day);
+        // Get the timestamp
+        var timestamp = date.getTime()/1000;
+        return timestamp;
+    }
+
     // Toggle visibility of the variations data when the edit button is clicked
-    $("body").on("click", "#event_custom_box_id .button-edit", function () { 
+    $("body").on("click", "#event_custom_box_id .button-edit", function (e) { 
+        e.preventDefault();
         $(this).closest(".box-data-variations").find(".data-variations").slideToggle(200);
     });
 
     // Remove the variation box and corresponding hidden input when the remove button is clicked
-    $("body").on("click", "#event_custom_box_id .button-remove", function () {
+    $("body").on("click", "#event_custom_box_id .button-remove", function (e) {
+        e.preventDefault();
         var id_hotel = $(this).data("hotel");
         $("#hiddenInputs").find(id_hotel).remove();
         $(this).closest(".box-data-variations").remove();
@@ -116,6 +132,7 @@ jQuery(document).ready(function($) {
                     // Create an object to hold the data for the current date
                     var date_array = {
                         date: data_date,
+                        timestamp: dateStringToTimestamp(data_date),
                         stock: stock,
                     };
 

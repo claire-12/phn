@@ -18,7 +18,10 @@
 defined( 'ABSPATH' ) || exit;
 $cart = WC()->cart;
 $cart_items = $cart->get_cart();
-
+$id_ticket = id_ticket_in_cart();
+if($id_ticket != 0){
+	$lan = get_field('language',$id_ticket);
+}
 
 // var_dump($cart_items);
 do_action( 'woocommerce_before_cart' ); ?>
@@ -133,6 +136,27 @@ do_action( 'woocommerce_before_cart' ); ?>
 								}
 							}
 						}
+
+						// echo "<pre>";
+						// var_dump($cart_item);
+
+						if(isset($cart_item['maximum'])){
+							if($lan === 'french'){
+								$description_number = "Nombre maximum de personnes par chambre: ";
+							}else{
+								$description_number = "Maximum guest per room: ";
+							}
+							echo "<p style='padding: 0px;'>".$description_number.$cart_item['maximum']."</p>";
+						}
+
+						if(isset($cart_item['start_day']) && isset($cart_item['end_day'])){
+							if($cart_item['start_day_timestamp'] == $cart_item['end_day_timestamp']){
+								echo "<p style='padding: 0px;'>Date: ".$cart_item['start_day']."</p>";
+							}else{
+								echo "<p style='padding: 0px;'>Date: ".$cart_item['start_day']." to ".$cart_item['end_day']."</p>";
+							}
+						}
+
                         // foreach ($cart_items as $cart_item_key => $cart_item) {
                         //     $type = get_post_meta( $product_id, 'phn_type_product', true );
                         //     if($type === "hotel"){
@@ -270,3 +294,4 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+<?php

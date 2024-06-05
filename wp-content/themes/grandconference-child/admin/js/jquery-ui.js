@@ -37,7 +37,18 @@ var version = $.ui.version = "1.13.3";
 //>>description: Provides a factory for creating stateful widgets with a common API.
 //>>docs: https://api.jqueryui.com/jQuery.widget/
 //>>demos: https://jqueryui.com/widget/
-
+function dateStringToTimestamp(dateString) {
+	// Parse the date string
+	var parts = dateString.split('-');
+	var day = parseInt(parts[0], 10);
+	var month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+	var year = parseInt(parts[2], 10);
+	// Create a Date object
+	var date = new Date(year, month, day);
+	// Get the timestamp
+	var timestamp = date.getTime()/1000;
+	return timestamp;
+}
 
 var widgetUuid = 0;
 var widgetHasOwnProperty = Array.prototype.hasOwnProperty;
@@ -9222,6 +9233,7 @@ $.extend( Datepicker.prototype, {
 							}
 
 						var dataDate = dayString+'-'+monthString+'-'+yearString;
+						var timestamp = dateStringToTimestamp(dataDate);
 						
 						daySettings = ( beforeShowDay ?
 							beforeShowDay.apply( ( inst.input ? inst.input[ 0 ] : null ), [ printDate ] ) : [ true, "" ] );
@@ -9241,14 +9253,14 @@ $.extend( Datepicker.prototype, {
 							( printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "" ) + // highlight selected day
 							( printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "" ) ) + "'" + // highlight today (if different)
 							( ( !otherMonth || showOtherMonths ) && daySettings[ 2 ] ? " title='" + daySettings[ 2 ].replace( /'/g, "&#39;" ) + "'" : "" ) + // cell title
-							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-datect='" +dataDate+ "' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
+							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-timestamp='" +timestamp+ "' data-datect='" +dataDate+ "' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
 							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
 							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
 							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
 							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
 							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
 							"' href='#' aria-current='" + ( printDate.getTime() === currentDate.getTime() ? "true" : "false" ) + // mark date as selected for screen reader
-							"' data-datect='" +dataDate+ "' data-date='" + printDate.getDate() + // store date as data
+							"' data-datect='" +dataDate+ "' data-timestamp='" +timestamp+ "' data-date='" + printDate.getDate() + // store date as data
 							"'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
 						printDate.setDate( printDate.getDate() + 1 );
 						printDate = this._daylightSavingAdjust( printDate );

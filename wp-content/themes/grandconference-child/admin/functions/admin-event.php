@@ -88,6 +88,17 @@ function get_data_hotel_event($data_hotel_event){
     return $html;
 }
 
+// get lis it hotel html
+function get_list_id_hotel_html($data_hotel_event){
+    ob_start(); $html='';
+    if(!empty($data_hotel_event)){
+        foreach($data_hotel_event as $key => $value){
+            $html .= '<input type="hidden" id="'.$value['hotel_id'].'_hotel" class="hotel-id" name="hotel_id[]" value="'.$value['hotel_id'].'">';
+        }
+    }
+    return $html;
+}
+
 // event custom box html
 function event_custom_box_html($post){
     $args = array(
@@ -101,6 +112,7 @@ function event_custom_box_html($post){
     $event_id = get_the_ID();
     $data_hotel_event = get_post_meta($event_id, 'data_hotel_event', true);
     $html_data_hotel_event = get_data_hotel_event($data_hotel_event);
+    $html_list_id_hotel = get_list_id_hotel_html($data_hotel_event);
     if ($custom_query->have_posts()) {
         echo "<select class='select-hotel-event'>";
         echo "<option>Select Hotel</option>";
@@ -114,7 +126,7 @@ function event_custom_box_html($post){
         }
         echo "</select>";
         echo "<div class='wrap-box-data-variations'>".$html_data_hotel_event."</div>";
-        echo "<div id='hiddenInputs'></div>";
+        echo "<div id='hiddenInputs'>".$html_list_id_hotel."</div>";
         echo "<span class='loader'></span>";
         echo "<div class='modal-calendar'>
                 <svg class='close-icon' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
@@ -226,20 +238,4 @@ function save_variation_data(){
 }
 add_action('wp_ajax_save_variation_data', 'save_variation_data');
 add_action('wp_ajax_nopriv_save_variation_data', 'save_variation_data');
-
-function query_sql(){
-    global $wpdb;
-    $query = "
-        SELECT p.*
-        FROM {$wpdb->posts} p
-        JOIN {$wpdb->postmeta} pm1 ON p.ID = pm1.post_id
-        WHERE p.post_type = 'product_variation'
-        AND pm1.meta_key = 'attribute_type-of-rooms' AND pm1.meta_value LIKE '%Type Room 2%'
-        AND p.ID = 30375
-    ";
-    $results = $wpdb->get_results($query);
-    echo "<pre>";
-    var_dump($results);
-}
-// add_action('wp','query_sql');
 ?>

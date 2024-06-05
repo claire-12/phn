@@ -39,7 +39,7 @@ jQuery(document).ready(function(){
 			let formData = new FormData(jQuery(this).closest('.wpcf7-form')[0]);
 			formData.append("action", "set_session_form_ticket");
 			jQuery.ajax({
-				url: '/wp-admin/admin-ajax.php',
+				url: 'http://localhost/phn-git/phn/wp-admin/admin-ajax.php',
 				data: formData,
 				type: 'POST',
 				contentType: false,
@@ -71,7 +71,7 @@ jQuery(document).ready(function(){
 			let formData = new FormData(jQuery(this).closest('.wpcf7-form')[0]);
 			formData.append("action", "set_session_form_room");
 			jQuery.ajax({
-				url: '/wp-admin/admin-ajax.php',
+				url: 'http://localhost/phn-git/phn/wp-admin/admin-ajax.php',
 				data: formData,
 				type: 'POST',
 				contentType: false,
