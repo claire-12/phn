@@ -437,18 +437,4 @@ function add_custom_woocommerce_email_styles( $css, $email ) {
     return $css . $custom_css;
 }
 add_filter( 'woocommerce_email_styles', 'add_custom_woocommerce_email_styles', 10, 2 );
-
-function test_email(){
-    $order = wc_get_order(30488);
-    set_query_var('order', $order);
-    ob_start();
-    get_template_part('includes/emails/email-booking-hotel');
-    $body = ob_get_contents();
-    ob_end_clean();
-    $subject = get_field('subject_email_order_hotel', 'option');
-    $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.dev>');
-    // wp_mail($email, $subject, $body, $headers);
-    echo $body;
-}
-// add_action("wp_footer","test_email");
 ?>
