@@ -2,6 +2,9 @@
     width: 100%;
     margin-bottom: 15px;
 }
+.woocommerce-order-received .woocommerce-error{
+    display: none;
+}
 .ui-widget.ui-widget-content {
     width: calc(100% - 8px) !important;
 }

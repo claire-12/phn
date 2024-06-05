@@ -52,6 +52,13 @@ function phn_scripts() {
 		$scriptData = jvcf7_get_data_for_client_script();
   		wp_localize_script( 'jvcf7_validation', 'scriptData', $scriptData );
     }
+	if (is_page_template('template/form-room-checkout.php')) {
+		wp_enqueue_style('jvcf7_client', get_stylesheet_directory_uri() . '/validation-cf7/css/jvcf7_client.css', array(), time(), 'all');
+		wp_enqueue_script('jquery-validate', get_stylesheet_directory_uri() . '/validation-cf7/js/jquery.validate.min.js', array('jquery'), time(), true);
+    	wp_enqueue_script('jvcf7_validation', get_stylesheet_directory_uri() . '/validation-cf7/js/jvcf7_validation.js', array('jquery'), time(), true);
+		$scriptData = jvcf7_get_data_for_client_script();
+  		wp_localize_script( 'jvcf7_validation', 'scriptData', $scriptData );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'phn_scripts' );
 

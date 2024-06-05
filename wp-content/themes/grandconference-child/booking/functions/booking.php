@@ -35,7 +35,7 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
                 if((int) $value['hotel_id'] === $post_id){
                     $variations_data = $value['variations_data'];
                     if(!empty($variations_data)){
-                        $option_select .= "<option value='' data-price='' data-maximum='' data-event='' data-hotel='' selected disabled>".$option_default."</option>";
+                        $option_select .= "<option selected disabled>".$option_default."</option>";
                         foreach($variations_data as $k => $v){
                             $price[] = ((int) $v['price'] == $v['price']) ? (int) $v['price'] : (float) $v['price'];
                             $name_variations = get_post_meta($v['variations_id'], 'attribute_type-of-rooms', true);
@@ -52,7 +52,7 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
                 echo "<h3 class='title'>".$title_price." : ".$min_price." - ".$max_price." / ".$rooms."</h3>";
             }
             if($option_select){
-                echo "<select name='type_of_room' class='select_type_of_room'>".$option_select."</select>";
+                echo "<select name='type_of_room' class='select_type_of_room' >".$option_select."</select>";
             }
             echo "<div id='calendar-booking'></div>";
             echo "<div class='wrap-qty-js disable'>
@@ -70,7 +70,9 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
             echo "<h6 class='price-typeroom price-typeroom-new'>".$title_price." : <span class='js-price-html'>0</span> / ".$rooms."</h6>";
             echo "<h6 class='description-typeroom description-typeroom-new'>".$maximum_guest_title.": <span class='number-maximum'>0</span></h6>";
             echo "<button type='submit' name='add-to-cart-hotel' value='' class='add-to-cart-hotel button alt'>".$checkout."</button>";
+            
             echo "</form>";
+            
         }
     }
 }

@@ -17,31 +17,35 @@
  * @var WC_Order|false $order
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 global $wpdb;
 global $wp;
-$order_id = absint( $wp->query_vars['order-received'] );
+$order_id = absint($wp->query_vars['order-received']);
 
-$query_event = $wpdb->prepare( "
+// if ( function_exists( 'create_entry_infor_customer_buy_ticket' ) ) {
+//     create_entry_infor_customer_buy_ticket($order_id);
+
+// }
+$query_event = $wpdb->prepare("
     SELECT product_id
     FROM {$wpdb->prefix}wc_order_product_lookup
     WHERE order_id = %d AND variation_id = 0
-", $order_id );
+", $order_id);
 
-$results_event = $wpdb->get_results( $query_event );
+$results_event = $wpdb->get_results($query_event);
 // var_dump($results_event);
-if(isset($results_event[0])){
-	$event_id = (int)$results_event[0]->product_id;
+if (isset($results_event[0])) {
+	$event_id = (int) $results_event[0]->product_id;
 }
 
 
-$query = $wpdb->prepare( "
+$query = $wpdb->prepare("
     SELECT product_id, product_qty,variation_id
     FROM {$wpdb->prefix}wc_order_product_lookup
     WHERE order_id = %d AND variation_id != 0
-", $order_id );
+", $order_id);
 
-$results = $wpdb->get_results( $query );
+$results = $wpdb->get_results($query);
 // var_dump($results);
 // $query_type = $wpdb->prepare( "
 //     SELECT order_item_name
@@ -60,31 +64,31 @@ $results = $wpdb->get_results( $query );
 
 $results = $wpdb->get_results($query);
 
-if ( $results ) {
+if ($results) {
 	$newTypeOfRoom = array();
-    foreach ( $results as $result ) {
-        $product_id = $result->product_id;
-        $product_qty = intval($result->product_qty);
-        $variation_id = intval($result->variation_id);
-        $event_id = intval(get_post_meta($event_id, 'events_of_product',true ));
-		$typeOfRoom = get_post_meta($event_id, 'hotel_type-of-rooms',true );
+	foreach ($results as $result) {
+		$product_id = $result->product_id;
+		$product_qty = (int) $result->product_qty;
+		$variation_id = (int) $result->variation_id;
+		$event_id = (int) get_post_meta($event_id, 'events_of_product', true);
+		$typeOfRoom = get_post_meta($event_id, 'hotel_type-of-rooms', true);
 		// echo "<pre>";
 		// var_dump("typeOfRoom" ,$typeOfRoom);
 		$typeOfRoomNew = [];
-        if($typeOfRoom){
+		if ($typeOfRoom) {
 			foreach ($typeOfRoom as $hotel) {
 				$hotelId = $hotel["hotelId"];
 				$roomTypes = [];
 				foreach ($hotel["roomTypes"] as $roomType) {
-					$id = intval($roomType["id"]);
+					$id = (int) $roomType["id"];
 					$roomName = $roomType["name"];
 					$price = $roomType["price"];
 					$pricenew = $roomType["pricenew"];
-					$quantity = intval($roomType["quantity"]);
-					$fooEvents = intval($roomType["fooEvents"]);
+					$quantity = (int) $roomType["quantity"];
+					$fooEvents = (int) $roomType["fooEvents"];
 					if ($id == $variation_id) {
-                        $fooEvents = $fooEvents - $product_qty;
-                    }
+						$fooEvents = $fooEvents - $product_qty;
+					}
 					$roomTypes[] = array(
 						"id" => $id,
 						"name" => $roomName,
@@ -93,7 +97,7 @@ if ( $results ) {
 						"quantity" => $quantity,
 						"fooEvents" => $fooEvents,
 						"descriptionTypeRoom" => $roomType["descriptionTypeRoom"]
-                    );
+					);
 				}
 				$typeOfRoomNew[] = array(
 					'hotelId' => $hotelId,
@@ -106,14 +110,13 @@ if ( $results ) {
 		// var_dump("typeOfRoom new" ,$variation_id);
 		// echo "------------------------------------";
 		update_post_meta($event_id, 'hotel_type-of-rooms', $typeOfRoomNew);
-		
-    }
-	
+
+	}
+
 } else {
-    
+
 }
 ?>
-
 <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
 	<?php
 	/**
@@ -126,7 +129,7 @@ if ( $results ) {
 	 */
 	$message = apply_filters(
 		'woocommerce_thankyou_order_received_text',
-		esc_html( __( 'Thank you. Your order has been received.', 'woocommerce' ) ),
+		esc_html(__('Thank you. Your order has been received.', 'woocommerce')),
 		$order
 	);
 

@@ -64,8 +64,14 @@ function set_session_form_ticket(){
             $redirect = true;
         }
     }
-    echo json_encode(array('redirect' => $redirect,'checkout_url'=> wc_get_checkout_url()));
-    // echo json_encode(array('redirect' => $redirect,'checkout_url'=> '/form-room-checkout'));
+    $number_room = number_room_in_cart();
+    if($number_room != 0){
+        echo json_encode(array('redirect' => $redirect,'checkout_url'=> '/form-room-checkout'));
+    }else{
+        echo json_encode(array('redirect' => $redirect,'checkout_url'=> wc_get_checkout_url()));
+    }
+    // echo json_encode(array('redirect' => $redirect,'checkout_url'=> wc_get_checkout_url()));
+    
     wp_die();
 }
 add_action('wp_ajax_set_session_form_ticket', 'set_session_form_ticket');
@@ -78,13 +84,14 @@ function set_session_form_room(){
         $infor_room = $_SESSION['infor_room'];
         $count = count($infor_room);
         $number_room = number_room_in_cart();
+        
         if($count == $number_room){
             $redirect = false;
         }else{
             $redirect = true;
         }
     }
-    echo json_encode(array('redirect' => $redirect,'checkout_url'=> wc_get_checkout_url()));
+    echo json_encode(array('redirect' => $redirect,'room_checkout_url'=> wc_get_checkout_url()));
     wp_die();
 }
 add_action('wp_ajax_set_session_form_room', 'set_session_form_room');

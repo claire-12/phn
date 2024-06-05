@@ -186,6 +186,7 @@ $hotel_stars = (!empty(get_field('hotel_stars',$post_id))) ? get_field('hotel_st
             </div>
             <div class="wrap-form-booking">
                 <?php apply_filters('form_booking_hotel', $event_id,$post_id,$title_price,$rooms,$option_default,$checkout,$maximum_guest_title); ?>
+                
             </div>
         </div>
         <div class="desscription-hotel">

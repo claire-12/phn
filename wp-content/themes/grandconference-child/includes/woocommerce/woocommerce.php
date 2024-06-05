@@ -165,6 +165,7 @@ add_action('admin_head', 'wooocommerce_admin_css');
 // Action after checkout load page thankyou
 function action_after_checkout_load_page_thankyou($order_id)
 {
+
     if (!$order_id) {
         return;
     }
@@ -180,29 +181,120 @@ function action_after_checkout_load_page_thankyou($order_id)
             $order->update_status('completed');
         }
 
-        // Send email hotel after checkout
-        if ($order && is_send_email_hotel($order)) {
-            $email = $order->get_billing_email();
-            $status = $order->get_status();
-            if ($status === "processing" || $status === "completed") {
-                set_query_var('order', $order);
-                ob_start();
-                get_template_part('includes/emails/email-booking-hotel');
-                $body = ob_get_contents();
-                ob_end_clean();
-                $subject = get_field('subject_email_order_hotel', 'option');
-                $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.dev>');
-                wp_mail($email, $subject, $body, $headers);
-            }
-        }
-
+        // // Send email hotel after checkout
+        // if ($order && is_send_email_hotel($order)) {
+        //     $email = $order->get_billing_email();
+        //     $status = $order->get_status();
+        //     if ($status === "processing" || $status === "completed") {
+        //         set_query_var('order', $order);
+        //         ob_start();
+        //         get_template_part('includes/emails/email-booking-hotel');
+        //         $body = ob_get_contents();
+        //         ob_end_clean();
+        //         $subject = get_field('subject_email_order_hotel', 'option');
+        //         $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.net>');
+        //         wp_mail($email, $subject, $body, $headers);
+        //     }
+        // }
         // Save information user ticket
         create_entry_infor_customer_buy_ticket($order_id);
 
+        create_entry_infor_customer_buy_room($order_id);
         update_post_meta($order_id, 'action_order_phn', true);
+        
     }
 }
-add_action('woocommerce_thankyou', 'action_after_checkout_load_page_thankyou', 10, 2);
+add_action('woocommerce_new_order', 'action_after_checkout_load_page_thankyou', 1, 1);
+
+function action_phn_woocommerce_thankyou($order_id)
+{
+    if (!$order_id) {
+        return;
+    }
+
+    $action_order_phn = get_post_meta($order_id, 'action_order_phn_NN', true);
+
+    if (!$action_order_phn) {
+        $order = wc_get_order($order_id);
+        if ($order) {
+            // Send email hotel after checkout
+            if ($order && is_send_email_hotel($order)) {
+                $email = $order->get_billing_email();
+                $status = $order->get_status();
+                if ($status === "processing" || $status === "on-hold" || $status === "completed") {
+                    set_query_var('order', $order);
+                    ob_start();
+                    get_template_part('includes/emails/email-booking-hotel');
+                    $body = ob_get_contents();
+                    ob_end_clean();
+                    $subject = get_field('subject_email_order_hotel', 'option');
+                    $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.net>');
+                    wp_mail($email, $subject, $body, $headers);
+                }
+            }
+            global $wpdb;
+            $ticket_id = [];
+            $ticket_id_db = [];
+            $sql = $wpdb->prepare("SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = %s AND meta_value = %d", 'WooCommerceEventsOrderID', $order_id);
+            $results = $wpdb->get_results($sql);
+
+            if ($results) {
+                foreach ($results as $value) {
+                    $ticket_id[] = (int) get_post_meta((int) $value->post_id, 'WooCommerceEventsTicketID', true);
+                }
+            }
+
+            $sql_leads = $wpdb->prepare("SELECT lead_id FROM {$wpdb->prefix}vxcf_leads_detail WHERE name = 'order_id_type' AND value = $order_id");
+                    
+            $results_leads = $wpdb->get_results($sql_leads);
+
+            if ($results_leads) {
+                foreach ($results_leads as $value) {
+                    $ticket_id_db[] = $value->lead_id;
+                }
+            }
+
+            if ($ticket_id && $ticket_id_db) {
+                $result = [];
+                foreach ($ticket_id_db as $index => $key) {
+                    $result[(int)$key] = (int)$ticket_id[$index];
+                }
+            }
+
+            if($result){
+                foreach($result as $key => $value){
+                    $table_leads_detail = $wpdb->prefix . 'vxcf_leads_detail';
+                    $wpdb->query( $wpdb->prepare(
+                        "
+                        UPDATE $table_leads_detail
+                        SET value = $value
+                        WHERE lead_id = $key
+                        AND name = 'ticket_id'
+                        "
+                    ) );
+
+                    $table_leads = $wpdb->prefix . 'vxcf_leads';
+                    $wpdb->query( $wpdb->prepare(
+                        "
+                        UPDATE $table_leads
+                        SET meta = $value
+                        WHERE id = $key
+                        "
+                    ) );
+                }
+            }
+        }
+    }
+}
+add_action('woocommerce_thankyou', 'action_phn_woocommerce_thankyou');
+
+add_action( 'woocommerce_payment_complete', 'action_payment_complete', 10, 2 );
+function action_payment_complete( $order_id, $order ) {
+    $order = wc_get_order($order_id);
+    if ($order->get_status() == 'processing') {
+        $order->update_status('completed');
+    }
+}
 
 // Is send email hotel
 function is_send_email_hotel($order)
@@ -398,12 +490,14 @@ function information_user_each_ticket($ticket_id)
         if ($entry_detail && $tags) {
             unset($entry_detail['order_id']);
             unset($entry_detail['ticket_id']);
+            unset($entry_detail['order_id_type']);
             foreach ($entry_detail as $key => $value) {
-                if ($tags[$key]['values']) {
-                    $name = $tags[$key]['values'][0]['label'];
-                } else {
-                    $name = $tags[$key]['label'];
-                }
+                // if (isset($tags[$key]['values'])) {
+                //     $name = $tags[$key]['values'][0]['label'];
+                // } else {
+                //     $name = $tags[$key]['label'];
+                // }
+                $name = $tags[$key]['label'];
                 $information[] = ['name' => $name, 'value' => $value['value']];
             }
         }
@@ -518,10 +612,12 @@ function number_room_in_cart()
             $product_id_cart = $cart_item['product_id'];
             $type = get_post_meta($product_id_cart, 'phn_type_product', true);
             if ($type === 'hotel') {
-                $quantity = $cart_item['quantity'];
+                $quantity += $cart_item['quantity'];
             }
+
         }
     }
+
     return $quantity;
 }
 if (!is_admin()) {
@@ -531,34 +627,44 @@ if (!is_admin()) {
 
         $cart = WC()->cart;
         $cart_items = $cart->get_cart();
+        $quantity = 0;
+        $variation_ids = [];
         if ($cart_items) {
-            $quantity = 0;
             foreach ($cart_items as $cart_item_key => $cart_item) {
                 $product_id_cart = $cart_item['product_id'];
                 $type = get_post_meta($product_id_cart, 'phn_type_product', true);
                 if ($type === 'hotel') {
-                    $quantity = $cart_item['quantity'];
-                    // $event_id = get_post_meta($product_id_cart, 'events_of_product', true);
-                    // $form_event = get_field('form_event', $event_id);
+                    $quantity += $cart_item['quantity'];
+                    for ($i = 0; $i < $cart_item['quantity']; $i++) {
+                        $variation_ids[] = $cart_item['variation_id'];
+                    }
                 }
             }
-            
+            // var_dump($cart_items);
+            // var_dump($variation_ids);
             if ($quantity != 0) {
                 ?>
                 <div id="multiple-form-room">
                     <?php
+                    $first = true;
                     for ($i = 1; $i <= $quantity; $i++) {
-                        $class = ($i == $quantity) ? 'last' : '';
+                        $class = '';
+                        if (!$first) {
+                            $class = 'last';
+                        } else {
+                            $first = false;
+                        }
+                        $variation_id = $variation_ids[$i - 1];
                         ?>
-                        <div class="toggle form-<?php echo $i; ?> <?php echo $class; ?>">
-                            
-                            <h2>Form Room<?php echo $i; ?></h2>
-                            <?php echo do_shortcode('[contact-form-7 id="8722398" title="Form Room Checkout"]'); ?>
+                        <div class="toggle form-<?php echo $i; ?> <?php echo $class; ?>" data-room-id="<?php echo $variation_id; ?>">
+
+                            <h2>Form Room <?php echo $i; ?></h2>
+                            <?php echo do_shortcode('[contact-form-7 id="8722398" title="Form Room Checkout" ]'); ?>
                         </div>
                         <?php
                     }
                     ?>
-                    <div class="action">
+                    <div class="action-form">
                         <span id="prev-form-room"></span>
                         <span id="next-form-room"></span>
                     </div>
@@ -571,5 +677,168 @@ if (!is_admin()) {
         ob_end_clean();
         return $result;
     }
+
 }
+
+
+
+function add_orders_room_meta_boxes($post_type, $post)
+{
+    $screens = array('shop_orders', 'shop_order');
+    $id = '';
+
+    if (isset($_GET['id'])) {
+        $id = sanitize_text_field(wp_unslash($_GET['id']));
+    } else {
+        $id = $post->ID;
+    }
+
+    foreach ($screens as $screen_name) {
+        if (('shop_order' === get_post_type($id) && isset($_GET['post'])) || (isset($_GET['page']) && 'wc-orders' === $_GET['page'] && isset($id))) {
+            $order = wc_get_order($id);
+            global $wpdb;
+
+            $query = $wpdb->prepare("
+                SELECT COUNT(*)
+                FROM {$wpdb->prefix}wc_order_product_lookup
+                WHERE order_id = %d AND variation_id != 0
+            ", $id);
+
+            $variation_count = $wpdb->get_var($query);
+            // if ($variation_count > 0) {
+                $screen = wc_get_container()->get(CustomOrdersTableController::class)->custom_orders_table_usage_is_enabled() ? wc_get_page_screen_id($screen_name) : $screen_name;
+                add_meta_box(
+                    'woocommerce_events_order_room_details',
+                    __('Room Details', 'woocommerce-events'),
+                    'add_orders_room_meta_boxes_details',
+                    $screen,
+                    'normal'
+                );
+            // }
+        }
+    }
+
+}
+add_action('add_meta_boxes', 'add_orders_room_meta_boxes', 10, 2);
+
+
+function add_orders_room_meta_boxes_details($post)
+{
+    $id = '';
+    if (isset($_GET['id'])) {
+        $id = sanitize_text_field(wp_unslash($_GET['id']));
+    } else {
+        $id = $post->ID;
+    }
+
+    // $order = wc_get_order($id);
+    // if (!$order) {
+    //     echo "Order not found.";
+    //     return;
+    // }
+
+    // $order_status = $order->get_status();
+    // $woocommerce_events_sent_ticket = $order->get_meta('WooCommerceEventsTicketsGenerated', true);
+    // $global_woocommerce_events_send_on_status = get_option('globalWooCommerceEventsSendOnStatus');
+    // $order_statuses = wc_get_order_statuses();
+
+    // $status_output = '';
+    // if (!is_array($global_woocommerce_events_send_on_status) && !empty($global_woocommerce_events_send_on_status)) {
+    //     $status_output = $order_statuses[$global_woocommerce_events_send_on_status];
+    // } elseif (!empty($global_woocommerce_events_send_on_status)) {
+    //     foreach ($global_woocommerce_events_send_on_status as $status) {
+    //         $status_output .= $order_statuses[$status] . ', ';
+    //     }
+    //     $status_output = rtrim($status_output, ', ');
+    // } else {
+    //     $status_output = 'Completed';
+    // }
+
+    global $wpdb;
+    $query = $wpdb->prepare("
+        SELECT ld.lead_id, l.form_id
+        FROM {$wpdb->prefix}vxcf_leads_detail ld
+        INNER JOIN {$wpdb->prefix}vxcf_leads l ON ld.lead_id = l.id
+        WHERE ld.value = %d
+    ", $id);
+
+    $results = $wpdb->get_results($query);
+    if (!empty($results)) {
+        foreach ($results as $row) {
+            $information = [];
+            $lead_id = $row->lead_id;
+            $form_id = $row->form_id;
+            $tags = vxcf_form::get_form_fields($form_id);
+            $vxcf_form = new vxcf_form();
+            $entry_detail = $vxcf_form->get_entry_detail($lead_id);
+            // var_dump($entry_detail);
+            if (isset($entry_detail['ticket_id'])) {
+                continue;
+            }
+
+            $field_labels = array(
+                'first-name' => 'First Name',
+                'last-name' => 'Last Name',
+                'your-email' => 'Email',
+                'tel-495' => 'Phone',
+                'checkbox-802' => 'Qui',
+                'member_number' => 'Numéro de carte',
+                'your-message' => 'Message'
+            );
+            echo '<h3>Hotel:</h3>';
+            echo '<div class="box-infor-room" style="">';
+            echo '<ul>';
+            foreach ($entry_detail as $field_name => $field_data) {
+
+                if ($field_name == "order_id") {
+                    continue;
+                }
+                if ($field_name == 'rooms_id') {
+                    $str = $field_data['value'];
+                    // var_dump($str);
+                    $data = (int) $str;
+                    $post_id = $data;
+                    $room_title = get_the_title($post_id);
+                    if ($room_title) {
+                        echo '<li class="title-value-room" style="">' . $room_title . '</li>';
+                    }
+                } elseif ($field_name == 'your-email') {
+                    $email = $field_data['value'];
+                    echo '<li><strong class="title-value" >Email : </strong> <a href="mailto: ' . $email . '">' . $email . '</a></li>';
+                } elseif ($field_name == 'checkbox-802') {
+                    $checkbox = $field_data['value'];
+                    $checkboxArray = unserialize($checkbox);
+                    if (is_array($checkboxArray)) {
+                        $checkboxArray = implode(', ', $checkboxArray);
+                    }
+                    echo '<li><strong class="title-value" >Qui : </strong> ' . $checkboxArray . '</li>';
+
+                } else {
+                    $label = isset($field_labels[$field_name]) ? $field_labels[$field_name] : ucfirst(str_replace('-', ' ', $field_name));
+                    echo '<li><strong class="title-value">' . $label . ':</strong> ' . $field_data['value'] . '</li>';
+                }
+            }
+            echo '</ul>';
+            echo '</div>';
+            echo '<style>
+                .box-infor-room .title-value-room{
+                    position: absolute;
+                    top: -44px;
+                    left: 60px;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+                .box-infor-room{
+                    position:relative
+                }
+                .box-infor-room .title-value{
+                    min-width:125px;
+                    display:inline-block;
+                }
+
+            </style>';
+        }
+    }
+}
+
 ?>

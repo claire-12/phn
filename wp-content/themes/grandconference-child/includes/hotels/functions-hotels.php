@@ -38,7 +38,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                 foreach ($typeOfRooms as $room) {
                     $name = $room['name'];
                     $price = $room['price'];
-                    $quantity = $room['quantity'];
+                    // $quantity = $room['quantity'];
                     $description = $room['description'];
                     $post_title_name = $original_post->post_title .' - ' .$name;
                     $product_variation_id = wp_insert_post(array(
@@ -53,7 +53,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                     update_post_meta($product_variation_id, '_price', $price);
                     update_post_meta($product_variation_id, '_regular_price', $price);
                     update_post_meta($product_variation_id, '_manage_stock', 'no');
-                    update_post_meta($product_variation_id, '_stock', $quantity);
+                    // update_post_meta($product_variation_id, '_stock', $quantity);
                     update_post_meta($product_variation_id, '_description', $description);
                 }
             }
@@ -82,7 +82,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                 foreach ($typeOfRooms as $room) {
                     $name = $room['name'];
                     $price = $room['price'];
-                    $quantity = $room['quantity'];
+                    // $quantity = $room['quantity'];
                     $description = $room['description'];
                     $post_title_name = $original_post->post_title .' - ' .$name;
                     $product_variation_id = wp_insert_post(array(
@@ -97,7 +97,7 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                     update_post_meta($product_variation_id, '_price', $price);
                     update_post_meta($product_variation_id, '_regular_price', $price);
                     update_post_meta($product_variation_id, '_manage_stock', 'no');
-                    update_post_meta($product_variation_id, '_stock', $quantity);
+                    // update_post_meta($product_variation_id, '_stock', $quantity);
                     update_post_meta($product_variation_id, '_description', $description);
                 }
             }

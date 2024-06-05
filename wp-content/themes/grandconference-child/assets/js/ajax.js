@@ -2,10 +2,10 @@ jQuery(function($){
     // add tickets to cart
     $('.form-add-cart-tickets').on('click','.single_add_to_cart_button',function(e){  
         e.preventDefault();
-        $("body").addClass("ajax-load");
         var product_id = $(this).val();
         var quantity = $('.form-add-cart-tickets .qty').val();
         var event_id = $('.form-add-cart-tickets .event_id').val();
+        $("body").addClass("ajax-load");
         $('.woocommerce-notices-wrapper').hide();
         $.ajax({
             url: jaxsr.url,
