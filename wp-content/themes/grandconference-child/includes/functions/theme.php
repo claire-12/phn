@@ -240,15 +240,12 @@ function replace_month_names($input) {
 }
 
 function swapFirstTwoWords($str) {
-    // Tách chuỗi thành các từ bằng hàm explode
     $words = explode(" ", $str);
     
-    // Kiểm tra xem có ít nhất hai từ để hoán đổi hay không
     if (count($words) < 2) {
-        return $str; // Nếu không có đủ hai từ, trả về chuỗi gốc
+        return $str;
     }
     
-    // Hoán đổi vị trí từ thứ nhất và thứ hai
     $temp = $words[0];
     $words[0] = $words[1];
     $words[1] = $temp;
@@ -257,9 +254,7 @@ function swapFirstTwoWords($str) {
     $words[5] = $words[6];
     $words[6] = $temp1;
     
-    // Ghép các từ lại thành chuỗi bằng hàm implode
-    $newStr = implode(" ", $words);
-    
+    $newStr = implode(" ", $words);  
     return $newStr;
 }
 ?>
