@@ -51,7 +51,7 @@ $desired_array = null;
 $hotel_stars = (!empty(get_field('hotel_stars',$post_id))) ? get_field('hotel_stars',$post_id) : 5;
 
 ?>
-<div class="content-details-hotel">
+<div class="content-details-hotel" data-lang="<?php echo $lan; ?>">
     <ul class="menu-single-event">
         <li>
             <a href="<?php echo esc_url($link); ?>" class="themelink"><?php echo esc_html($text_menu_evh); ?></a>

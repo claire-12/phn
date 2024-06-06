@@ -1,6 +1,6 @@
 .select_type_of_room {
-    width: 100%;
-    margin-bottom: 15px;
+    width: calc(100% - 43px) !important;
+    margin-bottom: 15px !important;
 }
 .woocommerce-order-received .woocommerce-error{
     display: none;
@@ -8,7 +8,7 @@
 .ui-widget.ui-widget-content {
     width: calc(100% - 8px) !important;
 }
-.dp-highlight:not(.ui-state-disabled) .ui-state-default {
+.calendar-active .dp-highlight:not(.ui-state-disabled) .ui-state-default {
     background: #FF2D55;
     color: #FFF;
     border: 1px solid #ff2d55;
@@ -110,4 +110,9 @@ body{
 .woocommerce-table__product-name .wc-item-meta li:nth-child(3),
 .woocommerce-table__product-name .wc-item-meta li:nth-child(4){
     display: none !important;
+}
+.day-available .ui-state-default {
+    border: 1px solid #dad55e;
+    background: #fffa90;
+    color: #777620;
 }

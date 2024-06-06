@@ -1,0 +1,964 @@
+0000.002 (0) Opened log file at time: Thu, 06 Jun 2024 08:07:16 +0000 on http://localhost/phn-git/phn
+0000.006 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.24.3 WP: 6.5.3 PHP: 8.0.0 (apache2handler, Windows NT DESKTOP-35M2D28 10.0 build 19045 (Windows 10) AMD64) MySQL: 10.4.32-MariaDB (max packet size=1048576) WPLANG: fr_FR Server: Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.0.0 safe_mode: 0 max_execution_time: 900 memory_limit: 512M (used: 133.1M | 12M) multisite: N openssl: OpenSSL 1.1.1h  22 Sep 2020 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.009 (0) Free space on disk containing Updraft's temporary directory: 18894.5 MB
+0000.014 (0) Tasks: Backup files: 1 (schedule: daily) Backup DB: 1 (schedule: daily)
+0000.048 (0) Requesting semaphore lock (fd) (apparently not via scheduler)
+0000.059 (0) Set semaphore last lock (fd) time to 2024-06-06 08:07:16
+0000.061 (0) Semaphore lock (fd) complete
+0000.069 (0) Backup run: resumption=0, nonce=20223ad1ce09, file_nonce=20223ad1ce09 begun at=1717661236 (0s ago), job type=backup
+0000.074 (0) Scheduling a resumption (1) after 300 seconds (1717661536) in case this run gets aborted
+0000.113 (0) Checking if we have a zip executable available
+0000.118 (0) Creation of backups of directories: beginning
+0000.128 (0) Beginning creation of dump of plugins (split every: 25 MB)
+0016.674 (0) Total entities for the zip file: 3215 directories, 17544 files (0 skipped as non-modified), 307.5 MB
+0016.693 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 2.0 seconds have passed since the last write (0 MB, 1 (1) files added so far); re-opening (prior size: 0 KB)
+0016.980 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 100 files added (on-disk size: 605.3 KB)
+0017.042 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 200 files added (on-disk size: 605.3 KB)
+0017.103 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 300 files added (on-disk size: 605.3 KB)
+0017.162 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 400 files added (on-disk size: 605.3 KB)
+0017.219 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 500 files added (on-disk size: 605.3 KB)
+0017.278 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 600 files added (on-disk size: 605.3 KB)
+0017.333 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 700 files added (on-disk size: 605.3 KB)
+0017.392 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.tmp: 800 files added (on-disk size: 605.3 KB)
+0017.409 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): possibly approaching split limit (22.2 MB, 829 (830) files added so far); last ratio: 1; re-opening (prior size: 605.3 KB)
+0029.214 (0) Zip size is at/near split limit (7.1 MB / 25 MB) - bumping index (from: 0)
+0029.325 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.list-temp.tmp)
+0029.332 (0) Successfully created zip file manifest (size: 65092)
+0029.340 (0) Created plugins zip (0) - 7231.5 KB in 29.1 s (248.6 KB/s) (checksums: sha1: 1deb85c615c06ff4f0e43a9f728928485010c21d, sha256: d5baaf99bd2bdb03a031f7c44bcb6be096686bc8286a4934015a7f53e1b75e1c)
+0029.358 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0029.359 (0) No remote despatch: user chose no remote backup service
+0029.361 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip
+0029.365 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip.list.tmp)
+0029.368 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0029.409 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 900 files added (on-disk size: 0 KB)
+0029.460 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1000 files added (on-disk size: 0 KB)
+0029.509 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1100 files added (on-disk size: 0 KB)
+0029.564 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1200 files added (on-disk size: 0 KB)
+0029.602 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.1 MB, 17544 files batched, 445 (1275) added so far); re-opening (prior size: 0 KB)
+0039.880 (0) A useful amount of data was added after this amount of zip processing: 11.3 s (normalised: 11.2 s, rate: 2285.7 KB/s)
+0039.909 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1300 files added (on-disk size: 5117.5 KB)
+0039.966 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1400 files added (on-disk size: 5117.5 KB)
+0040.023 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1500 files added (on-disk size: 5117.5 KB)
+0040.075 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1600 files added (on-disk size: 5117.5 KB)
+0040.130 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1700 files added (on-disk size: 5117.5 KB)
+0040.191 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1800 files added (on-disk size: 5117.5 KB)
+0040.250 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 1900 files added (on-disk size: 5117.5 KB)
+0040.323 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2000 files added (on-disk size: 5117.5 KB)
+0040.419 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2100 files added (on-disk size: 5117.5 KB)
+0040.488 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2200 files added (on-disk size: 5117.5 KB)
+0040.548 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (18.2 MB, 17544 files batched, 1001 (2276) added so far); re-opening (prior size: 5117.5 KB)
+0056.694 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2300 files added (on-disk size: 12544.1 KB)
+0056.763 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2400 files added (on-disk size: 12544.1 KB)
+0056.852 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2500 files added (on-disk size: 12544.1 KB)
+0056.915 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2600 files added (on-disk size: 12544.1 KB)
+0056.968 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2700 files added (on-disk size: 12544.1 KB)
+0057.021 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2800 files added (on-disk size: 12544.1 KB)
+0057.066 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 2900 files added (on-disk size: 12544.1 KB)
+0057.118 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3000 files added (on-disk size: 12544.1 KB)
+0057.162 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3100 files added (on-disk size: 12544.1 KB)
+0057.212 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3200 files added (on-disk size: 12544.1 KB)
+0057.253 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (10.1 MB, 17544 files batched, 1001 (3277) added so far); re-opening (prior size: 12544.1 KB)
+0081.181 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3300 files added (on-disk size: 15818.1 KB)
+0081.240 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3400 files added (on-disk size: 15818.1 KB)
+0081.298 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3500 files added (on-disk size: 15818.1 KB)
+0081.362 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3600 files added (on-disk size: 15818.1 KB)
+0081.424 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3700 files added (on-disk size: 15818.1 KB)
+0081.489 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3800 files added (on-disk size: 15818.1 KB)
+0081.557 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 3900 files added (on-disk size: 15818.1 KB)
+0081.625 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4000 files added (on-disk size: 15818.1 KB)
+0081.684 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4100 files added (on-disk size: 15818.1 KB)
+0081.744 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4200 files added (on-disk size: 15818.1 KB)
+0081.792 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (7.6 MB, 17544 files batched, 1001 (4278) added so far); re-opening (prior size: 15818.1 KB)
+0101.640 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4300 files added (on-disk size: 18918.2 KB)
+0101.688 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4400 files added (on-disk size: 18918.2 KB)
+0101.736 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4500 files added (on-disk size: 18918.2 KB)
+0101.791 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4600 files added (on-disk size: 18918.2 KB)
+0101.842 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4700 files added (on-disk size: 18918.2 KB)
+0101.898 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4800 files added (on-disk size: 18918.2 KB)
+0101.955 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 4900 files added (on-disk size: 18918.2 KB)
+0102.002 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 5000 files added (on-disk size: 18918.2 KB)
+0102.054 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.tmp: 5100 files added (on-disk size: 18918.2 KB)
+0102.083 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): possibly approaching split limit (14.9 MB, 880 (5158) files added so far); last ratio: 0.3996; re-opening (prior size: 18918.2 KB)
+0135.948 (0) Zip size is at/near split limit (22.8 MB / 25 MB) - bumping index (from: 1)
+0136.311 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.list-temp.tmp)
+0136.344 (0) Successfully created zip file manifest (size: 359283)
+0136.353 (0) Created plugins zip (1) - 23367.5 KB in 106.6 s (219.2 KB/s) (checksums: sha1: d40f71d7a50fa0520946dd2222f03da5796f4926, sha256: 5bc783d14969b5aa8654f36303fff644f7704ea7292e5ed02fe623626e79182d)
+0136.387 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0136.389 (0) No remote despatch: user chose no remote backup service
+0136.392 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip
+0136.396 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip.list.tmp)
+0136.398 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0136.431 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.tmp: 5200 files added (on-disk size: 0 KB)
+0136.494 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.tmp: 5300 files added (on-disk size: 0 KB)
+0136.556 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.tmp: 5400 files added (on-disk size: 0 KB)
+0136.629 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.tmp: 5500 files added (on-disk size: 0 KB)
+0136.685 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (29.1 MB, 17544 files batched, 418 (5576) added so far); re-opening (prior size: 0 KB)
+0153.101 (0) A useful amount of data was added after this amount of zip processing: 17.5 s (normalised: 15 s, rate: 1706.4 KB/s)
+0153.208 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (29.2 MB, 17544 files batched, 14 (5590) added so far); re-opening (prior size: 12424.2 KB)
+0161.119 (0) A useful amount of data was added after this amount of zip processing: 8.5 s (normalised: 7.3 s, rate: 3517.6 KB/s)
+0161.126 (0) Zip size is at/near split limit (26.5 MB / 25 MB) - bumping index (from: 2)
+0162.047 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.list-temp.tmp)
+0162.068 (0) Successfully created zip file manifest (size: 36827)
+0162.080 (0) Created plugins zip (2) - 27132.9 KB in 24.8 s (1095.2 KB/s) (checksums: sha1: 583b8118197bb8d92c2bf558adc338afdce95163, sha256: 9b9fd3d5f4755429922726126473cf31a64edee7565af67ff44030a9fcb0c10e)
+0162.198 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0162.203 (0) No remote despatch: user chose no remote backup service
+0162.206 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip
+0162.213 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip.list.tmp)
+0162.221 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0162.243 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 5600 files added (on-disk size: 0 KB)
+0162.381 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 5700 files added (on-disk size: 0 KB)
+0162.493 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 5800 files added (on-disk size: 0 KB)
+0162.608 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 5900 files added (on-disk size: 0 KB)
+0162.754 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6000 files added (on-disk size: 0 KB)
+0162.891 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6100 files added (on-disk size: 0 KB)
+0163.031 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6200 files added (on-disk size: 0 KB)
+0163.162 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6300 files added (on-disk size: 0 KB)
+0163.277 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6400 files added (on-disk size: 0 KB)
+0163.390 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6500 files added (on-disk size: 0 KB)
+0163.489 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (11.2 MB, 17544 files batched, 1001 (6591) added so far); re-opening (prior size: 0 KB)
+0195.974 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6600 files added (on-disk size: 3863.8 KB)
+0196.291 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6700 files added (on-disk size: 3863.8 KB)
+0196.597 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6800 files added (on-disk size: 3863.8 KB)
+0196.762 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 6900 files added (on-disk size: 3863.8 KB)
+0196.925 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7000 files added (on-disk size: 3863.8 KB)
+0197.048 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7100 files added (on-disk size: 3863.8 KB)
+0197.126 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7200 files added (on-disk size: 3863.8 KB)
+0197.199 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7300 files added (on-disk size: 3863.8 KB)
+0197.289 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7400 files added (on-disk size: 3863.8 KB)
+0197.366 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7500 files added (on-disk size: 3863.8 KB)
+0197.422 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (13.2 MB, 17544 files batched, 1001 (7592) added so far); re-opening (prior size: 3863.8 KB)
+0217.520 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7600 files added (on-disk size: 10325.7 KB)
+0217.579 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7700 files added (on-disk size: 10325.7 KB)
+0217.633 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7800 files added (on-disk size: 10325.7 KB)
+0217.697 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 7900 files added (on-disk size: 10325.7 KB)
+0217.763 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8000 files added (on-disk size: 10325.7 KB)
+0217.835 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8100 files added (on-disk size: 10325.7 KB)
+0217.909 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8200 files added (on-disk size: 10325.7 KB)
+0217.982 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8300 files added (on-disk size: 10325.7 KB)
+0218.046 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8400 files added (on-disk size: 10325.7 KB)
+0218.100 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8500 files added (on-disk size: 10325.7 KB)
+0218.156 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (8.2 MB, 17544 files batched, 1001 (8593) added so far); re-opening (prior size: 10325.7 KB)
+0229.374 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8600 files added (on-disk size: 15156.7 KB)
+0229.426 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8700 files added (on-disk size: 15156.7 KB)
+0229.518 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8800 files added (on-disk size: 15156.7 KB)
+0229.594 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 8900 files added (on-disk size: 15156.7 KB)
+0229.654 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9000 files added (on-disk size: 15156.7 KB)
+0229.712 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9100 files added (on-disk size: 15156.7 KB)
+0229.761 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9200 files added (on-disk size: 15156.7 KB)
+0229.807 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9300 files added (on-disk size: 15156.7 KB)
+0229.859 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9400 files added (on-disk size: 15156.7 KB)
+0229.913 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.tmp: 9500 files added (on-disk size: 15156.7 KB)
+0229.930 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): possibly approaching split limit (16 MB, 936 (9529) files added so far); last ratio: 0.5782; re-opening (prior size: 15156.7 KB)
+0253.329 (0) Zip size is at/near split limit (19.9 MB / 25 MB) - bumping index (from: 3)
+0253.865 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.list-temp.tmp)
+0253.988 (0) Successfully created zip file manifest (size: 346026)
+0254.459 (0) Created plugins zip (3) - 20334.6 KB in 91.2 s (222.9 KB/s) (checksums: sha1: b5f566931406173eac251be7d07453b58c908ae8, sha256: 4ff2def0aae8b2d4099269e0c42f7d8ffcb45e107851e9cce9dda3f453194f5a)
+0255.180 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0255.183 (0) No remote despatch: user chose no remote backup service
+0255.185 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip
+0255.191 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip.list.tmp)
+0255.193 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0255.243 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 9600 files added (on-disk size: 0 KB)
+0255.305 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 9700 files added (on-disk size: 0 KB)
+0255.365 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 9800 files added (on-disk size: 0 KB)
+0255.432 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 9900 files added (on-disk size: 0 KB)
+0255.502 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10000 files added (on-disk size: 0 KB)
+0255.571 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10100 files added (on-disk size: 0 KB)
+0255.622 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 2.0 seconds have passed since the last write (5.6 MB, 634 (10163) files added so far); re-opening (prior size: 0 KB)
+0263.606 (0) The scheduled resumption is within 45 seconds - will reschedule
+0263.613 (0) Rescheduling resumption 1: moving to 345 seconds from now (1717661844)
+0263.626 (0) To decrease the likelihood of overlaps, increasing resumption interval to: 300 + 45 = 345
+0263.671 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10200 files added (on-disk size: 2732.7 KB)
+0263.741 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10300 files added (on-disk size: 2732.7 KB)
+0263.803 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10400 files added (on-disk size: 2732.7 KB)
+0263.907 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10500 files added (on-disk size: 2732.7 KB)
+0263.988 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10600 files added (on-disk size: 2732.7 KB)
+0264.062 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10700 files added (on-disk size: 2732.7 KB)
+0264.132 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10800 files added (on-disk size: 2732.7 KB)
+0264.200 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 10900 files added (on-disk size: 2732.7 KB)
+0264.265 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11000 files added (on-disk size: 2732.7 KB)
+0264.327 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11100 files added (on-disk size: 2732.7 KB)
+0264.368 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (22.8 MB, 17544 files batched, 1001 (11164) added so far); re-opening (prior size: 2732.7 KB)
+0288.082 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11200 files added (on-disk size: 9592.1 KB)
+0288.150 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11300 files added (on-disk size: 9592.1 KB)
+0288.242 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11400 files added (on-disk size: 9592.1 KB)
+0288.320 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11500 files added (on-disk size: 9592.1 KB)
+0288.390 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11600 files added (on-disk size: 9592.1 KB)
+0288.475 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11700 files added (on-disk size: 9592.1 KB)
+0288.545 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11800 files added (on-disk size: 9592.1 KB)
+0288.616 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 11900 files added (on-disk size: 9592.1 KB)
+0288.692 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12000 files added (on-disk size: 9592.1 KB)
+0288.759 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12100 files added (on-disk size: 9592.1 KB)
+0288.805 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (10.3 MB, 17544 files batched, 1001 (12165) added so far); re-opening (prior size: 9592.1 KB)
+0306.556 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12200 files added (on-disk size: 12896.4 KB)
+0306.601 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12300 files added (on-disk size: 12896.4 KB)
+0306.651 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12400 files added (on-disk size: 12896.4 KB)
+0306.697 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12500 files added (on-disk size: 12896.4 KB)
+0306.755 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12600 files added (on-disk size: 12896.4 KB)
+0306.804 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12700 files added (on-disk size: 12896.4 KB)
+0306.858 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12800 files added (on-disk size: 12896.4 KB)
+0306.907 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 12900 files added (on-disk size: 12896.4 KB)
+0306.961 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13000 files added (on-disk size: 12896.4 KB)
+0307.015 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13100 files added (on-disk size: 12896.4 KB)
+0307.047 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (9.7 MB, 17544 files batched, 1001 (13166) added so far); re-opening (prior size: 12896.4 KB)
+0323.693 (0) The time we have been running (323.7) is approaching the resumption interval (345) - increasing resumption interval to 354
+0323.745 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13200 files added (on-disk size: 15756.3 KB)
+0323.808 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13300 files added (on-disk size: 15756.3 KB)
+0323.860 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13400 files added (on-disk size: 15756.3 KB)
+0323.910 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13500 files added (on-disk size: 15756.3 KB)
+0323.962 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13600 files added (on-disk size: 15756.3 KB)
+0324.042 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13700 files added (on-disk size: 15756.3 KB)
+0324.115 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13800 files added (on-disk size: 15756.3 KB)
+0324.203 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 13900 files added (on-disk size: 15756.3 KB)
+0324.260 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 14000 files added (on-disk size: 15756.3 KB)
+0324.324 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.tmp: 14100 files added (on-disk size: 15756.3 KB)
+0324.357 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (22 MB, 17544 files batched, 1001 (14167) added so far); re-opening (prior size: 15756.3 KB)
+0346.438 (0) The time we have been running (346.4) is approaching the resumption interval (354) - increasing resumption interval to 377
+0346.443 (0) Zip size is at/near split limit (28.6 MB / 25 MB) - bumping index (from: 4)
+0346.758 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.list-temp.tmp)
+0346.785 (0) Successfully created zip file manifest (size: 414490)
+0346.791 (0) Created plugins zip (4) - 29259.8 KB in 91.5 s (319.7 KB/s) (checksums: sha1: d8a83aa1f4b43a84003486f54ca1431acfab5372, sha256: e3fece13fcf692b52c7abfab01b3cdc95c170d1e5810ed91f919763afce7a876)
+0346.807 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0346.809 (0) No remote despatch: user chose no remote backup service
+0346.811 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip
+0346.815 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip.list.tmp)
+0346.819 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0346.842 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14200 files added (on-disk size: 0 KB)
+0346.941 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14300 files added (on-disk size: 0 KB)
+0347.016 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14400 files added (on-disk size: 0 KB)
+0347.088 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14500 files added (on-disk size: 0 KB)
+0347.156 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14600 files added (on-disk size: 0 KB)
+0347.210 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14700 files added (on-disk size: 0 KB)
+0347.371 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14800 files added (on-disk size: 0 KB)
+0347.526 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 14900 files added (on-disk size: 0 KB)
+0347.907 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15000 files added (on-disk size: 0 KB)
+0348.089 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15100 files added (on-disk size: 0 KB)
+0348.304 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (5.6 MB, 17544 files batched, 1001 (15168) added so far); re-opening (prior size: 0 KB)
+0362.398 (0) The time we have been running (362.4) is approaching the resumption interval (377) - increasing resumption interval to 393
+0362.478 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15200 files added (on-disk size: 1703.7 KB)
+0362.616 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15300 files added (on-disk size: 1703.7 KB)
+0362.711 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15400 files added (on-disk size: 1703.7 KB)
+0362.810 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15500 files added (on-disk size: 1703.7 KB)
+0362.924 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15600 files added (on-disk size: 1703.7 KB)
+0363.099 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15700 files added (on-disk size: 1703.7 KB)
+0363.199 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15800 files added (on-disk size: 1703.7 KB)
+0363.294 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 15900 files added (on-disk size: 1703.7 KB)
+0363.393 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16000 files added (on-disk size: 1703.7 KB)
+0363.501 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16100 files added (on-disk size: 1703.7 KB)
+0363.565 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (11.6 MB, 17544 files batched, 1001 (16169) added so far); re-opening (prior size: 1703.7 KB)
+0386.766 (0) The time we have been running (386.8) is approaching the resumption interval (393) - increasing resumption interval to 417
+0386.800 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16200 files added (on-disk size: 5593.4 KB)
+0386.854 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16300 files added (on-disk size: 5593.4 KB)
+0386.900 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16400 files added (on-disk size: 5593.4 KB)
+0386.952 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16500 files added (on-disk size: 5593.4 KB)
+0386.999 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16600 files added (on-disk size: 5593.4 KB)
+0387.053 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16700 files added (on-disk size: 5593.4 KB)
+0387.108 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16800 files added (on-disk size: 5593.4 KB)
+0387.163 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 16900 files added (on-disk size: 5593.4 KB)
+0387.222 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17000 files added (on-disk size: 5593.4 KB)
+0387.276 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17100 files added (on-disk size: 5593.4 KB)
+0387.312 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (9.5 MB, 17544 files batched, 1001 (17170) added so far); re-opening (prior size: 5593.4 KB)
+0411.391 (0) The time we have been running (411.4) is approaching the resumption interval (417) - increasing resumption interval to 442
+0411.430 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17200 files added (on-disk size: 9202.7 KB)
+0411.485 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17300 files added (on-disk size: 9202.7 KB)
+0411.543 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17400 files added (on-disk size: 9202.7 KB)
+0411.596 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.tmp: 17500 files added (on-disk size: 9202.7 KB)
+0419.324 (0) The time we have been running (419.3) is approaching the resumption interval (442) - increasing resumption interval to 450
+0419.365 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.list-temp.tmp)
+0419.388 (0) Successfully created zip file manifest (size: 315324)
+0419.531 (0) Created plugins zip (5) - 10947.8 KB in 72.7 s (150.5 KB/s) (sha1: 8cd0a50a82224eaa7901db11c857630b64d851ea, sha256: 4b8e12b55edd22bccbf724418e49d1536d0caa8714958e1d826b7089021340dd)
+0419.543 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0419.547 (0) No remote despatch: user chose no remote backup service
+0419.549 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip
+0419.555 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip.list.tmp)
+0419.559 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0419.569 (0) Beginning creation of dump of themes (split every: 25 MB)
+0420.131 (0) Total entities for the zip file: 178 directories, 1297 files (0 skipped as non-modified), 27.3 MB
+0420.185 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 100 files added (on-disk size: 0 KB)
+0420.231 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 200 files added (on-disk size: 0 KB)
+0420.280 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 300 files added (on-disk size: 0 KB)
+0420.328 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 400 files added (on-disk size: 0 KB)
+0420.383 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 500 files added (on-disk size: 0 KB)
+0420.450 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 600 files added (on-disk size: 0 KB)
+0420.493 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 700 files added (on-disk size: 0 KB)
+0420.545 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 800 files added (on-disk size: 0 KB)
+0420.600 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 900 files added (on-disk size: 0 KB)
+0420.657 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 1000 files added (on-disk size: 0 KB)
+0420.660 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (15.2 MB, 1297 files batched, 1001 (1001) added so far); re-opening (prior size: 0 KB)
+0430.931 (0) The time we have been running (430.9) is approaching the resumption interval (450) - increasing resumption interval to 461
+0431.047 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 1100 files added (on-disk size: 7668.8 KB)
+0431.129 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.tmp: 1200 files added (on-disk size: 7668.8 KB)
+0436.915 (0) The time we have been running (436.9) is approaching the resumption interval (461) - increasing resumption interval to 467
+0436.939 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.list-temp.tmp)
+0436.952 (0) Successfully created zip file manifest (size: 99599)
+0437.165 (0) Created themes zip (0) - 18787.9 KB in 17.6 s (1068.3 KB/s) (sha1: 97a42dc87b9296639abf68673edc632b57ab5058, sha256: 9183480f79857684715b3dc008d373293dc433291b805b9d419d12cb8b8cdf11)
+0437.173 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0437.174 (0) No remote despatch: user chose no remote backup service
+0437.177 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip
+0437.181 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip.list.tmp)
+0437.183 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0437.190 (0) Exclusion option setting (uploads): 
+0437.192 (0) Looking for candidates to backup in: C:\xampp\htdocs\phn-git\phn/wp-content/uploads
+0437.194 (0) finding files: 2017: adding to list (1)
+0437.195 (0) finding files: 2021: adding to list (2)
+0437.197 (0) finding files: 2022: adding to list (3)
+0437.198 (0) finding files: 2024: adding to list (4)
+0437.199 (0) finding files: crm_perks_uploads: adding to list (5)
+0437.201 (0) finding files: elementor: adding to list (6)
+0437.204 (0) finding files: et_temp: adding to list (7)
+0437.206 (0) finding files: fooevents: adding to list (8)
+0437.207 (0) finding files: grandconference: adding to list (9)
+0437.209 (0) finding files: grandconference-elementor: adding to list (10)
+0437.211 (0) finding files: wc-logs: adding to list (11)
+0437.213 (0) finding files: woocommerce-placeholder-100x100.png: adding to list (12)
+0437.215 (0) finding files: woocommerce-placeholder-1024x1024.png: adding to list (13)
+0437.217 (0) finding files: woocommerce-placeholder-150x150.png: adding to list (14)
+0437.219 (0) finding files: woocommerce-placeholder-300x300.png: adding to list (15)
+0437.221 (0) finding files: woocommerce-placeholder-450x450.png: adding to list (16)
+0437.222 (0) finding files: woocommerce-placeholder-500x500.png: adding to list (17)
+0437.224 (0) finding files: woocommerce-placeholder-600x600.png: adding to list (18)
+0437.225 (0) finding files: woocommerce-placeholder-660x770.png: adding to list (19)
+0437.227 (0) finding files: woocommerce-placeholder-700x466.png: adding to list (20)
+0437.228 (0) finding files: woocommerce-placeholder-768x768.png: adding to list (21)
+0437.229 (0) finding files: woocommerce-placeholder-960x636.png: adding to list (22)
+0437.231 (0) finding files: woocommerce-placeholder.png: adding to list (23)
+0437.232 (0) finding files: woocommerce_uploads: adding to list (24)
+0437.233 (0) finding files: wpcf7_uploads: adding to list (25)
+0437.236 (0) Beginning creation of dump of uploads (split every: 25 MB)
+0438.444 (0) Total entities for the zip file: 36 directories, 3606 files (0 skipped as non-modified), 230.3 MB
+0438.493 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.tmp: 100 files added (on-disk size: 0 KB)
+0438.546 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.tmp: 200 files added (on-disk size: 0 KB)
+0438.597 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.tmp: 300 files added (on-disk size: 0 KB)
+0438.654 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.tmp: 400 files added (on-disk size: 0 KB)
+0438.711 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25 MB, 3606 files batched, 497 (497) added so far); re-opening (prior size: 0 KB)
+0439.275 (0) The time we have been running (439.3) is approaching the resumption interval (467) - increasing resumption interval to 470
+0439.280 (0) A useful amount of data was added after this amount of zip processing: 2.7 s (normalised: 2.7 s, rate: 9631.8 KB/s)
+0439.282 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=2.6581110954285, normalised_time=2.6578627927407, max_time=439.28028702736, data points known=1, max_bytes=26214400)
+0439.287 (0) Zip size is at/near split limit (25.1 MB / 25 MB) - bumping index (from: 0)
+0439.586 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.list-temp.tmp)
+0439.592 (0) Successfully created zip file manifest (size: 30303)
+0439.598 (0) Created uploads zip (0) - 25689.6 KB in 2 s (12537.3 KB/s) (checksums: sha1: 33fd734de4c77e45c2f916247b2ef955299f31c7, sha256: 00214361590089acda7af0d174039686b08c08115b5abe3aada0d27856a1f783)
+0439.616 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0439.619 (0) No remote despatch: user chose no remote backup service
+0439.621 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip
+0439.625 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip.list.tmp)
+0439.627 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0439.634 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.tmp: 500 files added (on-disk size: 0 KB)
+0439.699 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.tmp: 600 files added (on-disk size: 0 KB)
+0439.761 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.tmp: 700 files added (on-disk size: 0 KB)
+0439.826 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.tmp: 800 files added (on-disk size: 0 KB)
+0439.865 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.1 MB, 3606 files batched, 357 (854) added so far); re-opening (prior size: 0 KB)
+0440.527 (0) The time we have been running (440.5) is approaching the resumption interval (470) - increasing resumption interval to 471
+0440.535 (0) A useful amount of data was added after this amount of zip processing: 1.9 s (normalised: 1.9 s, rate: 13455.2 KB/s)
+0440.538 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=1.9128570556641, normalised_time=1.9026057568542, max_time=440.5361738205, data points known=1, max_bytes=26214400)
+0440.543 (0) Zip size is at/near split limit (25.2 MB / 25 MB) - bumping index (from: 1)
+0440.829 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.list-temp.tmp)
+0440.834 (0) Successfully created zip file manifest (size: 19458)
+0440.843 (0) Created uploads zip (1) - 25782.7 KB in 0.9 s (27247.5 KB/s) (checksums: sha1: 9a04df5ca498e1b0d7e9d5209820004e1c989a81, sha256: 6bee0e8b1ba55015aff833692a1cd2644ef17de8b9957d4dff1a3e604184a1a4)
+0440.883 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0440.886 (0) No remote despatch: user chose no remote backup service
+0440.889 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip
+0440.896 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip.list.tmp)
+0440.899 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0440.937 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.tmp: 900 files added (on-disk size: 0 KB)
+0441.005 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.tmp: 1000 files added (on-disk size: 0 KB)
+0441.064 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.tmp: 1100 files added (on-disk size: 0 KB)
+0441.120 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.tmp: 1200 files added (on-disk size: 0 KB)
+0441.178 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.1 MB, 3606 files batched, 443 (1297) added so far); re-opening (prior size: 0 KB)
+0441.739 (0) The time we have been running (441.7) is approaching the resumption interval (471) - increasing resumption interval to 472
+0441.744 (0) A useful amount of data was added after this amount of zip processing: 2.1 s (normalised: 2.1 s, rate: 12107.1 KB/s)
+0441.746 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=2.1221189498901, normalised_time=2.1144620265482, max_time=441.74459195137, data points known=1, max_bytes=26214400)
+0441.752 (0) Zip size is at/near split limit (25.2 MB / 25 MB) - bumping index (from: 2)
+0442.087 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.list-temp.tmp)
+0442.092 (0) Successfully created zip file manifest (size: 25012)
+0442.100 (0) The time we have been running (442.1) is approaching the resumption interval (472) - increasing resumption interval to 473
+0442.107 (0) Created uploads zip (2) - 25762.2 KB in 0.9 s (28389.6 KB/s) (checksums: sha1: 4b14613082955ec04df955bd93258ff2c958c670, sha256: 1801affdbf8ee729965184c1beac2a058554a8e304e3ccba0e4ed580647ff70a)
+0442.125 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0442.127 (0) No remote despatch: user chose no remote backup service
+0442.129 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip
+0442.133 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip.list.tmp)
+0442.137 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0442.146 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1300 files added (on-disk size: 0 KB)
+0442.213 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1400 files added (on-disk size: 0 KB)
+0442.279 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1500 files added (on-disk size: 0 KB)
+0442.335 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1600 files added (on-disk size: 0 KB)
+0442.387 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1700 files added (on-disk size: 0 KB)
+0442.438 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1800 files added (on-disk size: 0 KB)
+0442.496 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 1900 files added (on-disk size: 0 KB)
+0442.546 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 2000 files added (on-disk size: 0 KB)
+0442.581 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.3 MB, 3606 files batched, 770 (2067) added so far); re-opening (prior size: 0 KB)
+0444.134 (0) The time we have been running (444.1) is approaching the resumption interval (473) - increasing resumption interval to 475
+0444.140 (0) A useful amount of data was added after this amount of zip processing: 2.5 s (normalised: 2.5 s, rate: 10288.6 KB/s)
+0444.142 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=2.5181760787964, normalised_time=2.4881813930436, max_time=444.14035391808, data points known=1, max_bytes=26214400)
+0444.224 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.tmp: 2100 files added (on-disk size: 21575.4 KB)
+0444.237 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): possibly approaching split limit (4.4 MB, 52 (2119) files added so far); last ratio: 0.8327; re-opening (prior size: 21575.4 KB)
+0444.409 (0) Zip size is at/near split limit (25.4 MB / 25 MB) - bumping index (from: 3)
+0444.749 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.list-temp.tmp)
+0444.759 (0) Successfully created zip file manifest (size: 71723)
+0444.764 (0) Created uploads zip (3) - 26057.6 KB in 2.3 s (11315.9 KB/s) (checksums: sha1: b721158fb1368818b4d21cc5f8089fad6119da7b, sha256: 5cf81ab085adc4256b5be681dac86a820b6a05eec253c7cd8df1108942e1e7c4)
+0444.791 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0444.793 (0) No remote despatch: user chose no remote backup service
+0444.795 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip
+0444.801 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip.list.tmp)
+0444.805 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0444.861 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads5.zip.tmp: 2200 files added (on-disk size: 0 KB)
+0444.890 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (29.5 MB, 3606 files batched, 128 (2247) added so far); re-opening (prior size: 0 KB)
+0445.175 (0) The time we have been running (445.2) is approaching the resumption interval (475) - increasing resumption interval to 476
+0445.179 (0) A useful amount of data was added after this amount of zip processing: 1.6 s (normalised: 1.3 s, rate: 19367.9 KB/s)
+0445.182 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=1.5577371120453, normalised_time=1.3217760979701, max_time=445.1799659729, data points known=1, max_bytes=26214400)
+0445.187 (0) Zip size is at/near split limit (29.5 MB / 25 MB) - bumping index (from: 4)
+0445.530 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads5.zip.list-temp.tmp)
+0445.535 (0) Successfully created zip file manifest (size: 8558)
+0445.542 (0) Created uploads zip (4) - 30192.7 KB in 0.4 s (72163.4 KB/s) (checksums: sha1: b9f0f149da708c1be4c6de112d8bf93913274269, sha256: dca02b3431aa80db9c1b696880a158f59b4594c6bb97bd839187f871324caa46)
+0445.564 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0445.565 (0) No remote despatch: user chose no remote backup service
+0445.567 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads5.zip
+0445.574 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads5.zip.list.tmp)
+0445.577 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0445.612 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads6.zip.tmp: 2300 files added (on-disk size: 0 KB)
+0445.619 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.6 MB, 3606 files batched, 56 (2303) added so far); re-opening (prior size: 0 KB)
+0445.899 (0) A useful amount of data was added after this amount of zip processing: 1.3 s (normalised: 1.2 s, rate: 20493.3 KB/s)
+0445.902 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=1.2775280475616, normalised_time=1.2491904325059, max_time=445.90000796318, data points known=1, max_bytes=26214400)
+0445.907 (0) Zip size is at/near split limit (25.6 MB / 25 MB) - bumping index (from: 5)
+0446.277 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads6.zip.list-temp.tmp)
+0446.281 (0) Successfully created zip file manifest (size: 3859)
+0446.291 (0) The time we have been running (446.3) is approaching the resumption interval (476) - increasing resumption interval to 477
+0446.296 (0) Created uploads zip (5) - 26190.8 KB in 0.4 s (71986.7 KB/s) (checksums: sha1: 56c19409156ff2d797a35d468dee3c567ab02331, sha256: 9fbd1a84e1484d3f7ecc08d90e5939b63fbf5fdf2baa8b110ede64366f8a846c)
+0446.312 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0446.314 (0) No remote despatch: user chose no remote backup service
+0446.316 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads6.zip
+0446.320 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads6.zip.list.tmp)
+0446.323 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0446.382 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip.tmp: 2400 files added (on-disk size: 0 KB)
+0446.451 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip.tmp: 2500 files added (on-disk size: 0 KB)
+0446.495 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.3 MB, 3606 files batched, 268 (2571) added so far); re-opening (prior size: 0 KB)
+0448.814 (0) The time we have been running (448.8) is approaching the resumption interval (477) - increasing resumption interval to 479
+0448.819 (0) A useful amount of data was added after this amount of zip processing: 3.2 s (normalised: 3.2 s, rate: 8093.6 KB/s)
+0448.821 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=3.1974310874939, normalised_time=3.1630073921223, max_time=448.81983399391, data points known=1, max_bytes=26214400)
+0448.825 (0) Zip size is at/near split limit (25.3 MB / 25 MB) - bumping index (from: 6)
+0449.054 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip.list-temp.tmp)
+0449.058 (0) Successfully created zip file manifest (size: 17055)
+0449.064 (0) The time we have been running (449.1) is approaching the resumption interval (479) - increasing resumption interval to 480
+0449.069 (0) Created uploads zip (6) - 25906.3 KB in 2.5 s (10246.3 KB/s) (checksums: sha1: ae91c159ca8ee2b483230848f577beb572a372c8, sha256: 3b1486cdb4690f2a904a7e80aa0436528c89b13eb2df7147849ea91318e5ceb9)
+0449.083 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0449.085 (0) No remote despatch: user chose no remote backup service
+0449.086 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip
+0449.090 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip.list.tmp)
+0449.092 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0449.113 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip.tmp: 2600 files added (on-disk size: 0 KB)
+0449.162 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip.tmp: 2700 files added (on-disk size: 0 KB)
+0449.213 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip.tmp: 2800 files added (on-disk size: 0 KB)
+0449.231 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (26.8 MB, 3606 files batched, 266 (2837) added so far); re-opening (prior size: 0 KB)
+0449.892 (0) A useful amount of data was added after this amount of zip processing: 1.3 s (normalised: 1.2 s, rate: 21647.1 KB/s)
+0449.894 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=1.2698891162872, normalised_time=1.1826077354712, max_time=449.89217281342, data points known=1, max_bytes=26214400)
+0449.898 (0) Zip size is at/near split limit (26.9 MB / 25 MB) - bumping index (from: 7)
+0450.174 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip.list-temp.tmp)
+0450.179 (0) Successfully created zip file manifest (size: 16472)
+0450.194 (0) The time we have been running (450.2) is approaching the resumption interval (480) - increasing resumption interval to 481
+0450.201 (0) Created uploads zip (7) - 27533.2 KB in 0.8 s (33256.9 KB/s) (checksums: sha1: 5144d3e21b1f75d264868803a4463fdb8e0bdeda, sha256: 22be5262d4fc7cea24ac53f99afb3ddef46638237a942e868fb90284e58d3977)
+0450.217 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0450.219 (0) No remote despatch: user chose no remote backup service
+0450.220 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip
+0450.224 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip.list.tmp)
+0450.226 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0450.262 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 2900 files added (on-disk size: 0 KB)
+0450.316 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3000 files added (on-disk size: 0 KB)
+0450.365 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3100 files added (on-disk size: 0 KB)
+0450.425 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3200 files added (on-disk size: 0 KB)
+0450.485 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3300 files added (on-disk size: 0 KB)
+0450.532 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3400 files added (on-disk size: 0 KB)
+0451.790 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3500 files added (on-disk size: 0 KB)
+0452.146 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.tmp: 3600 files added (on-disk size: 0 KB)
+0457.453 (0) The time we have been running (457.4) is approaching the resumption interval (481) - increasing resumption interval to 488
+0457.471 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.list-temp.tmp)
+0457.479 (0) Successfully created zip file manifest (size: 50595)
+0457.687 (0) Created uploads zip (8) - 17905.4 KB in 7.5 s (2394.2 KB/s) (sha1: c2f425e816d5cf2b6fbfe0c7f0db55decb05df26, sha256: 86715b498936c94187d5770fc3faabdb8e27ee3e1f6573c001ea72e8f10219fa)
+0457.697 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0457.698 (0) No remote despatch: user chose no remote backup service
+0457.701 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip
+0457.711 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip.list.tmp)
+0457.719 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0457.730 (0) No backup of mu-plugins: excluded by user's options
+0457.741 (0) Beginning backup of other directories found in the content directory (index: 0)
+0457.744 (0) Exclusion option setting (others): 
+0457.746 (0) Looking for candidates to backup in: C:\xampp\htdocs\phn-git\phn/wp-content
+0457.752 (0) finding files: et-cache: adding to list (1)
+0457.756 (0) finding files: fonts: adding to list (2)
+0457.760 (0) finding files: index.php: adding to list (3)
+0457.762 (0) finding files: languages: adding to list (4)
+0457.765 (0) finding files: php.ini: adding to list (5)
+0457.769 (0) finding files: plugins: skipping: this is the plugins directory
+0457.772 (0) finding files: themes: skipping: this is the themes directory
+0457.775 (0) finding files: updraft: skipping: this is the updraft directory
+0457.778 (0) finding files: upgrade: adding to list (6)
+0457.780 (0) finding files: uploads: skipping: this is the uploads directory
+0459.584 (0) Total entities for the zip file: 8 directories, 2098 files (0 skipped as non-modified), 49.8 MB
+0459.694 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 100 files added (on-disk size: 0 KB)
+0459.782 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 200 files added (on-disk size: 0 KB)
+0459.870 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 300 files added (on-disk size: 0 KB)
+0459.949 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 400 files added (on-disk size: 0 KB)
+0460.022 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 500 files added (on-disk size: 0 KB)
+0460.072 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.1 MB, 2098 files batched, 568 (568) added so far); re-opening (prior size: 0 KB)
+0469.881 (0) The time we have been running (469.9) is approaching the resumption interval (488) - increasing resumption interval to 500
+0469.888 (0) A useful amount of data was added after this amount of zip processing: 12.3 s (normalised: 12.2 s, rate: 2098.7 KB/s)
+0469.890 (0) Performance is good - but we will not increase the amount of data we batch, as we are already at the present limit (time=12.266058921814, normalised_time=12.198109036773, max_time=469.88859987259, data points known=1, max_bytes=26214400)
+0469.913 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 600 files added (on-disk size: 7590.9 KB)
+0469.964 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 700 files added (on-disk size: 7590.9 KB)
+0470.018 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 800 files added (on-disk size: 7590.9 KB)
+0470.093 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 900 files added (on-disk size: 7590.9 KB)
+0470.145 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1000 files added (on-disk size: 7590.9 KB)
+0470.202 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1100 files added (on-disk size: 7590.9 KB)
+0470.255 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1200 files added (on-disk size: 7590.9 KB)
+0470.304 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1300 files added (on-disk size: 7590.9 KB)
+0470.357 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1400 files added (on-disk size: 7590.9 KB)
+0470.410 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1500 files added (on-disk size: 7590.9 KB)
+0470.448 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (17.1 MB, 2098 files batched, 1001 (1569) added so far); re-opening (prior size: 7590.9 KB)
+0481.590 (0) The time we have been running (481.6) is approaching the resumption interval (500) - increasing resumption interval to 512
+0481.622 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1600 files added (on-disk size: 12800 KB)
+0481.667 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1700 files added (on-disk size: 12800 KB)
+0481.719 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1800 files added (on-disk size: 12800 KB)
+0481.769 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 1900 files added (on-disk size: 12800 KB)
+0481.821 (0) Zip: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.tmp: 2000 files added (on-disk size: 12800 KB)
+0487.709 (0) The time we have been running (487.7) is approaching the resumption interval (512) - increasing resumption interval to 518
+0487.727 (0) Creating zip file manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.list-temp.tmp)
+0487.742 (0) Successfully created zip file manifest (size: 168935)
+0487.896 (0) Created others zip (0) - 15111.6 KB in 30.1 s (502 KB/s) (sha1: b70f12b1f890ccfe5d4c28aab9bec791150bc362, sha256: e00b76451949d84610766fa1760d35ca51bae7292c48fa9b625fac40ed73ad5b)
+0487.904 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0487.906 (0) No remote despatch: user chose no remote backup service
+0487.908 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip
+0487.913 (0) Deleting zip manifest (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip.list.tmp)
+0487.915 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0487.927 (0) Saving backup status to database (elements: 21)
+0487.932 (0) Beginning creation of database dump (WordPress DB)
+0487.936 (0) SQL compatibility mode is: NO_ZERO_IN_DATE,NO_ENGINE_SUBSTITUTION
+0488.019 (0) Table wp_options: Total expected rows (approximate): 1255
+0488.259 (0) Table wp_options: Rows added in this batch (next record: 40600): 1267 (uncompressed bytes in this segment=3453717) in 0.30 seconds
+0488.271 (0) The time we have been running (488.3) is approaching the resumption interval (518) - increasing resumption interval to 519
+0488.284 (0) Table wp_options: finishing file(s) (2, 608.1 KB)
+0488.310 (0) Table wp_users: Total expected rows (via COUNT): 4
+0488.314 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0488.322 (0) Table wp_users: Rows added in this batch (next record: 4): 4 (uncompressed bytes in this segment=1717) in 0.03 seconds
+0488.334 (0) Table wp_users: finishing file(s) (2, 0.9 KB)
+0488.367 (0) Table wp_usermeta: Total expected rows (via COUNT): 256
+0488.372 (0) Table is relatively small; fetch_rows will thus be: 500 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0488.382 (0) Table wp_usermeta: Rows added in this batch (next record: 571): 256 (uncompressed bytes in this segment=24077) in 0.04 seconds
+0488.402 (0) Table wp_usermeta: finishing file(s) (2, 6 KB)
+0488.432 (0) Table wp_actionscheduler_actions: Total expected rows (via COUNT): 213
+0488.434 (0) Table is relatively small; fetch_rows will thus be: 250 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0488.447 (0) Table wp_actionscheduler_actions: Rows added in this batch (next record: 29829): 213 (uncompressed bytes in this segment=78184) in 0.03 seconds
+0488.462 (0) Table wp_actionscheduler_actions: finishing file(s) (2, 7.2 KB)
+0488.483 (0) Table wp_actionscheduler_claims: Total expected rows (via COUNT): 0
+0488.489 (0) Table wp_actionscheduler_claims: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=627) in 0.02 seconds
+0488.501 (0) Table wp_actionscheduler_claims: finishing file(s) (2, 0.4 KB)
+0488.523 (0) Table wp_actionscheduler_groups: Total expected rows (via COUNT): 6
+0488.525 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0488.529 (0) Table wp_actionscheduler_groups: Rows added in this batch (next record: 6): 6 (uncompressed bytes in this segment=794) in 0.02 seconds
+0488.541 (0) Table wp_actionscheduler_groups: finishing file(s) (2, 0.5 KB)
+0488.564 (0) Table wp_actionscheduler_logs: Total expected rows (via COUNT): 637
+0488.580 (0) Table wp_actionscheduler_logs: Rows added in this batch (next record: 2823): 637 (uncompressed bytes in this segment=59521) in 0.03 seconds
+0488.593 (0) Table wp_actionscheduler_logs: finishing file(s) (2, 7.6 KB)
+0488.619 (0) Table wp_commentmeta: Total expected rows (via COUNT): 0
+0488.625 (0) Table wp_commentmeta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=634) in 0.03 seconds
+0488.639 (0) Table wp_commentmeta: finishing file(s) (2, 0.4 KB)
+0488.660 (0) Table wp_comments: Total expected rows (via COUNT): 743
+0488.682 (0) Table wp_comments: Rows added in this batch (next record: 744): 743 (uncompressed bytes in this segment=196623) in 0.04 seconds
+0488.693 (0) Table wp_comments: finishing file(s) (2, 16.5 KB)
+0488.717 (0) Table wp_links: Total expected rows (via COUNT): 0
+0488.721 (0) Table wp_links: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1027) in 0.02 seconds
+0488.733 (0) Table wp_links: finishing file(s) (2, 0.5 KB)
+0488.800 (0) Table wp_postmeta: Total expected rows (approximate): 18553
+0488.982 (0) Table wp_postmeta: Rows added in this batch (next record: 28202): 18992 (uncompressed bytes in this segment=3917917) in 0.24 seconds
+0488.997 (0) Table wp_postmeta: finishing file(s) (2, 353 KB)
+0489.050 (0) Table wp_posts: Total expected rows (via COUNT): 1215
+0489.112 (0) Table wp_posts: Rows added in this batch (next record: 30547): 1215 (uncompressed bytes in this segment=1908028) in 0.11 seconds
+0489.125 (0) The time we have been running (489.1) is approaching the resumption interval (519) - increasing resumption interval to 520
+0489.162 (0) Table wp_posts: finishing file(s) (2, 149.4 KB)
+0489.191 (0) Table wp_tec_events: Total expected rows (via COUNT): 14
+0489.194 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.201 (0) Table wp_tec_events: Rows added in this batch (next record: 40): 14 (uncompressed bytes in this segment=3144) in 0.03 seconds
+0489.216 (0) Table wp_tec_events: finishing file(s) (2, 0.9 KB)
+0489.250 (0) Table wp_tec_occurrences: Total expected rows (via COUNT): 14
+0489.255 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.261 (0) Table wp_tec_occurrences: Rows added in this batch (next record: 23): 14 (uncompressed bytes in this segment=3577) in 0.03 seconds
+0489.274 (0) Table wp_tec_occurrences: finishing file(s) (2, 1.3 KB)
+0489.305 (0) Table wp_term_relationships: Total expected rows (approximate): 251
+0489.314 (0) Table wp_term_relationships: Rows added in this batch (next record: 100000): 252 (uncompressed bytes in this segment=4610) in 0.03 seconds
+0489.327 (0) Table wp_term_relationships: finishing file(s) (2, 1.1 KB)
+0489.357 (0) Table wp_term_taxonomy: Total expected rows (via COUNT): 39
+0489.359 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.366 (0) Table wp_term_taxonomy: Rows added in this batch (next record: 39): 39 (uncompressed bytes in this segment=2314) in 0.03 seconds
+0489.382 (0) Table wp_term_taxonomy: finishing file(s) (2, 0.8 KB)
+0489.412 (0) Table wp_termmeta: Total expected rows (via COUNT): 3
+0489.414 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.420 (0) Table wp_termmeta: Rows added in this batch (next record: 3): 3 (uncompressed bytes in this segment=789) in 0.03 seconds
+0489.434 (0) Table wp_termmeta: finishing file(s) (2, 0.4 KB)
+0489.460 (0) Table wp_terms: Total expected rows (via COUNT): 39
+0489.462 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.469 (0) Table wp_terms: Rows added in this batch (next record: 39): 39 (uncompressed bytes in this segment=2080) in 0.03 seconds
+0489.482 (0) Table wp_terms: finishing file(s) (2, 0.9 KB)
+0489.506 (0) Table wp_wc_category_lookup: Total expected rows (approximate): 0
+0489.514 (0) Table wp_wc_category_lookup: Rows added in this batch (next record: 1000): 1 (uncompressed bytes in this segment=589) in 0.02 seconds
+0489.527 (0) Table wp_wc_category_lookup: finishing file(s) (2, 0.3 KB)
+0489.558 (0) Table wp_wc_product_meta_lookup: Total expected rows (via COUNT): 33
+0489.560 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.566 (0) Table wp_wc_product_meta_lookup: Rows added in this batch (next record: 30379): 33 (uncompressed bytes in this segment=4521) in 0.03 seconds
+0489.579 (0) Table wp_wc_product_meta_lookup: finishing file(s) (2, 1 KB)
+0489.608 (0) Table wp_wc_reserved_stock: Total expected rows (approximate): 4
+0489.615 (0) Table wp_wc_reserved_stock: Rows added in this batch (next record: 1000): 4 (uncompressed bytes in this segment=977) in 0.03 seconds
+0489.628 (0) Table wp_wc_reserved_stock: finishing file(s) (2, 0.5 KB)
+0489.661 (0) Table wp_wc_tax_rate_classes: Total expected rows (via COUNT): 4
+0489.663 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.669 (0) Table wp_wc_tax_rate_classes: Rows added in this batch (next record: 5): 4 (uncompressed bytes in this segment=800) in 0.03 seconds
+0489.681 (0) Table wp_wc_tax_rate_classes: finishing file(s) (2, 0.4 KB)
+0489.715 (0) Table wp_woocommerce_order_itemmeta: Total expected rows (approximate): 1572
+0489.737 (0) Table wp_woocommerce_order_itemmeta: Rows added in this batch (next record: 3454): 1608 (uncompressed bytes in this segment=68442) in 0.05 seconds
+0489.753 (0) Table wp_woocommerce_order_itemmeta: finishing file(s) (2, 11.1 KB)
+0489.780 (0) Table wp_woocommerce_payment_tokenmeta: Total expected rows (via COUNT): 16
+0489.782 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0489.789 (0) Table wp_woocommerce_payment_tokenmeta: Rows added in this batch (next record: 16): 16 (uncompressed bytes in this segment=1305) in 0.03 seconds
+0489.803 (0) Table wp_woocommerce_payment_tokenmeta: finishing file(s) (2, 0.5 KB)
+0489.924 (0) Table wp_1048690_options: Total expected rows (approximate): 1204
+0490.012 (0) Table wp_1048690_options: Rows added in this batch (next record: 34175): 1186 (uncompressed bytes in this segment=2719314) in 0.20 seconds
+0490.025 (0) The time we have been running (490) is approaching the resumption interval (520) - increasing resumption interval to 521
+0490.034 (0) Table wp_1048690_options: finishing file(s) (2, 370.8 KB)
+0490.067 (0) Table wp_cf7vb_forms: Total expected rows (via COUNT): 0
+0490.070 (0) Table wp_cf7vb_forms: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=555) in 0.03 seconds
+0490.085 (0) Table wp_cf7vb_forms: finishing file(s) (2, 0.3 KB)
+0490.123 (0) Table wp_e_events: Total expected rows (via COUNT): 0
+0490.127 (0) Table wp_e_events: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=511) in 0.03 seconds
+0490.138 (0) Table wp_e_events: finishing file(s) (2, 0.3 KB)
+0490.165 (0) Table wp_fooevents_check_in: Total expected rows (via COUNT): 0
+0490.168 (0) Table wp_fooevents_check_in: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=837) in 0.02 seconds
+0490.180 (0) Table wp_fooevents_check_in: finishing file(s) (2, 0.4 KB)
+0490.233 (0) Table wp_jetpack_sync_queue: Total expected rows (via COUNT): 6
+0490.237 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0490.249 (0) Table wp_jetpack_sync_queue: Rows added in this batch (next record: 4095): 6 (uncompressed bytes in this segment=7899) in 0.04 seconds
+0490.265 (0) Table wp_jetpack_sync_queue: finishing file(s) (2, 1.9 KB)
+0490.302 (0) Table wp_revslider_css: Total expected rows (via COUNT): 109
+0490.305 (0) Table is relatively small; fetch_rows will thus be: 200 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0490.316 (0) Table wp_revslider_css: Rows added in this batch (next record: 109): 109 (uncompressed bytes in this segment=91125) in 0.04 seconds
+0490.332 (0) Table wp_revslider_css: finishing file(s) (2, 4.9 KB)
+0490.366 (0) Table wp_revslider_css_bkp: Total expected rows (via COUNT): 47
+0490.369 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0490.377 (0) Table wp_revslider_css_bkp: Rows added in this batch (next record: 47): 47 (uncompressed bytes in this segment=15454) in 0.03 seconds
+0490.393 (0) Table wp_revslider_css_bkp: finishing file(s) (2, 1.8 KB)
+0490.421 (0) Table wp_revslider_layer_animations: Total expected rows (via COUNT): 0
+0490.428 (0) Table wp_revslider_layer_animations: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=571) in 0.03 seconds
+0490.442 (0) Table wp_revslider_layer_animations: finishing file(s) (2, 0.3 KB)
+0490.466 (0) Table wp_revslider_layer_animations_bkp: Total expected rows (via COUNT): 0
+0490.471 (0) Table wp_revslider_layer_animations_bkp: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=595) in 0.02 seconds
+0490.486 (0) Table wp_revslider_layer_animations_bkp: finishing file(s) (2, 0.3 KB)
+0490.517 (0) Table wp_revslider_navigations: Total expected rows (via COUNT): 0
+0490.521 (0) Table wp_revslider_navigations: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=648) in 0.03 seconds
+0490.537 (0) Table wp_revslider_navigations: finishing file(s) (2, 0.4 KB)
+0490.574 (0) Table wp_revslider_navigations_bkp: Total expected rows (via COUNT): 0
+0490.577 (0) Table wp_revslider_navigations_bkp: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=672) in 0.03 seconds
+0490.595 (0) Table wp_revslider_navigations_bkp: finishing file(s) (2, 0.4 KB)
+0490.626 (0) Table wp_revslider_sliders: Total expected rows (via COUNT): 0
+0490.628 (0) Table wp_revslider_sliders: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=632) in 0.03 seconds
+0490.645 (0) Table wp_revslider_sliders: finishing file(s) (2, 0.4 KB)
+0490.677 (0) Table wp_revslider_sliders_bkp: Total expected rows (via COUNT): 0
+0490.681 (0) Table wp_revslider_sliders_bkp: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=656) in 0.03 seconds
+0490.696 (0) Table wp_revslider_sliders_bkp: finishing file(s) (2, 0.4 KB)
+0490.732 (0) Table wp_revslider_slides: Total expected rows (via COUNT): 0
+0490.736 (0) Table wp_revslider_slides: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=630) in 0.03 seconds
+0490.756 (0) Table wp_revslider_slides: finishing file(s) (2, 0.4 KB)
+0490.792 (0) Table wp_revslider_slides_bkp: Total expected rows (via COUNT): 0
+0490.796 (0) Table wp_revslider_slides_bkp: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=654) in 0.03 seconds
+0490.812 (0) Table wp_revslider_slides_bkp: finishing file(s) (2, 0.4 KB)
+0490.890 (0) Table wp_revslider_static_slides: Total expected rows (via COUNT): 0
+0490.893 (0) Table wp_revslider_static_slides: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=627) in 0.07 seconds
+0490.910 (0) Table wp_revslider_static_slides: finishing file(s) (2, 0.3 KB)
+0490.953 (0) Table wp_revslider_static_slides_bkp: Total expected rows (via COUNT): 0
+0490.956 (0) Table wp_revslider_static_slides_bkp: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=651) in 0.04 seconds
+0490.972 (0) Table wp_revslider_static_slides_bkp: finishing file(s) (2, 0.4 KB)
+0491.004 (0) Table wp_vxcf_leads: Total expected rows (via COUNT): 81
+0491.006 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.015 (0) Table wp_vxcf_leads: Rows added in this batch (next record: 126): 81 (uncompressed bytes in this segment=13658) in 0.04 seconds
+0491.025 (0) The time we have been running (491) is approaching the resumption interval (521) - increasing resumption interval to 522
+0491.033 (0) Table wp_vxcf_leads: finishing file(s) (2, 1.7 KB)
+0491.069 (0) Table wp_vxcf_leads_detail: Total expected rows (via COUNT): 741
+0491.084 (0) Table wp_vxcf_leads_detail: Rows added in this batch (next record: 1008): 741 (uncompressed bytes in this segment=28799) in 0.04 seconds
+0491.109 (0) Table wp_vxcf_leads_detail: finishing file(s) (2, 5.9 KB)
+0491.133 (0) Table wp_vxcf_leads_notes: Total expected rows (via COUNT): 0
+0491.137 (0) Table wp_vxcf_leads_notes: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=720) in 0.02 seconds
+0491.149 (0) Table wp_vxcf_leads_notes: finishing file(s) (2, 0.4 KB)
+0491.180 (0) Table wp_wc_admin_note_actions: Total expected rows (via COUNT): 107
+0491.182 (0) Table is relatively small; fetch_rows will thus be: 200 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.192 (0) Table wp_wc_admin_note_actions: Rows added in this batch (next record: 18461): 107 (uncompressed bytes in this segment=20554) in 0.03 seconds
+0491.207 (0) Table wp_wc_admin_note_actions: finishing file(s) (2, 3.5 KB)
+0491.261 (0) Table wp_wc_admin_notes: Total expected rows (via COUNT): 75
+0491.264 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.273 (0) Table wp_wc_admin_notes: Rows added in this batch (next record: 83): 75 (uncompressed bytes in this segment=35617) in 0.06 seconds
+0491.289 (0) Table wp_wc_admin_notes: finishing file(s) (2, 7.9 KB)
+0491.315 (0) Table wp_wc_customer_lookup: Total expected rows (via COUNT): 6
+0491.318 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.325 (0) Table wp_wc_customer_lookup: Rows added in this batch (next record: 10): 6 (uncompressed bytes in this segment=1842) in 0.03 seconds
+0491.337 (0) Table wp_wc_customer_lookup: finishing file(s) (2, 0.8 KB)
+0491.378 (0) Table wp_wc_download_log: Total expected rows (via COUNT): 0
+0491.385 (0) Table wp_wc_download_log: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=716) in 0.04 seconds
+0491.400 (0) Table wp_wc_download_log: finishing file(s) (2, 0.4 KB)
+0491.432 (0) Table wp_wc_order_addresses: Total expected rows (via COUNT): 118
+0491.434 (0) Table is relatively small; fetch_rows will thus be: 200 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.445 (0) Table wp_wc_order_addresses: Rows added in this batch (next record: 282): 118 (uncompressed bytes in this segment=15822) in 0.04 seconds
+0491.457 (0) Table wp_wc_order_addresses: finishing file(s) (2, 1.6 KB)
+0491.489 (0) Table wp_wc_order_coupon_lookup: Total expected rows (approximate): 0
+0491.496 (0) Table wp_wc_order_coupon_lookup: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=715) in 0.03 seconds
+0491.509 (0) Table wp_wc_order_coupon_lookup: finishing file(s) (2, 0.4 KB)
+0491.540 (0) Table wp_wc_order_operational_data: Total expected rows (via COUNT): 60
+0491.542 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.551 (0) Table wp_wc_order_operational_data: Rows added in this batch (next record: 1098): 60 (uncompressed bytes in this segment=14335) in 0.03 seconds
+0491.562 (0) Table wp_wc_order_operational_data: finishing file(s) (2, 3.5 KB)
+0491.590 (0) Table wp_wc_order_product_lookup: Total expected rows (via COUNT): 117
+0491.592 (0) Table is relatively small; fetch_rows will thus be: 200 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.600 (0) Table wp_wc_order_product_lookup: Rows added in this batch (next record: 378): 117 (uncompressed bytes in this segment=12027) in 0.03 seconds
+0491.613 (0) Table wp_wc_order_product_lookup: finishing file(s) (2, 2.1 KB)
+0491.644 (0) Table wp_wc_order_stats: Total expected rows (via COUNT): 60
+0491.646 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.655 (0) Table wp_wc_order_stats: Rows added in this batch (next record: 30546): 60 (uncompressed bytes in this segment=10580) in 0.03 seconds
+0491.665 (0) Table wp_wc_order_stats: finishing file(s) (2, 2.2 KB)
+0491.695 (0) Table wp_wc_order_tax_lookup: Total expected rows (approximate): 46
+0491.704 (0) Table wp_wc_order_tax_lookup: Rows added in this batch (next record: 1000): 49 (uncompressed bytes in this segment=3647) in 0.03 seconds
+0491.717 (0) Table wp_wc_order_tax_lookup: finishing file(s) (2, 1 KB)
+0491.742 (0) Table wp_wc_orders: Total expected rows (via COUNT): 60
+0491.744 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.757 (0) Table wp_wc_orders: Rows added in this batch (next record: 30546): 60 (uncompressed bytes in this segment=22144) in 0.03 seconds
+0491.770 (0) Table wp_wc_orders: finishing file(s) (2, 3 KB)
+0491.807 (0) Table wp_wc_orders_meta: Total expected rows (approximate): 1340
+0491.837 (0) Table wp_wc_orders_meta: Rows added in this batch (next record: 3400): 1358 (uncompressed bytes in this segment=191681) in 0.06 seconds
+0491.851 (0) Table wp_wc_orders_meta: finishing file(s) (2, 13.8 KB)
+0491.924 (0) Table wp_wc_product_attributes_lookup: Total expected rows (approximate): 0
+0491.930 (0) Table wp_wc_product_attributes_lookup: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=831) in 0.07 seconds
+0491.941 (0) Table wp_wc_product_attributes_lookup: finishing file(s) (2, 0.4 KB)
+0491.974 (0) Table wp_wc_product_download_directories: Total expected rows (via COUNT): 2
+0491.976 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0491.984 (0) Table wp_wc_product_download_directories: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=893) in 0.03 seconds
+0491.996 (0) Table wp_wc_product_download_directories: finishing file(s) (2, 0.5 KB)
+0492.029 (0) Table wp_wc_rate_limits: Total expected rows (via COUNT): 0
+0492.034 (0) Table wp_wc_rate_limits: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=667) in 0.03 seconds
+0492.045 (0) The time we have been running (492) is approaching the resumption interval (522) - increasing resumption interval to 523
+0492.057 (0) Table wp_wc_rate_limits: finishing file(s) (2, 0.4 KB)
+0492.093 (0) Table wp_wc_webhooks: Total expected rows (via COUNT): 0
+0492.096 (0) Table wp_wc_webhooks: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1071) in 0.03 seconds
+0492.109 (0) Table wp_wc_webhooks: finishing file(s) (2, 0.5 KB)
+0492.146 (0) Table wp_woocommerce_api_keys: Total expected rows (via COUNT): 0
+0492.149 (0) Table wp_woocommerce_api_keys: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=873) in 0.03 seconds
+0492.163 (0) Table wp_woocommerce_api_keys: finishing file(s) (2, 0.4 KB)
+0492.193 (0) Table wp_woocommerce_attribute_taxonomies: Total expected rows (via COUNT): 0
+0492.195 (0) Table wp_woocommerce_attribute_taxonomies: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=835) in 0.02 seconds
+0492.210 (0) Table wp_woocommerce_attribute_taxonomies: finishing file(s) (2, 0.4 KB)
+0492.234 (0) Table wp_woocommerce_downloadable_product_permissions: Total expected rows (via COUNT): 0
+0492.238 (0) Table wp_woocommerce_downloadable_product_permissions: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1410) in 0.02 seconds
+0492.260 (0) Table wp_woocommerce_downloadable_product_permissions: finishing file(s) (2, 0.5 KB)
+0492.319 (0) Table wp_woocommerce_log: Total expected rows (via COUNT): 0
+0492.325 (0) Table wp_woocommerce_log: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=642) in 0.06 seconds
+0492.341 (0) Table wp_woocommerce_log: finishing file(s) (2, 0.4 KB)
+0492.366 (0) Table wp_woocommerce_order_items: Total expected rows (via COUNT): 168
+0492.370 (0) Table is relatively small; fetch_rows will thus be: 250 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.379 (0) Table wp_woocommerce_order_items: Rows added in this batch (next record: 379): 168 (uncompressed bytes in this segment=9317) in 0.03 seconds
+0492.393 (0) Table wp_woocommerce_order_items: finishing file(s) (2, 1.6 KB)
+0492.431 (0) Table wp_woocommerce_payment_tokens: Total expected rows (via COUNT): 4
+0492.433 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.441 (0) Table wp_woocommerce_payment_tokens: Rows added in this batch (next record: 4): 4 (uncompressed bytes in this segment=1062) in 0.04 seconds
+0492.454 (0) Table wp_woocommerce_payment_tokens: finishing file(s) (2, 0.5 KB)
+0492.491 (0) Table wp_woocommerce_sessions: Total expected rows (via COUNT): 1
+0492.493 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.496 (0) Table wp_woocommerce_sessions: Rows added in this batch (next record: 2639): 1 (uncompressed bytes in this segment=2336) in 0.03 seconds
+0492.512 (0) Table wp_woocommerce_sessions: finishing file(s) (2, 0.9 KB)
+0492.543 (0) Table wp_woocommerce_shipping_zone_locations: Total expected rows (via COUNT): 1
+0492.545 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.549 (0) Table wp_woocommerce_shipping_zone_locations: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=915) in 0.03 seconds
+0492.564 (0) Table wp_woocommerce_shipping_zone_locations: finishing file(s) (2, 0.4 KB)
+0492.594 (0) Table wp_woocommerce_shipping_zone_methods: Total expected rows (via COUNT): 1
+0492.595 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.598 (0) Table wp_woocommerce_shipping_zone_methods: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=849) in 0.03 seconds
+0492.611 (0) Table wp_woocommerce_shipping_zone_methods: finishing file(s) (2, 0.4 KB)
+0492.634 (0) Table wp_woocommerce_shipping_zones: Total expected rows (via COUNT): 1
+0492.636 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.640 (0) Table wp_woocommerce_shipping_zones: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=689) in 0.02 seconds
+0492.652 (0) Table wp_woocommerce_shipping_zones: finishing file(s) (2, 0.4 KB)
+0492.679 (0) Table wp_woocommerce_tax_rate_locations: Total expected rows (via COUNT): 0
+0492.686 (0) Table wp_woocommerce_tax_rate_locations: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=786) in 0.03 seconds
+0492.699 (0) Table wp_woocommerce_tax_rate_locations: finishing file(s) (2, 0.4 KB)
+0492.728 (0) Table wp_woocommerce_tax_rates: Total expected rows (via COUNT): 2
+0492.730 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0492.738 (0) Table wp_woocommerce_tax_rates: Rows added in this batch (next record: 5): 2 (uncompressed bytes in this segment=1325) in 0.03 seconds
+0492.752 (0) Table wp_woocommerce_tax_rates: finishing file(s) (2, 0.5 KB)
+0492.754 (0) PHP event: code E_WARNING: filemtime(): stat failed for C:\xampp\htdocs\phn-git\phn/wp-content/updraft/backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db.gz (line 1925, C:\xampp\htdocs\phn-git\phn\wp-content\plugins\updraftplus\backup.php)
+0492.760 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_options.table.tmpr40601.gz (1/72/fopen): adding to final database dump
+0492.785 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_options.table.gz (2/72/fopen): adding to final database dump
+0492.788 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_users.table.tmpr5.gz (3/72/fopen): adding to final database dump
+0492.791 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_users.table.gz (4/72/fopen): adding to final database dump
+0492.793 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_usermeta.table.tmpr572.gz (5/72/fopen): adding to final database dump
+0492.795 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_usermeta.table.gz (6/72/fopen): adding to final database dump
+0492.797 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_actions.table.tmpr29830.gz (7/72/fopen): adding to final database dump
+0492.799 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_actions.table.gz (8/72/fopen): adding to final database dump
+0492.801 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_claims.table.tmpr0.gz (9/72/fopen): adding to final database dump
+0492.805 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_claims.table.gz (10/72/fopen): adding to final database dump
+0492.807 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_groups.table.tmpr7.gz (11/72/fopen): adding to final database dump
+0492.809 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_groups.table.gz (12/72/fopen): adding to final database dump
+0492.812 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_logs.table.tmpr2824.gz (13/72/fopen): adding to final database dump
+0492.814 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_actionscheduler_logs.table.gz (14/72/fopen): adding to final database dump
+0492.816 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_commentmeta.table.tmpr0.gz (15/72/fopen): adding to final database dump
+0492.819 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_commentmeta.table.gz (16/72/fopen): adding to final database dump
+0492.822 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_comments.table.tmpr745.gz (17/72/fopen): adding to final database dump
+0492.825 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_comments.table.gz (18/72/fopen): adding to final database dump
+0492.827 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_links.table.tmpr0.gz (19/72/fopen): adding to final database dump
+0492.830 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_links.table.gz (20/72/fopen): adding to final database dump
+0492.833 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_postmeta.table.tmpr28203.gz (21/72/fopen): adding to final database dump
+0492.849 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_postmeta.table.gz (22/72/fopen): adding to final database dump
+0492.852 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_posts.table.tmpr30548.gz (23/72/fopen): adding to final database dump
+0492.861 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_posts.table.gz (24/72/fopen): adding to final database dump
+0492.863 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_tec_events.table.tmpr41.gz (25/72/fopen): adding to final database dump
+0492.865 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_tec_events.table.gz (26/72/fopen): adding to final database dump
+0492.867 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_tec_occurrences.table.tmpr24.gz (27/72/fopen): adding to final database dump
+0492.870 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_tec_occurrences.table.gz (28/72/fopen): adding to final database dump
+0492.873 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_term_relationships.table.tmpr100001.gz (29/72/fopen): adding to final database dump
+0492.875 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_term_relationships.table.gz (30/72/fopen): adding to final database dump
+0492.878 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_term_taxonomy.table.tmpr40.gz (31/72/fopen): adding to final database dump
+0492.880 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_term_taxonomy.table.gz (32/72/fopen): adding to final database dump
+0492.882 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_termmeta.table.tmpr4.gz (33/72/fopen): adding to final database dump
+0492.885 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_termmeta.table.gz (34/72/fopen): adding to final database dump
+0492.887 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_terms.table.tmpr40.gz (35/72/fopen): adding to final database dump
+0492.890 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_terms.table.gz (36/72/fopen): adding to final database dump
+0492.892 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_category_lookup.table.tmpr1001.gz (37/72/fopen): adding to final database dump
+0492.895 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_category_lookup.table.gz (38/72/fopen): adding to final database dump
+0492.897 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_meta_lookup.table.tmpr30380.gz (39/72/fopen): adding to final database dump
+0492.899 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_meta_lookup.table.gz (40/72/fopen): adding to final database dump
+0492.900 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_reserved_stock.table.tmpr1001.gz (41/72/fopen): adding to final database dump
+0492.903 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_reserved_stock.table.gz (42/72/fopen): adding to final database dump
+0492.906 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_tax_rate_classes.table.tmpr6.gz (43/72/fopen): adding to final database dump
+0492.908 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_tax_rate_classes.table.gz (44/72/fopen): adding to final database dump
+0492.910 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_order_itemmeta.table.tmpr3455.gz (45/72/fopen): adding to final database dump
+0492.913 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_order_itemmeta.table.gz (46/72/fopen): adding to final database dump
+0492.915 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_payment_tokenmeta.table.tmpr17.gz (47/72/fopen): adding to final database dump
+0492.918 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_payment_tokenmeta.table.gz (48/72/fopen): adding to final database dump
+0492.920 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_1048690_options.table.tmpr34176.gz (49/72/fopen): adding to final database dump
+0492.936 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_1048690_options.table.gz (50/72/fopen): adding to final database dump
+0492.939 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_cf7vb_forms.table.tmpr0.gz (51/72/fopen): adding to final database dump
+0492.941 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_cf7vb_forms.table.gz (52/72/fopen): adding to final database dump
+0492.943 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_e_events.table.tmpr0.gz (53/72/fopen): adding to final database dump
+0492.945 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_e_events.table.gz (54/72/fopen): adding to final database dump
+0492.947 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_fooevents_check_in.table.tmpr0.gz (55/72/fopen): adding to final database dump
+0492.950 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_fooevents_check_in.table.gz (56/72/fopen): adding to final database dump
+0492.952 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_jetpack_sync_queue.table.tmpr4096.gz (57/72/fopen): adding to final database dump
+0492.955 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_jetpack_sync_queue.table.gz (58/72/fopen): adding to final database dump
+0492.957 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_css.table.tmpr110.gz (59/72/fopen): adding to final database dump
+0492.960 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_css.table.gz (60/72/fopen): adding to final database dump
+0492.962 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_css_bkp.table.tmpr48.gz (61/72/fopen): adding to final database dump
+0492.963 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_css_bkp.table.gz (62/72/fopen): adding to final database dump
+0492.965 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_layer_animations.table.tmpr0.gz (63/72/fopen): adding to final database dump
+0492.968 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_layer_animations.table.gz (64/72/fopen): adding to final database dump
+0492.971 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_layer_animations_bkp.table.tmpr0.gz (65/72/fopen): adding to final database dump
+0492.973 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_layer_animations_bkp.table.gz (66/72/fopen): adding to final database dump
+0492.976 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_navigations.table.tmpr0.gz (67/72/fopen): adding to final database dump
+0492.978 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_navigations.table.gz (68/72/fopen): adding to final database dump
+0492.980 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_navigations_bkp.table.tmpr0.gz (69/72/fopen): adding to final database dump
+0492.983 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_navigations_bkp.table.gz (70/72/fopen): adding to final database dump
+0492.986 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_sliders.table.tmpr0.gz (71/72/fopen): adding to final database dump
+0492.988 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_sliders.table.gz (72/72/fopen): adding to final database dump
+0492.990 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_sliders_bkp.table.tmpr0.gz (73/72/fopen): adding to final database dump
+0492.993 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_sliders_bkp.table.gz (74/72/fopen): adding to final database dump
+0492.995 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_slides.table.tmpr0.gz (75/72/fopen): adding to final database dump
+0492.997 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_slides.table.gz (76/72/fopen): adding to final database dump
+0492.999 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_slides_bkp.table.tmpr0.gz (77/72/fopen): adding to final database dump
+0493.001 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_slides_bkp.table.gz (78/72/fopen): adding to final database dump
+0493.004 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_static_slides.table.tmpr0.gz (79/72/fopen): adding to final database dump
+0493.007 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_static_slides.table.gz (80/72/fopen): adding to final database dump
+0493.009 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_static_slides_bkp.table.tmpr0.gz (81/72/fopen): adding to final database dump
+0493.011 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_revslider_static_slides_bkp.table.gz (82/72/fopen): adding to final database dump
+0493.013 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads.table.tmpr127.gz (83/72/fopen): adding to final database dump
+0493.016 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads.table.gz (84/72/fopen): adding to final database dump
+0493.019 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads_detail.table.tmpr1009.gz (85/72/fopen): adding to final database dump
+0493.021 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads_detail.table.gz (86/72/fopen): adding to final database dump
+0493.023 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads_notes.table.tmpr0.gz (87/72/fopen): adding to final database dump
+0493.026 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_vxcf_leads_notes.table.gz (88/72/fopen): adding to final database dump
+0493.028 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_admin_note_actions.table.tmpr18462.gz (89/72/fopen): adding to final database dump
+0493.032 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_admin_note_actions.table.gz (90/72/fopen): adding to final database dump
+0493.034 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_admin_notes.table.tmpr84.gz (91/72/fopen): adding to final database dump
+0493.037 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_admin_notes.table.gz (92/72/fopen): adding to final database dump
+0493.040 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_customer_lookup.table.tmpr11.gz (93/72/fopen): adding to final database dump
+0493.042 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_customer_lookup.table.gz (94/72/fopen): adding to final database dump
+0493.044 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_download_log.table.tmpr0.gz (95/72/fopen): adding to final database dump
+0493.046 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_download_log.table.gz (96/72/fopen): adding to final database dump
+0493.048 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_addresses.table.tmpr283.gz (97/72/fopen): adding to final database dump
+0493.051 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_addresses.table.gz (98/72/fopen): adding to final database dump
+0493.053 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_coupon_lookup.table.tmpr1.gz (99/72/fopen): adding to final database dump
+0493.061 (0) The time we have been running (493.1) is approaching the resumption interval (523) - increasing resumption interval to 524
+0493.064 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_coupon_lookup.table.gz (100/72/fopen): adding to final database dump
+0493.066 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_operational_data.table.tmpr1099.gz (101/72/fopen): adding to final database dump
+0493.068 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_operational_data.table.gz (102/72/fopen): adding to final database dump
+0493.071 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_product_lookup.table.tmpr379.gz (103/72/fopen): adding to final database dump
+0493.073 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_product_lookup.table.gz (104/72/fopen): adding to final database dump
+0493.076 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_stats.table.tmpr30547.gz (105/72/fopen): adding to final database dump
+0493.079 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_stats.table.gz (106/72/fopen): adding to final database dump
+0493.081 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_tax_lookup.table.tmpr1001.gz (107/72/fopen): adding to final database dump
+0493.083 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_order_tax_lookup.table.gz (108/72/fopen): adding to final database dump
+0493.086 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_orders.table.tmpr30547.gz (109/72/fopen): adding to final database dump
+0493.088 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_orders.table.gz (110/72/fopen): adding to final database dump
+0493.090 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_orders_meta.table.tmpr3401.gz (111/72/fopen): adding to final database dump
+0493.093 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_orders_meta.table.gz (112/72/fopen): adding to final database dump
+0493.095 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_attributes_lookup.table.tmpr1.gz (113/72/fopen): adding to final database dump
+0493.097 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_attributes_lookup.table.gz (114/72/fopen): adding to final database dump
+0493.099 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_download_directories.table.tmpr3.gz (115/72/fopen): adding to final database dump
+0493.101 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_product_download_directories.table.gz (116/72/fopen): adding to final database dump
+0493.104 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_rate_limits.table.tmpr0.gz (117/72/fopen): adding to final database dump
+0493.106 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_rate_limits.table.gz (118/72/fopen): adding to final database dump
+0493.109 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_webhooks.table.tmpr0.gz (119/72/fopen): adding to final database dump
+0493.112 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_wc_webhooks.table.gz (120/72/fopen): adding to final database dump
+0493.114 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_api_keys.table.tmpr0.gz (121/72/fopen): adding to final database dump
+0493.117 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_api_keys.table.gz (122/72/fopen): adding to final database dump
+0493.119 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_attribute_taxonomies.table.tmpr0.gz (123/72/fopen): adding to final database dump
+0493.121 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_attribute_taxonomies.table.gz (124/72/fopen): adding to final database dump
+0493.123 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_downloadable_product_permissions.table.tmpr0.gz (125/72/fopen): adding to final database dump
+0493.126 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_downloadable_product_permissions.table.gz (126/72/fopen): adding to final database dump
+0493.128 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_log.table.tmpr0.gz (127/72/fopen): adding to final database dump
+0493.130 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_log.table.gz (128/72/fopen): adding to final database dump
+0493.132 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_order_items.table.tmpr380.gz (129/72/fopen): adding to final database dump
+0493.134 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_order_items.table.gz (130/72/fopen): adding to final database dump
+0493.136 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_payment_tokens.table.tmpr5.gz (131/72/fopen): adding to final database dump
+0493.139 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_payment_tokens.table.gz (132/72/fopen): adding to final database dump
+0493.141 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_sessions.table.tmpr2640.gz (133/72/fopen): adding to final database dump
+0493.143 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_sessions.table.gz (134/72/fopen): adding to final database dump
+0493.146 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zone_locations.table.tmpr2.gz (135/72/fopen): adding to final database dump
+0493.148 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zone_locations.table.gz (136/72/fopen): adding to final database dump
+0493.150 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zone_methods.table.tmpr2.gz (137/72/fopen): adding to final database dump
+0493.154 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zone_methods.table.gz (138/72/fopen): adding to final database dump
+0493.156 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zones.table.tmpr2.gz (139/72/fopen): adding to final database dump
+0493.158 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_shipping_zones.table.gz (140/72/fopen): adding to final database dump
+0493.162 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_tax_rate_locations.table.tmpr0.gz (141/72/fopen): adding to final database dump
+0493.164 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_tax_rate_locations.table.gz (142/72/fopen): adding to final database dump
+0493.166 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_tax_rates.table.tmpr6.gz (143/72/fopen): adding to final database dump
+0493.169 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db-table-wp_woocommerce_tax_rates.table.gz (144/72/fopen): adding to final database dump
+0493.277 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db.gz: finished writing out complete database file (1610 KB)
+0493.399 (0) Total database tables backed up: 72 (backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db.gz, size: 1648776, sha1: ae68dc0a0e0442926d78b166c6a8e7649aca5e0d, sha256: 49afba079af9b2e6ef44020dc1d49a979f3329e31ed2d20027c00260f249f747)
+0493.413 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins.zip: plugins: This file has already been successfully uploaded
+0493.415 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins2.zip: plugins: This file has already been successfully uploaded
+0493.417 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins3.zip: plugins: This file has already been successfully uploaded
+0493.419 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins4.zip: plugins: This file has already been successfully uploaded
+0493.421 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins5.zip: plugins: This file has already been successfully uploaded
+0493.422 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-plugins6.zip: plugins: This file has already been successfully uploaded
+0493.424 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-themes.zip: themes: This file has already been successfully uploaded
+0493.425 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads.zip: uploads: This file has already been successfully uploaded
+0493.427 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads2.zip: uploads: This file has already been successfully uploaded
+0493.428 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads3.zip: uploads: This file has already been successfully uploaded
+0493.429 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads4.zip: uploads: This file has already been successfully uploaded
+0493.431 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads5.zip: uploads: This file has already been successfully uploaded
+0493.432 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads6.zip: uploads: This file has already been successfully uploaded
+0493.434 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads7.zip: uploads: This file has already been successfully uploaded
+0493.436 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads8.zip: uploads: This file has already been successfully uploaded
+0493.438 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-uploads9.zip: uploads: This file has already been successfully uploaded
+0493.440 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-others.zip: others: This file has already been successfully uploaded
+0493.442 (0) backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db.gz: db: This file has not yet been successfully uploaded: will queue
+0493.444 (0) Saving backup history. Total backup size: 375.8 MB
+0493.450 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0493.456 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0493.458 (0) No remote despatch: user chose no remote backup service
+0493.460 (0) Recording as successfully uploaded: backup_2024-06-06-1007_PHN_Consulting_20223ad1ce09-db.gz
+0493.464 (0) Prune old backups from local store: nothing to do, since the user disabled local deletion and we are using local backups
+0493.465 (0) Resume backup (20223ad1ce09, 0): finish run
+0493.472 (0) Decremented the semaphore (fd) by 1
+0493.477 (0) Semaphore (fd) unlocked
+0493.481 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0493.493 (0) No email will/can be sent - the user has not configured an email address.
+0493.495 (0) The backup succeeded and is now complete

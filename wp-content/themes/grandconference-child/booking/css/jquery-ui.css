@@ -974,7 +974,7 @@ a.ui-button:focus {
 .ui-visual-focus {
 	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
-.ui-state-active,
+/* .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active,
 a.ui-button:active,
@@ -989,7 +989,7 @@ a.ui-button:active,
 .ui-state-active .ui-icon-background {
 	border: #003eff;
 	background-color: #ffffff;
-}
+} */
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
@@ -999,13 +999,13 @@ a.ui-button:active,
 
 /* Interaction Cues
 ----------------------------------*/
-.ui-state-highlight,
+/* .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #dad55e;
 	background: #fffa90;
 	color: #777620;
-}
+} */
 .ui-state-checked {
 	border: 1px solid #dad55e;
 	background: #fffa90;

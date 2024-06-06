@@ -8974,26 +8974,29 @@ $.extend( Datepicker.prototype, {
 					$.datepicker._gotoToday( id );
 				},
 				selectDay: function(e) {
-					e.preventDefault();
-					$.datepicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
-					let data_date = $(this).data('datect');
-					if($(this).hasClass("day-available")){
-						$('.action-day-switch').prop('checked', true);
-					}else{
-						$('.action-day-switch').prop('checked', false);
-					}
-					$(".modal-set-stock-day .day-select-text").text('Day '+data_date+'');
-					$(".modal-set-stock-day .day-select").val(data_date);
-					var id_variation = $('.modal-calendar').data('value'), stock = '';
-					$(''+id_variation+' .day-available input').each(function() {
-						if($(this).val() == data_date){
-							stock = $(this).data('stock');
+					if($(this).closest('#calendar-available').hasClass('hasDatepicker')){
+						e.preventDefault();
+						$.datepicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
+						let data_date = $(this).data('datect');
+						if($(this).hasClass("day-available")){
+							$('.action-day-switch').prop('checked', true);
+						}else{
+							$('.action-day-switch').prop('checked', false);
 						}
-					});
-					$(".modal-set-stock-day .stock-day").val(stock);
-					$("body").addClass("open-modal-stock");
-					
-					// return false;
+						$(".modal-set-stock-day .day-select-text").text('Day '+data_date+'');
+						$(".modal-set-stock-day .day-select").val(data_date);
+						var id_variation = $('.modal-calendar').data('value'), stock = '';
+						$(''+id_variation+' .day-available input').each(function() {
+							if($(this).val() == data_date){
+								stock = $(this).data('stock');
+							}
+						});
+						$(".modal-set-stock-day .stock-day").val(stock);
+						$("body").addClass("open-modal-stock");
+					}else{
+						$.datepicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
+						return false;
+					}
 				},
 				selectMonth: function() {
 					$.datepicker._selectMonthYear( id, this, "M" );

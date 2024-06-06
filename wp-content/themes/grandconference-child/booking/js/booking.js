@@ -34,6 +34,8 @@ jQuery(document).ready(function($) {
             return [true, date1 && ((date.getTime() == date1.getTime()) || (date2 && date >= date1 && date <= date2)) ? "dp-highlight" : ""];
         },
         onSelect: function(dateText, inst) {
+            $("#calendar-booking").addClass("calendar-active");
+            var lang = $(".content-details-hotel").data("lang");
             var dateFormat = "dd-mm-yy"; // Define the date format
             var date1 = $.datepicker.parseDate(dateFormat, $("#start_day").val());
             var date2 = $.datepicker.parseDate(dateFormat, $("#end_day").val());
@@ -53,6 +55,7 @@ jQuery(document).ready(function($) {
             }
             var start_day = $("#start_day").val(),end_day = $("#end_day").val();
             if(start_day !="" && end_day !=""){
+                $("body").addClass("ajax-load");
                 start_day = dateStringToTimestamp(start_day);
                 end_day = dateStringToTimestamp(end_day);
                 var total = (end_day - start_day)/86400;
@@ -84,25 +87,50 @@ jQuery(document).ready(function($) {
                     return Math.min(...stocksInRange);
                 }
 
+                var n = 0, location = 0;
                 for(var i=0;i<=total;i++){
                     var day_i = start_day + (86400*i);
                     if (!day_available_list.includes(day_i)) {
-                        all_days_available = false;
-                        break;
+                        n++;
+                        location = i;
                     }
                 }
-
-                if (!all_days_available) {
-                } else {
-                    var stocksInRange = getStocksBetween(start_day, end_day);
+            
+                if((n==1 && location == total && start_day != end_day) || (n==0 && start_day != end_day)){
+                    $('.woocommerce-notices-wrapper').hide();
+                    var stocksInRange = getStocksBetween(start_day, end_day - 86400);
                     var minStockValue = getMinStockValue(stocksInRange);
                     $(".wrap-qty-js .qty").val(1);
                     $(".wrap-qty-js .qty").attr("max",minStockValue);
                     $(".wrap-qty-js").removeClass("disable");
-                    $(".add-to-cart-hotel").slideDown(100);
                     $("#start_day").data('timestamp',start_day);
                     $("#end_day").data('timestamp',end_day);
+                    setTimeout(function() { 
+                        $(".add-to-cart-hotel").slideDown(100);
+                    }, 501);
+                }else{
+                    if(start_day == end_day){
+                        if(lang == "english"){
+                            var message_selected = 'The selected date is not valid, please select 2 consecutive days';
+                        }else{
+                            var message_selected = 'La date sélectionnée n\'est pas valide, veuillez sélectionner 2 jours consécutifs';
+                        }
+                    }else{
+                        if(lang == "english"){
+                            var message_selected = 'The date selected is not valid, please select another date';
+                        }else{
+                            var message_selected = 'La date sélectionnée n\'est pas valide, veuillez sélectionner une autre date';
+                        }
+                    }
+
+                    $('.woocommerce-notices-wrapper').html('<div class="woocommerce-error" role="alert">'+message_selected+'</div>');
+                    setTimeout(function() { 
+                        $('.woocommerce-notices-wrapper').show();
+                    }, 501);
                 }
+                setTimeout(function() { 
+                    $("body").removeClass("ajax-load");
+                }, 500);
             }else{
                 $(".add-to-cart-hotel").hide();
             }
@@ -111,6 +139,7 @@ jQuery(document).ready(function($) {
 
     // select type of room
     $(".select_type_of_room").on("change", function () { 
+        $("#calendar-booking").removeClass("calendar-active");
         $("body").addClass("ajax-load");
         $('.woocommerce-notices-wrapper').hide();
         $(".add-to-cart-hotel").hide();

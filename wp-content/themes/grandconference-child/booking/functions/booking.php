@@ -121,7 +121,7 @@ function get_day_and_stock_variation($event_id,$variation_id,$hotel_id,$current_
                                 $day_available = $v['date_available'];
                                 foreach($day_available as $kk => $vl){
                                     $stock = isset($vl['stock']) ? (int) $vl['stock'] : 0;
-                                    if($vl['stock'] != 0 && (int)$vl['timestamp'] >= $current_day_timestamp && (int)$vl['timestamp'] >= $start_day && (int)$vl['timestamp'] <= $end_day){
+                                    if($vl['stock'] != 0 && (int)$vl['timestamp'] >= $current_day_timestamp && (int)$vl['timestamp'] >= $start_day && (int)$vl['timestamp'] < $end_day){
                                         $variation_data[(int)$vl['timestamp']] = (int) $vl['stock'] - (int) $quantity;
                                     }
                                 }
@@ -147,7 +147,7 @@ function stock_day_in_cart($variation_id) {
             $quantity = $cart_item['quantity'];
             $start_day_timestamp = $cart_item['start_day_timestamp'];
             $end_day_timestamp = $cart_item['end_day_timestamp'];
-            $total_days = ($end_day_timestamp - $start_day_timestamp) / 86400 + 1;
+            $total_days = ($end_day_timestamp - $start_day_timestamp) / 86400;
 
             for ($i = 0; $i < $total_days; $i++) {
                 $current_day_timestamp = $start_day_timestamp + (86400 * $i);
@@ -240,7 +240,7 @@ function add_to_cart_hotel(){
     $msg_err_add_hotel = ($lan === 'french') ? get_field('message_err_add_hotel_fr', 'option') : get_field('message_err_add_hotel', 'option');
     $view_cart = ($lan === 'french') ? get_field('view_cart_fr', 'option') : get_field('view_cart', 'option');
     $msg = '<a href="' . $cart_url . '" tabindex="1" class="button wc-forward">' . $view_cart . '</a> ';
-    $num_day = ($end_day_ts - $start_day_ts)/86400+1;
+    $num_day = ($end_day_ts - $start_day_ts)/86400;
 
     if (ticket_in_cart() == true) {
         $id_ticket = (int) id_ticket_in_cart();
@@ -256,8 +256,9 @@ function add_to_cart_hotel(){
                     "number_day" => $num_day,
                     "price" => $price
                 );
-                    
+
                 $add_to_cart = WC()->cart->add_to_cart($variation_id, $quantity, 0, array(), $cart_data);
+                
                 if ($add_to_cart) {
                     $msg .= $msg_success;
                     $success = true;
@@ -333,7 +334,7 @@ function update_stock_each_day_variation_hotel_of_event($order_id) {
             $quantity = $item->get_quantity();
             $start_day_ts = (int) $item->get_meta( 'start_day_ts', true );
             $end_day_ts = (int) $item->get_meta( 'end_day_ts', true );
-            $total_days = ($end_day_ts - $start_day_ts) / 86400 + 1;
+            $total_days = ($end_day_ts - $start_day_ts) / 86400;
             $quantity_each_day =  quantity_each_day($total_days,$start_day_ts,$quantity);
             $stock_day[] = [
                 $variation_id => $quantity_each_day
