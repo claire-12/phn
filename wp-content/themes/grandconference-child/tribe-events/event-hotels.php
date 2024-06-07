@@ -33,12 +33,23 @@ $sub_partnering_hotels = ($lan === 'french') ? get_field('sub_partnering_hotels_
 // $hotels = get_post_meta($event_id, 'hotels', true);
 $list_event = get_post_meta($event_id, 'hotel_type-of-rooms', true);
 $hotels = array();
+$data_hotel = get_post_meta($event_id, 'data_hotel_event', true);
 
 if ($list_event) {
     foreach ($list_event as $event) {
         $hotels[] = $event['hotelId'];
     }
 }
+
+// var_dump($data_hotel);
+if ($data_hotel) {
+    foreach ($data_hotel as $data) {
+        $hotels_data[] = $data['hotel_id'];
+
+    }
+}
+// echo 'aaaaaaaaaaaaaaaaaaaa';
+// var_dump($hotels_data);
 
 // $from =($lan === 'french') ?  'A partir de' : 'From';
 $from = ($lan === 'french') ? 'Prix' : 'Price';
@@ -95,25 +106,29 @@ if (!empty($location)) {
         </div>
     </div>
     <div class="list-hotels-event">
-        <!-- <?php
-        if ($hotels) {
-            foreach ($hotels as $post_id) {
-                $featured_img_url = get_the_post_thumbnail_url($post_id, 'full');
-                $address = get_field('address', $post_id);
-                $price = get_field('price', $post_id);
-                $hotel_stars = (!empty(get_field('hotel_stars', $post_id))) ? get_field('hotel_stars', $post_id) : 5;
-                $url_de_hotel = get_field('url_de_hotel', $post_id);
+        <?php
+        if ($data_hotel) {
+            // Step 1: Collect all the hotel data with the minimum price
+            $hotels = array();
+
+            foreach ($data_hotel as $data) {
+                $hotel_id = $data['hotel_id'];
+                $featured_img_url = get_the_post_thumbnail_url($hotel_id, 'full');
+                $address = get_field('address', $hotel_id);
+                $price = get_field('price', $hotel_id);
+                $hotel_stars = (!empty(get_field('hotel_stars', $hotel_id))) ? get_field('hotel_stars', $hotel_id) : 5;
+                $url_de_hotel = get_field('url_de_hotel', $hotel_id);
 
                 if ($url_de_hotel) {
                     $url = $url_de_hotel;
                     $attr = 'target="_blank"';
                 } else {
-                    $url = get_permalink($post_id) . $event_id;
+                    $url = get_permalink($hotel_id) . $event_id;
                     $attr = '';
                 }
 
                 if (!$featured_img_url) {
-                    $gallery = get_field('gallery', $post_id);
+                    $gallery = get_field('gallery', $hotel_id);
                     if ($gallery) {
                         $featured_img_url = wp_get_attachment_image_url($gallery[0], 'full');
                     } else {
@@ -121,147 +136,164 @@ if (!empty($location)) {
                     }
                 }
 
-                $rooms_hotel = get_field('rooms', $post_id);
-                $list_event = get_post_meta($event_id, 'hotel_type-of-rooms', true);
-                ?>
-                    <div class="item-hotels">
-                        <a href="<?= $url ?>" <?= $attr ?>>
-                            <img src="<?= $featured_img_url; ?>" alt="" class="thumbnail">
-                        </a>
-                        <div class="wrap-title-rating">
-                            <a href="<?= $url ?>" <?= $attr ?> class="title"><?= get_the_title($post_id); ?></a>
-                            <div class="review-hotel">
-                                <span class="rate"><?php echo number_format($hotel_stars, 1); ?></span>
-                                <div class="list-star">
-                                    <?php echo generateStars($hotel_stars); ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="infor">
-                            <?php
-                            if (!empty($address['address']) && !empty($address)) {
-                                ?>
-                                   <span><?= $address['address']; ?></span>
-                                    <?php
-                            }
-                            ?>
-                        </div>
-                        <?php
-                        if ($list_event) {
-                            foreach ($list_event as $event) {
-                                if ($event['hotelId'] == $post_id) {
-                                    $desired_array = $event['roomTypes'];
-                                    $prices = array();
-                                    foreach ($desired_array as $typeroom) {
-                                        $price = $typeroom["price"];
-                                        if ($typeroom["pricenew"] != "") {
-                                            $price = $typeroom["pricenew"];
-                                        }
-                                        $prices[] = $price;
-                                    }
+                $rooms_hotel = get_field('rooms', $hotel_id);
+                $list_event = $data['variations_data'];
+                $price_array = array();
 
-                                    $minPrice = min($prices) . get_woocommerce_currency_symbol(get_option('woocommerce_currency'));
-                                    ?>
-                                        <h3 class="price">
-                                            <?php echo $from . ":" . $minPrice; ?>
-                                        </h3>
-                                        <?php
-                                }
-                            }
-                        }
-                        ?>
-                    </div>
-                    <?php
-            }
-        }
-        ?> -->
-        <?php
-        if ($hotels) {
-            $hotel_prices = array();
-
-            foreach ($hotels as $post_id) {
-                $prices = array();
-                $list_event = get_post_meta($event_id, 'hotel_type-of-rooms', true);
                 if ($list_event) {
                     foreach ($list_event as $event) {
-                        if ($event['hotelId'] == $post_id) {
-                            $desired_array = $event['roomTypes'];
-                            foreach ($desired_array as $typeroom) {
-                                $price = $typeroom["price"];
-                                if ($typeroom["pricenew"] != "") {
-                                    $price = $typeroom["pricenew"];
-                                }
-                                $prices[] = $price;
-                            }
+                        if (isset($event['price'])) {
+                            $price_array[] = $event['price'];
                         }
                     }
                 }
 
-                $min_price = !empty($prices) ? min($prices) : 0;
+                $minPrice = !empty($price_array) ? min($price_array) : 0;
 
-                $hotel_prices[$post_id] = $min_price;
+                $hotels[] = array(
+                    'hotel_id' => $hotel_id,
+                    'featured_img_url' => $featured_img_url,
+                    'address' => $address,
+                    'hotel_stars' => $hotel_stars,
+                    'url' => $url,
+                    'attr' => $attr,
+                    'minPrice' => $minPrice,
+                );
             }
-            // min-max
-            $sort_hotel = "asort";
-            // max-min
-            // $sort_hotel = "arsort";
-            $sort_hotel($hotel_prices);
 
-            foreach ($hotel_prices as $post_id => $minPrice) {
-                $featured_img_url = get_the_post_thumbnail_url($post_id, 'full');
-                $address = get_field('address', $post_id);
-                $hotel_stars = (!empty(get_field('hotel_stars', $post_id))) ? get_field('hotel_stars', $post_id) : 5;
-                $url_de_hotel = get_field('url_de_hotel', $post_id);
+            // Step 2: Sort the collected data by the minimum price
+            usort($hotels, function ($a, $b) {
+                return $a['minPrice'] - $b['minPrice'];
+            });
 
-                if ($url_de_hotel) {
-                    $url = $url_de_hotel;
-                    $attr = 'target="_blank"';
-                } else {
-                    $url = get_permalink($post_id) . $event_id;
-                    $attr = '';
-                }
-
-                if (!$featured_img_url) {
-                    $gallery = get_field('gallery', $post_id);
-                    if ($gallery) {
-                        $featured_img_url = wp_get_attachment_image_url($gallery[0], 'full');
-                    } else {
-                        $featured_img_url = home_url('/wp-content/uploads/woocommerce-placeholder.png');
-                    }
-                }
-
+            // Step 3: Display the sorted data
+            foreach ($hotels as $hotel) {
                 ?>
                 <div class="item-hotels">
-                    <a href="<?= $url ?>" <?= $attr ?>>
-                        <img src="<?= $featured_img_url; ?>" alt="" class="thumbnail">
+                    <a href="<?= $hotel['url'] ?>" <?= $hotel['attr'] ?>>
+                        <img src="<?= $hotel['featured_img_url']; ?>" alt="" class="thumbnail">
                     </a>
                     <div class="wrap-title-rating">
-                        <a href="<?= $url ?>" <?= $attr ?> class="title"><?= get_the_title($post_id); ?></a>
+                        <a href="<?= $hotel['url'] ?>" <?= $hotel['attr'] ?>
+                            class="title"><?= get_the_title($hotel['hotel_id']); ?></a>
                         <div class="review-hotel">
-                            <span class="rate"><?php echo number_format($hotel_stars, 1); ?></span>
+                            <!-- <span class="rate"><?php echo number_format($hotel['hotel_stars'], 1); ?></span> -->
                             <div class="list-star">
-                                <?php echo generateStars($hotel_stars); ?>
+                                <?php echo generateStars($hotel['hotel_stars']); ?>
                             </div>
                         </div>
                     </div>
                     <div class="infor">
                         <?php
-                        if (!empty($address['address']) && !empty($address)) {
+                        if (!empty($hotel['address']['address']) && !empty($hotel['address'])) {
                             ?>
-                            <span><?= $address['address']; ?></span>
+                            <span><?= $hotel['address']['address']; ?></span>
                             <?php
                         }
                         ?>
                     </div>
-                    <h3 class="price">
-                        <?php echo $from . ":" . $minPrice . get_woocommerce_currency_symbol(get_option('woocommerce_currency')); ?>
-                    </h3>
+                    <?php
+                    if ($hotel['minPrice'] > 0) {
+                        ?>
+                        <h3 class="price">
+                            <?php echo $from . " " . $hotel['minPrice'] . get_woocommerce_currency_symbol(get_option('woocommerce_currency')); ?>
+                        </h3>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <?php
             }
         }
         ?>
 
+
+        <?php
+        // if ($hotels_data) {
+        //     $hotel_prices = array();
+        
+        //     foreach ($hotels_data as $post_id) {
+        //         $prices = array();
+        //         $list_event = get_post_meta($event_id, 'hotel_type-of-rooms', true);
+        //         if ($list_event) {
+        //             foreach ($list_event as $event) {
+        //                 if ($event['hotelId'] == $post_id) {
+        //                     $desired_array = $event['roomTypes'];
+        //                     foreach ($desired_array as $typeroom) {
+        //                         $price = $typeroom["price"];
+        //                         if ($typeroom["pricenew"] != "") {
+        //                             $price = $typeroom["pricenew"];
+        //                         }
+        //                         $prices[] = $price;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        
+        //         $min_price = !empty($prices) ? min($prices) : 0;
+        
+        //         $hotel_prices[$post_id] = $min_price;
+        //     }
+        //     $sort_hotel = "asort";
+        //     $sort_hotel($hotel_prices);
+        
+        //     foreach ($hotel_prices as $post_id => $minPrice) {
+        //         $featured_img_url = get_the_post_thumbnail_url($post_id, 'full');
+        //         $address = get_field('address', $post_id);
+        //         $hotel_stars = (!empty(get_field('hotel_stars', $post_id))) ? get_field('hotel_stars', $post_id) : 5;
+        //         $url_de_hotel = get_field('url_de_hotel', $post_id);
+        
+        //         if ($url_de_hotel) {
+        //             $url = $url_de_hotel;
+        //             $attr = 'target="_blank"';
+        //         } else {
+        //             $url = get_permalink($post_id) . $event_id;
+        //             $attr = '';
+        //         }
+        
+        //         if (!$featured_img_url) {
+        //             $gallery = get_field('gallery', $post_id);
+        //             if ($gallery) {
+        //                 $featured_img_url = wp_get_attachment_image_url($gallery[0], 'full');
+        //             } else {
+        //                 $featured_img_url = home_url('/wp-content/uploads/woocommerce-placeholder.png');
+        //             }
+        //         }
+        
+        //         ?>
+        <!-- //         <div class="item-hotels">
+        //             <a href="<?= $url ?>" <?= $attr ?>>
+        //                 <img src="<?= $featured_img_url; ?>" alt="" class="thumbnail">
+        //             </a>
+        //             <div class="wrap-title-rating">
+        //                 <a href="<?= $url ?>" <?= $attr ?> class="title"><?= get_the_title($post_id); ?></a>
+        //                 <div class="review-hotel">
+        //                     <span class="rate"><?php echo number_format($hotel_stars, 1); ?></span>
+        //                     <div class="list-star">
+        //                         <?php echo generateStars($hotel_stars); ?>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //             <div class="infor"> -->
+
+        <?php
+        //                 if (!empty($address['address']) && !empty($address)) {
+        //                     ?>
+        <!-- //                     <span><?= $address['address']; ?></span> -->
+
+        <?php
+        //                 }
+        //                 ?>
+        <!-- //             </div>
+        //             <h3 class="price">
+        //                 <?php echo $from . ":" . $minPrice . get_woocommerce_currency_symbol(get_option('woocommerce_currency')); ?>
+        //             </h3>
+        //         </div> -->
+
+        <?php
+        //     }
+        // }
+        ?>
     </div>
 </div>
 <?php
