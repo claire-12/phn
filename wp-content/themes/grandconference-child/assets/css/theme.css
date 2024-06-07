@@ -1,13 +1,71 @@
 .footer-content.footer-content-single .image_footer .elementor-widget-container a img{
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7497%) hue-rotate(54deg) brightness(119%) contrast(88%);
 }
-#footer .content-infor-footer .elementor-widget-container p{
-    padding-top:0;
-    padding-bottom:0;
+/* .form-booking .select_type_of_room option{
+    min-height: max-content;
+    line-height: 1.8;
+    font-size: 20px;
+    display: block;
+    padding: 8px 8px 8px 8px;
+    white-space: normal;
+} */
+.form-booking .select_type_of_room:not(:-internal-list-box) {
+    overflow: none !important;
 }
+#wrapper .woocommerce-input-wrapper #billing_genre{
+    padding: 5px 10px;
+    font-family: initial;
+    color: #444;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    display: block;
+    width: calc(100% - 22px);
+    background-position: calc(97% - -10px) calc(1em + -3px), calc(99% - -1px) calc(0.5em + 5px), 2em;
+}
+#wrapper select{
+    height: initial;
+    max-height: initial;
+    padding: 10px 20px ;
+    font-size: 15px;
+    font-family: Poppins;
+    margin: initial;
+    background: initial;
+    border: 1px solid #ccc;
+    outline: initial;
+    -webkit-transition: initial;
+    -moz-transition: initial;
+    -o-transition: initial;
+    transition: initial;
+    box-sizing: initial;
+    -webkit-appearance: initial;
+    -moz-appearance: initial;
+    appearance: initial;
+    padding-right: 20px;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 4px), calc(100% - 15px) calc(1em + 4px), calc(100% - 2.5em) 0.9em;
+    background-size: 5px 5px, 5px 5px, 1px 1em;
+     background-repeat: no-repeat;
+    line-height: initial;
+    text-transform: initial;
+    font-weight: initial;
+    background-color: initial;
+    color: initial;
+    border-color: #ccc;
+    width: 100%;
+    margin-bottom: initial;
+}
+
 #multiple-form-room .wpcf7-not-valid-tip,
 #multiple-form-room input.hidden{
     display:none !important;
+}
+#btn-contact-footer:hover{
+    color:#fff !important;
+    opacity:0.8;
+}
+#footer .content-infor-footer .elementor-widget-container p{
+    padding-top:0;
+    padding-bottom:0;
 }
 .menu-single-event {
     list-style: none;

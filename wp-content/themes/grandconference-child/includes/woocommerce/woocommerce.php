@@ -181,21 +181,21 @@ function action_after_checkout_load_page_thankyou($order_id)
             $order->update_status('completed');
         }
 
-        // Send email hotel after checkout
-        if ($order && is_send_email_hotel($order)) {
-            $email = $order->get_billing_email();
-            $status = $order->get_status();
-            if ($status === "processing" || $status === "completed") {
-                set_query_var('order', $order);
-                ob_start();
-                get_template_part('includes/emails/email-booking-hotel');
-                $body = ob_get_contents();
-                ob_end_clean();
-                $subject = get_field('subject_email_order_hotel', 'option');
-                $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.net>');
-                wp_mail($email, $subject, $body, $headers);
-            }
-        }
+        // // Send email hotel after checkout
+        // if ($order && is_send_email_hotel($order)) {
+        //     $email = $order->get_billing_email();
+        //     $status = $order->get_status();
+        //     if ($status === "processing" || $status === "completed") {
+        //         set_query_var('order', $order);
+        //         ob_start();
+        //         get_template_part('includes/emails/email-booking-hotel');
+        //         $body = ob_get_contents();
+        //         ob_end_clean();
+        //         $subject = get_field('subject_email_order_hotel', 'option');
+        //         $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.net>');
+        //         wp_mail($email, $subject, $body, $headers);
+        //     }
+        // }
         // Save information user ticket
         create_entry_infor_customer_buy_ticket($order_id);
 
@@ -206,6 +206,88 @@ function action_after_checkout_load_page_thankyou($order_id)
 }
 add_action('woocommerce_new_order', 'action_after_checkout_load_page_thankyou', 1, 1);
 
+function action_phn_woocommerce_thankyou($order_id)
+{
+    if (!$order_id) {
+        return;
+    }
+
+    $action_order_phn = get_post_meta($order_id, 'action_order_phn_NN', true);
+
+    if (!$action_order_phn) {
+        $order = wc_get_order($order_id);
+        if ($order) {
+            // Send email hotel after checkout
+            if ($order && is_send_email_hotel($order)) {
+                $email = $order->get_billing_email();
+                $status = $order->get_status();
+                if ($status === "processing" || $status === "on-hold" || $status === "completed") {
+                    set_query_var('order', $order);
+                    ob_start();
+                    get_template_part('includes/emails/email-booking-hotel');
+                    $body = ob_get_contents();
+                    ob_end_clean();
+                    $subject = get_field('subject_email_order_hotel', 'option');
+                    $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.net>');
+                    wp_mail($email, $subject, $body, $headers);
+                }
+            }
+            global $wpdb;
+            $ticket_id = [];
+            $ticket_id_db = [];
+            $sql = $wpdb->prepare("SELECT post_id FROM {$wpdb->prefix}postmeta WHERE meta_key = %s AND meta_value = %d", 'WooCommerceEventsOrderID', $order_id);
+            $results = $wpdb->get_results($sql);
+
+            if ($results) {
+                foreach ($results as $value) {
+                    $ticket_id[] = (int) get_post_meta((int) $value->post_id, 'WooCommerceEventsTicketID', true);
+                }
+            }
+
+            $sql_leads = $wpdb->prepare("SELECT lead_id FROM {$wpdb->prefix}vxcf_leads_detail WHERE name = 'order_id_type' AND value = $order_id");
+                    
+            $results_leads = $wpdb->get_results($sql_leads);
+
+            if ($results_leads) {
+                foreach ($results_leads as $value) {
+                    $ticket_id_db[] = $value->lead_id;
+                }
+            }
+
+            if ($ticket_id && $ticket_id_db) {
+                $result = [];
+                foreach ($ticket_id_db as $index => $key) {
+                    $result[(int)$key] = (int)$ticket_id[$index];
+                }
+            }
+
+            if($result){
+                foreach($result as $key => $value){
+                    $table_leads_detail = $wpdb->prefix . 'vxcf_leads_detail';
+                    $wpdb->query( $wpdb->prepare(
+                        "
+                        UPDATE $table_leads_detail
+                        SET value = $value
+                        WHERE lead_id = $key
+                        AND name = 'ticket_id'
+                        "
+                    ) );
+
+                    $table_leads = $wpdb->prefix . 'vxcf_leads';
+                    $wpdb->query( $wpdb->prepare(
+                        "
+                        UPDATE $table_leads
+                        SET meta = $value
+                        WHERE id = $key
+                        "
+                    ) );
+                }
+            }
+        }
+    }
+}
+add_action('woocommerce_thankyou', 'action_phn_woocommerce_thankyou');
+
 add_action( 'woocommerce_payment_complete', 'action_payment_complete', 10, 2 );
 function action_payment_complete( $order_id, $order ) {
     $order = wc_get_order($order_id);
@@ -214,48 +296,6 @@ function action_payment_complete( $order_id, $order ) {
     }
 }
 
-
-// function action_after_order_status_changed($order_id, $old_status, $new_status)
-// {
-//     if (!$order_id) {
-//         return;
-//     }
-
-//     // Kiểm tra nếu trạng thái đơn hàng mới là 'processing' hoặc 'completed'
-//     if ($new_status === 'processing' || $new_status === 'completed') {
-//         $action_order_phn = get_post_meta($order_id, 'action_order_phn', true);
-
-//         if (!$action_order_phn) {
-//             $order = wc_get_order($order_id);
-
-//             // Gửi email khách sạn sau khi thanh toán
-//             if ($order && is_send_email_hotel($order)) {
-//                 $email = $order->get_billing_email();
-//                 $status = $order->get_status();
-//                 if ($status === "processing" || $status === "completed") {
-//                     set_query_var('order', $order);
-//                     ob_start();
-//                     get_template_part('includes/emails/email-booking-hotel');
-//                     $body = ob_get_contents();
-//                     ob_end_clean();
-//                     $subject = get_field('subject_email_order_hotel', 'option');
-//                     $headers = array('Content-Type: text/html; charset=UTF-8', 'From: WordPress <wordpress@phn.pixodeo.dev>');
-//                     wp_mail($email, $subject, $body, $headers);
-//                 }
-//             }
-
-//             // Lưu thông tin vé khách hàng
-//             create_entry_infor_customer_buy_ticket($order_id);
-//             create_entry_infor_customer_buy_room($order_id);
-
-//             update_post_meta($order_id, 'action_order_phn', true);
-//         }
-//     }
-// }
-
-// add_action('woocommerce_thankyou', 'action_after_order_status_changed', 10, 3);
-
-// 
 // Is send email hotel
 function is_send_email_hotel($order)
 {
@@ -441,7 +481,6 @@ function information_user_each_ticket($ticket_id)
     $information = [];
     $sql = "SELECT id,form_id FROM {$wpdb->prefix}vxcf_leads WHERE meta = $ticket_id";
     $result = $wpdb->get_results($sql);
-    
     if ($result) {
         $lead_id = (int) $result[0]->id;
         $form_id = $result[0]->form_id;
@@ -451,12 +490,14 @@ function information_user_each_ticket($ticket_id)
         if ($entry_detail && $tags) {
             unset($entry_detail['order_id']);
             unset($entry_detail['ticket_id']);
+            unset($entry_detail['order_id_type']);
             foreach ($entry_detail as $key => $value) {
-                if ($tags[$key]['values']) {
-                    $name = $tags[$key]['values'][0]['label'];
-                } else {
-                    $name = $tags[$key]['label'];
-                }
+                // if (isset($tags[$key]['values'])) {
+                //     $name = $tags[$key]['values'][0]['label'];
+                // } else {
+                //     $name = $tags[$key]['label'];
+                // }
+                $name = $tags[$key]['label'];
                 $information[] = ['name' => $name, 'value' => $value['value']];
             }
         }
@@ -664,7 +705,7 @@ function add_orders_room_meta_boxes($post_type, $post)
             ", $id);
 
             $variation_count = $wpdb->get_var($query);
-            if ($variation_count > 0) {
+            // if ($variation_count > 0) {
                 $screen = wc_get_container()->get(CustomOrdersTableController::class)->custom_orders_table_usage_is_enabled() ? wc_get_page_screen_id($screen_name) : $screen_name;
                 add_meta_box(
                     'woocommerce_events_order_room_details',
@@ -673,7 +714,7 @@ function add_orders_room_meta_boxes($post_type, $post)
                     $screen,
                     'normal'
                 );
-            }
+            // }
         }
     }
 
@@ -799,5 +840,80 @@ function add_orders_room_meta_boxes_details($post)
         }
     }
 }
+
+add_filter( 'woocommerce_billing_fields', 'custom_woocommerce_billing_fields' );
+
+function custom_woocommerce_billing_fields( $fields ) {
+    $fields['billing_genre'] = array(
+        'type'     => 'select',
+        'label'    => __('Genre', 'woocommerce'),
+        'required' => true,
+        'class'    => array('form-row-wide'),
+        'options'  => array(
+            'madame'   => __('Madame', 'woocommerce'),
+            'monsieur' => __('Monsieur', 'woocommerce'),
+        ),
+    );
+    $fields = array(
+        'billing_genre'       => $fields['billing_genre'],
+        'billing_first_name'  => $fields['billing_first_name'],
+        'billing_last_name'   => $fields['billing_last_name'],
+        'billing_company'     => $fields['billing_company'],
+        'billing_country'     => $fields['billing_country'],
+        'billing_address_1'   => $fields['billing_address_1'],
+        'billing_address_2'   => $fields['billing_address_2'],
+        'billing_postcode'    => $fields['billing_postcode'],
+        'billing_city'        => $fields['billing_city'],
+        'billing_state'       => $fields['billing_state'],
+        
+        'billing_phone'       => $fields['billing_phone'],
+        'billing_email'       => $fields['billing_email'],
+    );
+    return $fields;
+}
+
+add_action( 'woocommerce_checkout_update_order_meta', 'custom_checkout_field_update_order_meta' );
+
+function custom_checkout_field_update_order_meta( $order_id ) {
+    if ( ! empty( $_POST['billing_genre'] ) ) {
+        update_post_meta( $order_id, 'billing_genre', sanitize_text_field( $_POST['billing_genre'] ) );
+    }
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'custom_checkout_field_display_admin_order_meta', 10, 1 );
+
+function custom_checkout_field_display_admin_order_meta( $order ){
+    $order_id = $order->get_id();
+    $billing_genre = get_post_meta( $order_id, 'billing_genre', true );
+    if( $billing_genre ) {
+        echo '<p><strong>'.__('Genre').':</strong> ' . ucfirst(esc_html($billing_genre)) . '</p>';
+    }
+}
+
+// add_action( 'woocommerce_email_customer_details', 'custom_email_order_meta', 30, 3 );
+
+// function custom_email_order_meta( $order, $sent_to_admin, $plain_text ) {
+//     $order_id = $order->get_id();
+//     $billing_genre = get_post_meta( $order_id, 'billing_genre', true );
+//     if( $billing_genre ) {
+//         if ( $plain_text ) {
+//             echo "\n" . __('Genre:', 'woocommerce') . ' ' . ucfirst(esc_html($billing_genre)) . "\n";
+//         } else {
+//             echo '<p><strong>'.__('Genre:', 'woocommerce').'</strong> ' . ucfirst(esc_html($billing_genre)) . '</p>';
+//         }
+//     }
+// }
+// add_filter( 'woocommerce_order_formatted_billing_address', 'custom_formatted_billing_address', 10, 2 );
+
+// function custom_formatted_billing_address( $address, $order ) {
+//     $order_id = $order->get_id();
+//     $billing_genre = get_post_meta( $order_id, 'billing_genre', true );
+    
+//     if ( $billing_genre ) {
+//         $address['email'] .= "\n" . __('Genre:', 'woocommerce') . ' ' . ucfirst(esc_html($billing_genre));
+//     }
+
+//     return $address;
+// }
 
 ?>
