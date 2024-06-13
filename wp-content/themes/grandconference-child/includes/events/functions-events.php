@@ -1,4 +1,43 @@
 <?php
+// update product wooCommerce events ticket logo
+function update_product_wooCommerce_events_ticket_logo() {
+    // Ensure the function only runs once
+    if (get_option('update_product_wooCommerce_events_ticket_logo_done')) {
+        return;
+    }
+
+    // Query for all WooCommerce products
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => -1
+    );
+
+    $products = new WP_Query($args);
+
+    // Loop through each product
+    if ($products->have_posts()) {
+        while ($products->have_posts()) {
+            $products->the_post();
+            $product_id = get_the_ID();
+
+            // Get the product thumbnail URL
+            $thumbnail_id = get_post_thumbnail_id($product_id);
+            $thumbnail_url = wp_get_attachment_url($thumbnail_id);
+            $phn_type_product = get_post_meta($product_id, 'phn_type_product', true);
+            if($phn_type_product === "event"){
+                update_post_meta($product_id, 'WooCommerceEventsTicketLogo', $thumbnail_url);
+            }
+        }
+    }
+
+    // Restore original Post Data
+    wp_reset_postdata();
+
+    // Set an option to indicate that the function has run
+    update_option('update_product_wooCommerce_events_ticket_logo_done', true);
+}
+add_action('init', 'update_product_wooCommerce_events_ticket_logo');
+
 // Automatically create WooCommerce product from Tribe Events
 function auto_create_woocommerce_product_from_events($original_post_id, $original_post)
 {
@@ -28,7 +67,11 @@ function auto_create_woocommerce_product_from_events($original_post_id, $origina
         $minutes_end = date_format(date_create($event_end_date), "i");
         $ticket_theme = get_home_path() . 'wp-content/uploads/fooevents/themes/default_ticket_theme';
         $pdf_ticket_theme = get_home_path() . 'wp-content/uploads/fooevents/themes/default_pdf_single';
-        $ticket_logo = get_option('globalWooCommerceEventsTicketLogo');
+        if(!empty($thumbnail_image)){
+            $ticket_logo = wp_get_attachment_image_src( $thumbnail_image, 'full' )[0];
+        }else{
+            $ticket_logo = get_option('globalWooCommerceEventsTicketLogo');
+        }
         $ticket_header_image = get_option('globalWooCommerceEventsTicketHeaderImage');
         $timezone = get_post_meta($original_post_id, '_EventTimezone', true);
         $number_tickets = get_post_meta($original_post_id, 'number_tickets', true);

@@ -27,6 +27,7 @@ function get_data_hotel_event($data_hotel_event){
     ob_start(); $html='';
     if(!empty($data_hotel_event)){
         foreach($data_hotel_event as $key => $value){
+            $field_text = isset($value['field_text']) ? $value['field_text'] : '';
             ?>
             <div class="box-data-variations" data-hotel="<?php echo $value['hotel_id']; ?>" data-product="<?php echo $value['product_id']; ?>">
                 <div class="box-header">
@@ -38,6 +39,7 @@ function get_data_hotel_event($data_hotel_event){
                     <a href="#" class="button-remove" data-hotel="#<?php echo $value['hotel_id']; ?>_hotel">Remove</a>
                     </div>
                 </div>
+                <input type="text" class="field-text-hotel" value="<?php echo $field_text; ?>">
                 <div class="data-variations">
                     <?php
                         $variations_data = $value['variations_data'];
@@ -159,11 +161,19 @@ function event_custom_box_html($post){
 
 // get all variations by product id
 function get_all_variations_by_product_id($product_id) {
-    $product = wc_get_product($product_id);
-    if ($product && $product->is_type('variable')) {
-        $variations = $product->get_children();
-        return $variations;
-    } else {
+    $args = array(
+        'post_type'   => 'product_variation', 
+        'post_parent' => $product_id,
+        'fields'      => 'ids',
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'ASC'
+    );
+
+    $query = new WP_Query($args);
+    if(!empty($query->posts)){
+        return $query->posts;
+    }else{
         return false;
     }
 }
@@ -187,6 +197,7 @@ function select_event_hotel(){
                             <a href='#' class='button-remove' data-hotel='#".$hotel_id."_hotel'>Remove</a>
                         </div>
                     </div>";
+            $html .= "<input type='text' class='field-text-hotel' value=''>";
             $html .= "<div class='data-variations'>";
             foreach ($variations as $variation_id) {
                 $variation = wc_get_product($variation_id);

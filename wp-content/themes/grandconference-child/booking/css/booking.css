@@ -90,7 +90,7 @@ body{
 #calendar-booking,.wrap-qty-js,.add-to-cart-hotel,.price-typeroom-new,.description-typeroom-new{
     display: none;
 }
-.wrap-qty-js,.add-to-cart-hotel,.price-typeroom-new{
+.wrap-qty-js,.add-to-cart-hotel,.description-typeroom-new{
     margin-top: 15px;
 }
 .wrap-qty-js.disable {
@@ -98,6 +98,7 @@ body{
 }
 .form-booking .title {
     margin-bottom: 10px;
+    text-transform: capitalize;
 }
 .ui-datepicker td span, .ui-datepicker td a {
     padding: .1em;
@@ -115,4 +116,35 @@ body{
     border: 1px solid #dad55e;
     background: #fffa90;
     color: #777620;
+}
+button.disabled {
+    background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+    color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+    border-color: light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+    pointer-events: none;
+}
+.woocommerce-cart-form .blockOverlay:not(.blockOverlay-custom){
+    display: none !important;
+}
+.woocommerce .blockOverlay-custom::before {
+    height: 1em;
+    width: 1em;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -.5em;
+    margin-top: -.5em;
+    content: "";
+    animation: spin 1s ease-in-out infinite;
+    background: url(../images/loader.svg) center center;
+    background-size: cover;
+    line-height: 1;
+    text-align: center;
+    font-size: 2em;
+    color: rgba(0, 0, 0, .75);
+}
+.field-text-html {
+    padding: 15px 0 0 0;
+    display: none;
 }

@@ -97,6 +97,9 @@ jQuery(document).ready(function($) {
                 }
             
                 if((n==1 && location == total && start_day != end_day) || (n==0 && start_day != end_day)){
+                    var price_js = $(".select_type_of_room").find(':selected').data('price')*total;
+                    var currency = $("#currency").val();
+                    var price_html = price_js+currency;
                     $('.woocommerce-notices-wrapper').hide();
                     var stocksInRange = getStocksBetween(start_day, end_day - 86400);
                     var minStockValue = getMinStockValue(stocksInRange);
@@ -105,10 +108,15 @@ jQuery(document).ready(function($) {
                     $(".wrap-qty-js").removeClass("disable");
                     $("#start_day").data('timestamp',start_day);
                     $("#end_day").data('timestamp',end_day);
+                    $(".number-night").text(total);
                     setTimeout(function() { 
+                        $(".js-price-html").text(price_html);
+                        $(".price-typeroom-new").slideDown(100);
+                        $(".description-typeroom-new").slideDown(100);
                         $(".add-to-cart-hotel").slideDown(100);
                     }, 501);
                 }else{
+                    $(".wrap-qty-js").addClass("disable");
                     if(start_day == end_day){
                         if(lang == "english"){
                             var message_selected = 'The selected date is not valid, please select 2 consecutive days';
@@ -132,6 +140,9 @@ jQuery(document).ready(function($) {
                     $("body").removeClass("ajax-load");
                 }, 500);
             }else{
+                $(".wrap-qty-js").addClass("disable");
+                $(".description-typeroom-new").hide();
+                $(".price-typeroom-new").hide();
                 $(".add-to-cart-hotel").hide();
             }
         }
@@ -170,12 +181,9 @@ jQuery(document).ready(function($) {
                 var price_html = price_js+currency;
                 $(".form-booking .day-available").html(response.day_available);
                 $('#calendar-booking').datepicker('refresh');
+                $(".field-text-html").slideDown(100);
                 $("#calendar-booking").slideDown(100);
                 $(".wrap-qty-js").slideDown(100);
-                $(".js-price-html").text(price_html);
-                $(".number-maximum").text(maximum);
-                $(".price-typeroom-new").slideDown(100);
-                $(".description-typeroom-new").slideDown(100);
                 $("body").removeClass("ajax-load");
             },
             error: function (err) {
@@ -231,5 +239,52 @@ jQuery(document).ready(function($) {
                 console.log(err);
             }
         });
+    });
+
+    // change quantity cart
+    $("body").on("change",".woocommerce-cart-form .qty", function (e) { 
+        console.log($(this).val());
+    });
+
+    let timeout;
+    $("body").on("keyup",".woocommerce-cart-form .quantity1", function (e) { 
+        $("[name='update_cart']").addClass('disabled');
+        var quantity = $(this).val() - $(this).closest(".product-quantity").find(".input-variation").data("quantity"),
+        quantity_check = $(this).val(),
+        event_id = $(this).closest(".product-quantity").find(".input-variation").data("event"),
+        variation_id = $(this).closest(".product-quantity").find(".input-variation").data("variation"),
+        hotel_id = $(this).closest(".product-quantity").find(".input-variation").data("hotel"),
+        current_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("day"),
+        start_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("start"),
+        end_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("end");
+        $('.woocommerce-cart-form').css("position","relative");
+        // $('.woocommerce-cart-form').append('<div class="blockOverlay-custom" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: wait; position: absolute;"></div>');
+        if ( timeout !== undefined ) {
+			clearTimeout( timeout );
+		}
+		timeout = setTimeout(function() {
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'cart_quantity_change',
+                    quantity: quantity,
+                    event_id: event_id,
+                    variation_id: variation_id,
+                    hotel_id: hotel_id,
+                    current_day_ts: current_day_ts,
+                    start_day_ts: start_day_ts,
+                    end_day_ts: end_day_ts,
+                    quantity_check: quantity_check,
+                },
+                success: function (response) {
+                    $("[name='update_cart']").removeClass('disabled');
+                    // $("[name='update_cart']").trigger("click");
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+		}, 800 );
     });
 });

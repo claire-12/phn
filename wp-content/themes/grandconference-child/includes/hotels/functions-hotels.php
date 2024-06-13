@@ -1,4 +1,127 @@
 <?php
+// get variations product
+function get_variations_product($parent_id) {
+    $args = array(
+        'post_type'   => 'product_variation', 
+        'post_parent' => $parent_id,
+        'fields'      => 'ids',
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'ASC'
+    );
+
+    $query = new WP_Query($args);
+    return $query->posts;
+}
+
+// create update variations product
+function create_update_variations_product($original_post_id,$product_id){
+    $typeOfRooms = get_field('add_type_of_room', $original_post_id);
+    $product = wc_get_product($product_id);
+    $variations = get_variations_product($product_id);
+    if (!empty($typeOfRooms)) {
+        if(!empty($variations)){
+            $type_of_rooms_values = array();
+            foreach($variations as $key => $value){
+                $variation_id = $value;
+                $type_of_rooms_values[] = $typeOfRooms[$key]['name'];
+                wp_update_post(
+                    array(
+                        'ID' => $variation_id,
+                        'post_title' => get_the_title($original_post_id) . ' - ' . $typeOfRooms[$key]['name'],
+                    )
+                );
+                
+                update_post_meta($variation_id, 'attribute_type-of-rooms', $typeOfRooms[$key]['name']);
+                update_post_meta($variation_id, '_price', $typeOfRooms[$key]['price']);
+                update_post_meta($variation_id, '_regular_price', $typeOfRooms[$key]['price']);
+                update_post_meta($variation_id, '_manage_stock', 'no');
+                update_post_meta($variation_id, '_description', $typeOfRooms[$key]['description']);
+            }
+
+            if(count($typeOfRooms) > count($variations)){
+                foreach(array_slice($typeOfRooms,count($variations)) as $key => $room){
+                    $name = $room['name'];
+                    $type_of_rooms_values[] = $name;
+                    $price = $room['price'];
+                    $description = $room['description'];
+                    $post_title_name = get_the_title($original_post_id) .' - ' .$name;
+                    $variation_id = wp_insert_post(array(
+                        'post_title' => $post_title_name,
+                        'post_name' => 'auto-draft-'.$name,
+                        'post_status' => 'publish',
+                        'post_type' => 'product_variation',
+                        'post_parent' => $product_id,
+                        'post_content' => $name,
+                    ));
+                    update_post_meta($variation_id, 'attribute_type-of-rooms', $name);
+                    update_post_meta($variation_id, '_price', $price);
+                    update_post_meta($variation_id, '_regular_price', $price);
+                    update_post_meta($variation_id, '_manage_stock', 'no');
+                    update_post_meta($variation_id, '_description', $description);
+                }
+            }
+
+            if(count($typeOfRooms) < count($variations)){
+                foreach(array_slice($variations,count($typeOfRooms)) as $key => $value){
+                    wp_delete_post($value, true);
+                }
+            }
+        }else{
+            foreach($typeOfRooms as $key => $room){
+                $name = $room['name'];
+                $type_of_rooms_values[] = $name;
+                $price = $room['price'];
+                $description = $room['description'];
+                $post_title_name = get_the_title($original_post_id) .' - ' .$name;
+                $variation_id = wp_insert_post(array(
+                    'post_title' => $post_title_name,
+                    'post_name' => 'auto-draft-'.$name,
+                    'post_status' => 'publish',
+                    'post_type' => 'product_variation',
+                    'post_parent' => $product_id,
+                    'post_content' => $name,
+                ));
+                update_post_meta($variation_id, 'attribute_type-of-rooms', $name);
+                update_post_meta($variation_id, '_price', $price);
+                update_post_meta($variation_id, '_regular_price', $price);
+                update_post_meta($variation_id, '_manage_stock', 'no');
+                update_post_meta($variation_id, '_description', $description);
+            }
+        }
+        $product_attributes = array(
+            'type-of-rooms' => array(
+                'name' => 'type of rooms',
+                'value' => implode(' | ', $type_of_rooms_values),
+                'position' => 0,
+                'is_visible' => 1,
+                'is_variation' => 1,
+                'is_taxonomy' => 0
+            )
+        );
+        update_post_meta($product_id, '_product_attributes', $product_attributes);
+    }else{
+        if(!empty($variations)){
+            foreach($variations as $key => $value){
+                wp_delete_post($value, true);
+            }
+        }
+        // update_post_meta($product_id, '_product_attributes', '');
+        delete_post_meta( $product_id, '_product_attributes', '' );
+    }
+}
+
+// post name exists
+function post_name_exists($post_name) {
+    global $wpdb;
+
+    // Query to check if the post_name already exists in the database
+    $query = $wpdb->prepare("SELECT post_name FROM $wpdb->posts WHERE post_name = %s LIMIT 1", $post_name);
+    $result = $wpdb->get_var($query);
+
+    return $result ? true : false;
+}
+
 // Automatically create WooCommerce product from Hotels
 function auto_create_woocommerce_product_from_hotels($original_post_id, $original_post) {
     if ($original_post->post_type == 'hotel' && !defined('DOING_AUTOSAVE') && 'publish' === get_post_status($original_post)) {
@@ -20,94 +143,43 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
         
         $typeOfRooms = get_field('add_type_of_room', $original_post_id);
 
-          
-        // exit();        
         if($gallery){
             $gallery = implode(",", $gallery);
         }
-        // Check if post exists
-        if(!does_post_exist_by_slug( $original_post->post_name,$type )){
-            $product_id = wp_insert_post(array(
-                'post_title' => $original_post->post_title,
-                'post_name' => $original_post->post_name,
-                'post_status' => 'publish',
-                'post_type' => $type,
-                'post_content' => $original_post->post_content,
-            ));
-            if ($typeOfRooms) {
-                foreach ($typeOfRooms as $room) {
-                    $name = $room['name'];
-                    $price = $room['price'];
-                    // $quantity = $room['quantity'];
-                    $description = $room['description'];
-                    $post_title_name = $original_post->post_title .' - ' .$name;
-                    $product_variation_id = wp_insert_post(array(
-                        'post_title' => $post_title_name,
-                        'post_name' => 'auto-draft-'.$name,
-                        'post_status' => 'publish',
-                        'post_type' => 'product_variation',
-                        'post_parent' => $product_id,
-                        'post_content' => $name,
-                    ));
-                    update_post_meta($product_variation_id, 'attribute_type-of-rooms', $name);
-                    update_post_meta($product_variation_id, '_price', $price);
-                    update_post_meta($product_variation_id, '_regular_price', $price);
-                    update_post_meta($product_variation_id, '_manage_stock', 'no');
-                    // update_post_meta($product_variation_id, '_stock', $quantity);
-                    update_post_meta($product_variation_id, '_description', $description);
-                }
-            }
 
-        }else{
-            $product_id = get_post_meta($original_post_id, 'product_of_hotels', true);
+        $product_id = get_post_meta($original_post_id, 'product_of_hotels', true);
+        if($product_id){
             wp_update_post(array(
                 'ID' => $product_id,
                 'post_title' => $original_post->post_title,
                 'post_content' => $original_post->post_content,
             ));
-            $args = array(
-                'post_type' => 'product_variation',
-                'posts_per_page' => -1,
-                'post_parent' => $product_id,
-            );
-            $query = new WP_Query( $args );
-            if($query->have_posts()){
-                while ($query->have_posts()){
-                    $query->the_post();
-                    $variation_id = get_the_ID();
-                    wp_delete_post( $variation_id, true);
-                }
+        }else{
+            $original_post_name = $original_post->post_name;
+            $counter = 1;
+            while (post_name_exists($new_post_name)) {
+                $new_post_name = $original_post_name . '-' . $counter;
+                $counter++;
             }
-            if ($typeOfRooms) {
-                foreach ($typeOfRooms as $room) {
-                    $name = $room['name'];
-                    $price = $room['price'];
-                    // $quantity = $room['quantity'];
-                    $description = $room['description'];
-                    $post_title_name = $original_post->post_title .' - ' .$name;
-                    $product_variation_id = wp_insert_post(array(
-                        'post_title' => $post_title_name,
-                        'post_name' => 'auto-draft-'.$name,
-                        'post_status' => 'publish',
-                        'post_type' => 'product_variation',
-                        'post_parent' => $product_id,
-                        'post_content' => $name,
-                    ));
-                    update_post_meta($product_variation_id, 'attribute_type-of-rooms', $name);
-                    update_post_meta($product_variation_id, '_price', $price);
-                    update_post_meta($product_variation_id, '_regular_price', $price);
-                    update_post_meta($product_variation_id, '_manage_stock', 'no');
-                    // update_post_meta($product_variation_id, '_stock', $quantity);
-                    update_post_meta($product_variation_id, '_description', $description);
-                }
-            }
+            $product_id = wp_insert_post(array(
+                'post_title' => $original_post->post_title,
+                'post_name' => $new_post_name,
+                'post_status' => 'publish',
+                'post_type' => $type,
+                'post_content' => $original_post->post_content,
+            ));
         }
 
-        // Update or create product meta
         if ($product_id) {
             update_post_meta($original_post_id, 'product_of_hotels', $product_id);
             update_field('field_660381310b680', $address, $product_id);
-            wp_set_object_terms($product_id, 'variable', 'product_type');      
+            wp_set_object_terms($product_id, 'simple', 'product_type');      
+            if(!empty($typeOfRooms)){
+                wp_set_object_terms($product_id, 'variable', 'product_type');      
+            }else{
+                wp_set_object_terms($product_id, 'simple', 'product_type');      
+            }
+            
             $meta_data = array(
                 '_tax_status' => 'taxable',
                 '_tax_class' => $tax_class,
@@ -122,25 +194,12 @@ function auto_create_woocommerce_product_from_hotels($original_post_id, $origina
                 '_product_image_gallery' => $gallery,
                 'maximum_guest_per_room' => $maximum_guest_per_room
             );
+
             foreach($meta_data as $key => $value){
                 update_post_meta($product_id, $key, $value);
             }
-             
-            $type_of_rooms_values = array();
-            foreach ($typeOfRooms as $room) {
-                $type_of_rooms_values[] = $room['name'];
-            }
-            $product_attributes = array(
-                'type-of-rooms' => array(
-                    'name' => 'type of rooms',
-                    'value' => implode(' | ', $type_of_rooms_values),
-                    'position' => 0,
-                    'is_visible' => 1,
-                    'is_variation' => 1,
-                    'is_taxonomy' => 0
-                )
-            );
-            update_post_meta($product_id, '_product_attributes', $product_attributes);
+
+            create_update_variations_product($original_post_id,$product_id);
         }
     }
 }

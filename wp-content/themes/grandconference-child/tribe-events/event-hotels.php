@@ -177,7 +177,7 @@ if (!empty($location)) {
                         <a href="<?= $hotel['url'] ?>" <?= $hotel['attr'] ?>
                             class="title"><?= get_the_title($hotel['hotel_id']); ?></a>
                         <div class="review-hotel">
-                            <span class="rate"><?php echo number_format($hotel['hotel_stars'], 1); ?></span>
+                            <!-- <span class="rate"><?php echo number_format($hotel['hotel_stars'], 1); ?></span> -->
                             <div class="list-star">
                                 <?php echo generateStars($hotel['hotel_stars']); ?>
                             </div>

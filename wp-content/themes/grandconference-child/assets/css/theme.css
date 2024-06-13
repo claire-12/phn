@@ -12,86 +12,36 @@
 .form-booking .select_type_of_room:not(:-internal-list-box) {
     overflow: none !important;
 }
-/* .form-booking .select_type_of_room{
-    height: initial;
-    max-height: fit-content;
-    padding: 10px;
-    font-size: 100%;
-    font-family: 'Poppins', 'Helvetica Neue', Arial, Verdana, sans-serif;
-    margin: 0;
-    background: #fff;
-    border: 1px solid #222222;
-    outline: none;
-    -webkit-transition: border-color linear .3s;
-    -moz-transition: border-color linear .3s;
-    -o-transition: border-color linear .3s;
-    transition: border-color linear .3s;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    border-radius: 5px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 20px;
-    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
-    background-position: calc(100% - 20px) calc(1em + 4px), calc(100% - 15px) calc(1em + 4px), calc(100% - 2.5em) 0.9em;
-    background-size: 5px 5px, 5px 5px, 1px 1em;
-     background-repeat: no-repeat;
-     font-family: Work Sans; 
-    font-size: 15px;
-    line-height: 1.7;
-    text-transform: none; 
-    font-family: Poppins; 
-    font-size: 15px; 
-    font-weight: 500; 
-    line-height: 1.6;
-     text-transform: none;
-     background-color: #ffffff; 
-     color: #555555; 
-     border-color: #dce0e0;
-         width: 100%;
-     margin-bottom: 15px;
-} */
-/* .form-booking .select_type_of_room{
-    height: initial;
-    max-height: initial;
-    padding: 10px;
-    font-size: 100%;
-    font-family: 'Poppins', 'Helvetica Neue', Arial, Verdana, sans-serif;
-    margin: 0;
-    background: #fff;
-    border: 1px solid #222222;
-    outline: initial;
-    -webkit-transition: border-color linear .3s;
-    -moz-transition: border-color linear .3s;
-    -o-transition: border-color linear .3s;
-    transition: border-color linear .3s;
-    box-sizing: initial;
-    -webkit-appearance: initial;
-    border-radius: 5px;
-    -webkit-appearance: initial;
-    -moz-appearance: initial;
-    appearance: initial;
-    padding-right: 20px;
-    background-image: none;
-    background-position: none;
-    background-size: none;
-    background-repeat: none;
-    font-family: Work Sans;
-    font-size: 15px;
-    line-height: 1.7;
-    text-transform: none;
-    font-family: Poppins;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.6;
-    text-transform: none;
-    background-color: none;
-    color: none;
-    border-color: none;
-    width: initial;
-    margin-bottom: 15px;
-} */
+#wrapper #billing_genre_field .woocommerce-input-wrapper{
+    position: relative;
+}
+#wrapper .woocommerce-input-wrapper #billing_genre{
+    padding: 5px 10px;
+    font-family: initial;
+    color: #444;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    display: block;
+    width: calc(100% - 22px);
+    background-position: calc(97% - -10px) calc(1em + -3px), calc(99% - -1px) calc(0.5em + 5px), 2em;
+    background-image: inherit;
+    position: relative;
+    z-index: 1;
+}
+#wrapper #billing_genre_field .woocommerce-input-wrapper::after{
+    position: absolute;
+    content: "";
+    border-color: #888 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    height: 0;
+    right: 7px;
+    margin-left: -4px;
+    margin-top: -2px;
+    cursor: pointer;
+    top: 50%;
+    width: 0;
+}
 #wrapper select{
     height: initial;
     max-height: initial;

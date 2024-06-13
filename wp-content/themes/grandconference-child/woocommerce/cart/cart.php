@@ -102,15 +102,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 							 *
 							 * @since 2.1.0
 							 */
-							// $type = get_post_meta( $product_id, 'phn_type_product', true );
-							// if($type === "hotel"){
-							// 	$hotel_id = get_post_meta( $product_id, 'hotels_of_product', true );
-							// 	$hotel_link = get_permalink($hotel_id);
-							// 	echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $hotel_link ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-							// }else{
-								
-							// }
-							// var_dump($product_id);
 							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
 						}
 
@@ -123,22 +114,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 						if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
 							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
 						}
-						if(isset($cart_item['array_typeOfRoom'])){
-							$list_type = $cart_item['array_typeOfRoom'];
-							$type = get_post_meta( $product_id, 'phn_type_product', true );
-							$variation_id_check = $cart_item['variation_id'];
-							// var_dump($list_type);
-							if($type === "hotel"){
-								foreach ($list_type['roomTypes'] as $roomType) {
-									$id = $roomType['id'];
-									$description_number = $roomType['description_number'];
-									echo "<p style='padding: 0px 0 5px;'>$description_number </p>";
-								}
-							}
-						}
-
-						// echo "<pre>";
-						// var_dump($cart_item);
 
 						if(isset($cart_item['maximum'])){
 							if($lan === 'french'){
@@ -157,28 +132,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							}
 						}
 
-                        // foreach ($cart_items as $cart_item_key => $cart_item) {
-                        //     $type = get_post_meta( $product_id, 'phn_type_product', true );
-                        //     if($type === "hotel"){
-                        //         if (isset($cart_item['name_typeOfRoom'], $cart_item['price_typeOfRoom'], $cart_item['fooEvents_typeOfRoom'], $cart_item['id_hotelOfRoom'])) {
-                        //             $id_hotelOfRoom = $cart_item['id_hotelOfRoom'];
-                        //             $name_typeOfRoom = $cart_item['name_typeOfRoom'];
-                        //             $price_typeOfRoom = $cart_item['price_typeOfRoom'];
-                        //             $fooEvents_typeOfRoom = $cart_item['fooEvents_typeOfRoom'];
-						// 			if($id_hotelOfRoom === $product_id){
-						// 				echo "<p style='padding: 0px 0 5px;'>$name_typeOfRoom </p>";
-						// 			}else{
-						// 				echo "";
-						// 			}
-                                    
-                        //         } else {
-                        //             echo "";
-                        //         }
-                        //     }
-                            
-                        // }
 						?>
-                        
                         
 						</td>
 
@@ -199,33 +153,20 @@ do_action( 'woocommerce_before_cart' ); ?>
 							$min_quantity = 0;
 							$max_quantity = $_product->get_max_purchase_quantity();
 						}
+
+						if(isset($cart_item['variation_id']) && $cart_item['variation_id'] !=0){
+							$start_day_ts = $cart_item['start_day_timestamp'];
+							$end_day_ts = $cart_item['end_day_timestamp'];
+							$variation_id = $cart_item['variation_id'];
+							$event_id = $cart_item['event_id'];
+							$hotel_id = $cart_item['hotel_id'];
+							$quantity = $cart_item['quantity'];
+							$current_day_ts = $cart_item['current_day_ts'];
+							?>
+							<input class="input-variation" type="hidden" data-quantity="<?php echo $quantity; ?>" data-event="<?php echo $event_id; ?>" data-variation="<?php echo $variation_id; ?>" data-hotel="<?php echo $hotel_id; ?>" data-day="<?php echo $current_day_ts; ?>" data-start="<?php echo $start_day_ts; ?>" data-end="<?php echo $end_day_ts; ?>">
+							<?php
+						}
 						
-						// $list_eventnew = array();
-						// foreach ($cart_items as $cart_item_key => $cart_item) {
-						// 	$type = get_post_meta( $product_id, 'phn_type_product', true );
-						// 	$event_id = get_post_meta( $product_id, 'events_of_product', true );
-						// 	$list_event = get_post_meta( $event_id, 'hotel_type-of-rooms', true );
-						// 	$variation_id_check = $cart_item['variation_id'];
-							
-							if(isset($cart_item['array_typeOfRoom'])){
-								$list_type = $cart_item['array_typeOfRoom'];
-								$type = get_post_meta( $product_id, 'phn_type_product', true );
-								$variation_id_check = $cart_item['variation_id'];
-								
-								if($type === "hotel"){
-									foreach ($list_type['roomTypes'] as $roomType) {
-										$id = $roomType['id'];
-										$fooEvents = $roomType['fooEvents'];
-										if($id == $variation_id_check){
-											$max_quantity = $fooEvents;
-											break;
-										}
-									}
-								}
-							}
-							// break;
-                            
-                        // }
 						$product_quantity = woocommerce_quantity_input(
 							array(
 								'input_name'   => "cart[{$cart_item_key}][qty]",

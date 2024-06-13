@@ -26,6 +26,8 @@ add_action('wp_footer','loader_ajax',999);
 // form booking hotel
 function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_default,$checkout,$maximum_guest_title){
     $price = []; $option_select = "";
+    $lan = get_field('language', $post_id);
+    $peoples = ($lan === 'french') ? "personnes" : "peoples";
     $currency = get_woocommerce_currency_symbol(get_option('woocommerce_currency'));
     if(!empty($event_id)){
         $data_hotel_event = get_post_meta($event_id, 'data_hotel_event', true);
@@ -33,16 +35,22 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
             echo "<form action='' class='form-booking'>";
             foreach($data_hotel_event as $key => $value){
                 if((int) $value['hotel_id'] === $post_id){
+                    $field_text = isset($value['field_text']) ? $value['field_text'] : '';
+                    $field_text_html = "";
                     $variations_data = $value['variations_data'];
                     if(!empty($variations_data)){
                         $option_select .= "<option selected disabled>".$option_default."</option>";
                         foreach($variations_data as $k => $v){
                             $price[] = ((int) $v['price'] == $v['price']) ? (int) $v['price'] : (float) $v['price'];
+                            $each_price = ((int) $v['price'] == $v['price']) ? (int) $v['price'] : (float) $v['price'];
                             $name_variations = get_post_meta($v['variations_id'], 'attribute_type-of-rooms', true);
                             $option_select .= "<option value='".$v['variations_id']."' data-price='".$v['price']."' data-maximum='".$v['maximum']."' data-event='".$event_id."' data-hotel='".$post_id."'>
-                            ".$name_variations."
+                            ".$name_variations." - ".$v['maximum']." ".$peoples." - ".wc_price($each_price)." / ".$rooms."
                             </option>";
                         }
+                    }
+                    if(!empty($field_text)){
+                        $field_text_html = "<p class='field-text-html'>".$field_text."</p>";
                     }
                 }
             }
@@ -55,6 +63,7 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
                 echo "<select name='type_of_room' class='select_type_of_room' >".$option_select."</select>";
             }
             echo "<div id='calendar-booking'></div>";
+            echo $field_text_html;
             echo "<div class='wrap-qty-js disable'>
                     <div class='quantity buttons_added qty-js qty-js-new'>
                         <a href='javascript:void(0)' id='minus_qty' class='minus'>-</a>
@@ -67,12 +76,10 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
             echo "<input type='hidden' id='start_day' size='10'><input type='hidden' id='end_day' size='10'>";
             echo "<input type='hidden' id='currency' value='".$currency."'>";
             echo "<div class='day-available'></div>";
-            echo "<h6 class='price-typeroom price-typeroom-new'>".$title_price." : <span class='js-price-html'>0</span> / ".$rooms."</h6>";
-            echo "<h6 class='description-typeroom description-typeroom-new'>".$maximum_guest_title.": <span class='number-maximum'>0</span></h6>";
+            echo "<h6 class='description-typeroom description-typeroom-new'>Nombre de nuit : <span class='number-night'></span></h6>";
+            echo "<h6 class='price-typeroom price-typeroom-new'>Prix total : <span class='js-price-html'></span></h6>";
             echo "<button type='submit' name='add-to-cart-hotel' value='' class='add-to-cart-hotel button alt'>".$checkout."</button>";
-            
-            echo "</form>";
-            
+            echo "</form>";    
         }
     }
 }
@@ -254,7 +261,11 @@ function add_to_cart_hotel(){
                     "end_day_timestamp" => $end_day_ts,
                     "maximum" => $max,
                     "number_day" => $num_day,
-                    "price" => $price
+                    "price" => $price,
+                    "variation_id" => $variation_id,
+                    "event_id" => $event_id,
+                    "hotel_id" => $hotel_id,
+                    "current_day_ts" => $current_day_ts
                 );
 
                 $add_to_cart = WC()->cart->add_to_cart($variation_id, $quantity, 0, array(), $cart_data);
@@ -424,6 +435,7 @@ add_action('admin_head','admin_order_css');
 // update stock each day variation after checkout
 function update_stock_each_day_variation_after_checkout( $order_id, $posted_data, $order ) {
     update_stock_each_day_variation_hotel_of_event($order_id);
+    create_invoice_number_order($order_id);
 }
 add_action( 'woocommerce_checkout_order_processed', 'update_stock_each_day_variation_after_checkout', 10, 3 );
 
@@ -440,4 +452,58 @@ function add_custom_woocommerce_email_styles( $css, $email ) {
     return $css . $custom_css;
 }
 add_filter( 'woocommerce_email_styles', 'add_custom_woocommerce_email_styles', 10, 2 );
+
+// is stock add each variation
+function is_stock_add_cart($event_id, $variation_id, $hotel_id, $current_day_ts, $start_day_ts, $end_day_ts, $quantity,$quantity_check) {
+    $variation_data = get_day_and_stock_variation($event_id, $variation_id, $hotel_id, $current_day_ts, $start_day_ts, $end_day_ts, $quantity);
+    $stock_day = stock_day_in_cart($variation_id);
+    if($quantity_check == ""){
+        return false; 
+    }
+    foreach ($variation_data as $key => $value) {
+        $result = $value - ($stock_day[$key] ?? 0);
+        if ($result < 0) {
+            return false; 
+        }
+    }
+    return true;
+}
+
+// cart quantity change
+function cart_quantity_change(){
+    $event_id = isset($_POST['event_id']) ? (int) $_POST['event_id'] : '';
+    $variation_id = isset($_POST['variation_id']) ? (int) $_POST['variation_id'] : '';
+    $hotel_id = isset($_POST['hotel_id']) ? (int) $_POST['hotel_id'] : '';
+    $current_day_ts = isset($_POST['current_day_ts']) ? (int) $_POST['current_day_ts'] : '';
+    $start_day_ts = isset($_POST['start_day_ts']) ? (int)$_POST['start_day_ts'] : '';
+    $end_day_ts = isset($_POST['end_day_ts']) ? (int) $_POST['end_day_ts'] : '';
+    $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : '';
+    $quantity_check = ($_POST['quantity_check']!="") ? (int) $_POST['quantity_check'] : '';
+    $is_stock_add_cart = is_stock_add_cart($event_id, $variation_id, $hotel_id, $current_day_ts, $start_day_ts, $end_day_ts, $quantity,$quantity_check);
+    // var_dump($is_stock_add_cart);
+}
+add_action('wp_ajax_cart_quantity_change', 'cart_quantity_change');
+add_action('wp_ajax_nopriv_cart_quantity_change', 'cart_quantity_change');
+
+function create_invoice_number_order($order_id) {
+    $order = wc_get_order($order_id); // Use the provided $order_id instead of hardcoding an order ID
+    
+    foreach ($order->get_items() as $item_id => $item) {
+        $variation_id = $item->get_variation_id();
+        if ($variation_id == 0) {
+            $product_id = $item->get_product_id();
+            $event_id = (int) get_post_meta($product_id, 'events_of_product', true);
+            break; // Exit the loop once you find the event ID
+        }
+    }
+    
+    // Check if $event_id is set before using it
+    if (isset($event_id)) {
+        $prefix = get_field('prefix', $event_id); // Use get_field directly without empty()
+        $prefix = !empty($prefix) ? $prefix : "PREFIX"; // Default prefix if not set
+        
+        $invoice_number = date("Y") . $prefix . date("m") . $order_id;
+        update_post_meta( $order_id, 'invoice_number', $invoice_number );
+    }
+}
 ?>

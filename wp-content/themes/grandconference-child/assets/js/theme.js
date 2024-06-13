@@ -1,4 +1,18 @@
 jQuery( document ).ready(function($) {
+    // string date to timestamp
+    function dateStringToTimestamp(dateString) {
+        // Parse the date string
+        var parts = dateString.split('-');
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+        var year = parseInt(parts[2], 10);
+        // Create a Date object
+        var date = new Date(year, month, day);
+        // Get the timestamp
+        var timestamp = date.getTime()/1000;
+        return timestamp;
+    }
+
     // click show content planning day
     $(".wrap-scheduleday").on("click",".scheduleday_title", function() {
         var data = $(this).data("tab");
@@ -34,6 +48,18 @@ jQuery( document ).ready(function($) {
                 qty.val( val - step );
             }
         }
+
+        if($(".form-booking").length){
+            var start_day = $("#start_day").val(),end_day = $("#end_day").val();
+            start_day = dateStringToTimestamp(start_day);
+            end_day = dateStringToTimestamp(end_day);
+            var total = (end_day - start_day)/86400;
+            var qty = $(".form-booking input[type=number].qty").val();
+            var price_js = $(".select_type_of_room").find(':selected').data('price')*total*qty;
+            var currency = $("#currency").val();
+            var price_html = price_js+currency;
+            $(".js-price-html").text(price_html);
+        }
     });
 
     // limit qty 
@@ -51,6 +77,20 @@ jQuery( document ).ready(function($) {
         // Check if the new value exceeds the maximum
         if (inputValue > maxValue) {
             event.preventDefault(); // Prevent the keypress
+        }
+    });
+
+    $("body").on("keyup",".form-booking .qty", function (e) { 
+        if($(".form-booking").length){
+            var start_day = $("#start_day").val(),end_day = $("#end_day").val();
+            start_day = dateStringToTimestamp(start_day);
+            end_day = dateStringToTimestamp(end_day);
+            var total = (end_day - start_day)/86400;
+            var qty = $(".form-booking input[type=number].qty").val();
+            var price_js = $(".select_type_of_room").find(':selected').data('price')*total*qty;
+            var currency = $("#currency").val();
+            var price_html = price_js+currency;
+            $(".js-price-html").text(price_html);
         }
     });
 

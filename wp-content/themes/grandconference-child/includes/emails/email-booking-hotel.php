@@ -263,11 +263,15 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                     $text_align  = is_rtl() ? 'right' : 'left';
                                                                     $margin_side = is_rtl() ? 'left' : 'right';
                                                                 ?>
-                                                                <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-                                                                <p><?php printf( esc_html__( 'Just to let you know &mdash; we\'ve received your order #%s, and it is now being processed:', 'woocommerce' ), esc_html( $order->get_order_number() ) ); ?></p>
+                                                                <p><?php printf( esc_html__( 'Bonjour %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
+                                                                <p><?php printf( esc_html__( 'Juste pour vous informer - nous avons reçu votre commande #%s et elle est en cours de traitement:', 'woocommerce' ), esc_html( $order->get_order_number() ) ); ?></p>
                                                                 <h2>
                                                                     <?php
-                                                                    echo wp_kses_post(sprintf( __( '[Order #%s]', 'woocommerce' ) . ' (<time datetime="%s">%s</time>)', $order->get_order_number(), $order->get_date_created()->format( 'c' ), wc_format_datetime( $order->get_date_created() ) ) );
+                                                                        setlocale(LC_TIME, 'fr_FR.utf8', 'fr_FR', 'fr');
+                                                                        $dateString = $order->get_date_created();
+                                                                        $timestamp = strtotime($dateString);
+                                                                        $formattedDate = strftime("%e %B %Y", $timestamp);
+                                                                        echo '[Commande #'.$order->get_order_number().'] ('.$formattedDate.')';
                                                                     ?>
                                                                 </h2>
                                                                 <div style="margin-bottom:40px;">
@@ -352,14 +356,14 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                         </tbody>
                                                                         <tfoot>
                                                                             <tr>
-                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px;" align="left">Subtotal:</th>
+                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px;" align="left">Sous-total:</th>
                                                                                 <td class="" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px;" align="left">
                                                                                 <span><?php echo wc_price($total_order); ?></span>
                                                                                 </span>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left">Payment method:</th>
+                                                                                <th class="" scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left">Mode de paiement:</th>
                                                                                 <td class="" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;" align="left"><?php echo $order->get_payment_method_title(); ?></td>
                                                                             </tr>
                                                                             <tr>
@@ -390,10 +394,17 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                     <tr>
                                                                         <td style="text-align:<?php echo esc_attr( $text_align ); ?>; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; border:0; padding:0;" valign="top" width="50%">
                                                                             <h2 style="color: #7f54b3; display: block; font-family:Helvetica Neue&,Helvetica,Roboto,Arial,sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">
-                                                                                <?php esc_html_e( 'Billing address', 'woocommerce' ); ?>
+                                                                                <?php esc_html_e( 'Adresse de facturation', 'woocommerce' ); ?>
                                                                             </h2>
                                                                 
                                                                             <address class="address">
+                                                                                <p style="margin:0 0 0px;">
+                                                                                    <?php
+                                                                                    $order_id = $order->get_id();
+                                                                                    $billing_genre = get_post_meta($order_id, 'billing_genre', true);
+                                                                                    echo $billing_genre;
+                                                                                    ?>
+                                                                                </p>
                                                                                 <?php echo wp_kses_post( $address ? $address : esc_html__( 'N/A', 'woocommerce' ) ); ?>
                                                                                 <?php if ( $order->get_billing_phone() ) : ?>
                                                                                     <br/><?php echo wc_make_phone_clickable( $order->get_billing_phone() ); ?>
@@ -406,7 +417,7 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                         <?php if ( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() && $shipping ) : ?>
                                                                             <td style="text-align:<?php echo esc_attr( $text_align ); ?>; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; padding:0;" valign="top" width="50%">
                                                                             <h2 style="color: #7f54b3; display: block; font-family:Helvetica Neue&,Helvetica,Roboto,Arial,sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">
-                                                                                    <?php esc_html_e( 'Shipping address', 'woocommerce' ); ?>
+                                                                                    <?php esc_html_e( 'Adresse de livraison', 'woocommerce' ); ?>
                                                                                 </h2>
                                                                 
                                                                                 <address class="address">
@@ -419,7 +430,7 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                         <?php endif; ?>
                                                                     </tr>
                                                                 </table>
-                                                                <p style="margin:0 0 16px;">Thanks for using 
+                                                                <p style="margin:0 0 16px;">Merci d'utiliser 
                                                                     <a class="defaultMailLink defaultMailLink" href="<?php echo home_url(); ?>" target="_blank" rel="noopener noreferrer" data-ik="ik-secure">
                                                                         <?php echo str_replace('https://','',home_url());  ?>
                                                                     </a>!

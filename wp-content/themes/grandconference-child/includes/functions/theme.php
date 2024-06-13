@@ -240,21 +240,21 @@ function replace_month_names($input) {
 }
 
 function swapFirstTwoWords($str) {
-    $words = explode(" ", $str);
+    // $words = explode(" ", $str);
     
-    if (count($words) < 2) {
-        return $str;
-    }
+    // if (count($words) < 2) {
+    //     return $str;
+    // }
     
-    $temp = $words[0];
-    $words[0] = $words[1];
-    $words[1] = $temp;
+    // $temp = $words[0];
+    // $words[0] = $words[1];
+    // $words[1] = $temp;
 
-    $temp1 = $words[5];
-    $words[5] = $words[6];
-    $words[6] = $temp1;
+    // $temp1 = $words[5];
+    // $words[5] = $words[6];
+    // $words[6] = $temp1;
     
-    $newStr = implode(" ", $words);  
-    return $newStr;
+    // $newStr = implode(" ", $words);  
+    return $str;
 }
 ?>

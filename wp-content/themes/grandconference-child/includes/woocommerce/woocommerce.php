@@ -789,7 +789,7 @@ function add_orders_room_meta_boxes_details($post)
             echo '<div class="box-infor-room" style="">';
             echo '<ul>';
             foreach ($entry_detail as $field_name => $field_data) {
-
+                $name = $tags[$field_name]['label'];
                 if ($field_name == "order_id") {
                     continue;
                 }
@@ -804,18 +804,18 @@ function add_orders_room_meta_boxes_details($post)
                     }
                 } elseif ($field_name == 'your-email') {
                     $email = $field_data['value'];
-                    echo '<li><strong class="title-value" >Email : </strong> <a href="mailto: ' . $email . '">' . $email . '</a></li>';
+                    echo '<li><strong class="title-value" >' . $name . ': </strong> <a href="mailto: ' . $email . '">' . $email . '</a></li>';
                 } elseif ($field_name == 'checkbox-802') {
                     $checkbox = $field_data['value'];
                     $checkboxArray = unserialize($checkbox);
                     if (is_array($checkboxArray)) {
                         $checkboxArray = implode(', ', $checkboxArray);
                     }
-                    echo '<li><strong class="title-value" >Qui : </strong> ' . $checkboxArray . '</li>';
+                    echo '<li><strong class="title-value" >' . $name . ': </strong> ' . $checkboxArray . '</li>';
 
                 } else {
                     $label = isset($field_labels[$field_name]) ? $field_labels[$field_name] : ucfirst(str_replace('-', ' ', $field_name));
-                    echo '<li><strong class="title-value">' . $label . ':</strong> ' . $field_data['value'] . '</li>';
+                    echo '<li><strong class="title-value">' . $name . ':</strong> ' . $field_data['value'] . '</li>';
                 }
             }
             echo '</ul>';
@@ -840,5 +840,93 @@ function add_orders_room_meta_boxes_details($post)
         }
     }
 }
+add_filter( 'woocommerce_billing_fields', 'custom_woocommerce_billing_fields' );
 
+function custom_woocommerce_billing_fields( $fields ) {
+    $fields['billing_genre'] = array(
+        'type'     => 'select',
+        'label'    => __('Genre', 'woocommerce'),
+        'required' => true,
+        'class'    => array('form-row-wide'),
+        'options'  => array(
+            'madame'   => __('Madame', 'woocommerce'),
+            'monsieur' => __('Monsieur', 'woocommerce'),
+        ),
+    );
+    $fields = array(
+        'billing_genre'       => $fields['billing_genre'],
+        'billing_first_name'  => $fields['billing_first_name'],
+        'billing_last_name'   => $fields['billing_last_name'],
+        'billing_company'     => $fields['billing_company'],
+        'billing_country'     => $fields['billing_country'],
+        'billing_address_1'   => $fields['billing_address_1'],
+        'billing_address_2'   => $fields['billing_address_2'],
+        'billing_postcode'    => $fields['billing_postcode'],
+        'billing_city'        => $fields['billing_city'],
+        'billing_state'       => $fields['billing_state'],
+        
+        'billing_phone'       => $fields['billing_phone'],
+        'billing_email'       => $fields['billing_email'],
+    );
+    return $fields;
+}
+
+add_action( 'woocommerce_checkout_update_order_meta', 'custom_checkout_field_update_order_meta' );
+
+function custom_checkout_field_update_order_meta( $order_id ) {
+    if ( ! empty( $_POST['billing_genre'] ) ) {
+        update_post_meta( $order_id, 'billing_genre', sanitize_text_field( $_POST['billing_genre'] ) );
+    }
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'custom_checkout_field_display_admin_order_meta', 10, 1 );
+
+function custom_checkout_field_display_admin_order_meta( $order ){
+    $order_id = $order->get_id();
+    $billing_genre = get_post_meta( $order_id, 'billing_genre', true );
+    if( $billing_genre ) {
+        echo '<p><strong>'.__('Genre').':</strong> ' . ucfirst(esc_html($billing_genre)) . '</p>';
+    }
+}
+
+// add meta box invoice number
+function add_meta_box_invoice_number($post_type, $post)
+{
+    $screens = array('shop_orders', 'shop_order');
+    $id = '';
+
+    if (isset($_GET['id'])) {
+        $id = sanitize_text_field(wp_unslash($_GET['id']));
+    } else {
+        $id = $post->ID;
+    }
+
+    foreach ($screens as $screen_name) {
+        if (('shop_order' === get_post_type($id) && isset($_GET['post'])) || (isset($_GET['page']) && 'wc-orders' === $_GET['page'] && isset($id))) {
+            $screen = wc_get_container()->get(CustomOrdersTableController::class)->custom_orders_table_usage_is_enabled() ? wc_get_page_screen_id($screen_name) : $screen_name;
+            add_meta_box(
+                'woocommerce_meta_box_invoice_number',
+                __('Invoice Number', 'woocommerce-events'),
+                'meta_box_invoice_number',
+                $screen,
+                'side',
+                'high'
+            );
+        }
+    }
+
+}
+add_action('add_meta_boxes', 'add_meta_box_invoice_number', 10, 2);
+
+// meta box invoice number
+function meta_box_invoice_number($post){
+    $order_id = '';
+    if (isset($_GET['id'])) {
+        $order_id = sanitize_text_field(wp_unslash($_GET['id']));
+    } else {
+        $order_id = $post->ID;
+    }
+    $invoice_number = get_post_meta( $order_id, 'invoice_number', true );
+    echo $invoice_number;
+}
 ?>

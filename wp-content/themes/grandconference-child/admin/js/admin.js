@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
     // Toggle visibility of the variations data when the edit button is clicked
     $("body").on("click", "#event_custom_box_id .button-edit", function (e) { 
         e.preventDefault();
+        $(this).closest(".box-data-variations").find(".field-text-hotel").slideToggle(200);
         $(this).closest(".box-data-variations").find(".data-variations").slideToggle(200);
     });
 
@@ -99,12 +100,14 @@ jQuery(document).ready(function($) {
         $('.wrap-box-data-variations .box-data-variations').each(function() {
             // Retrieve data attributes for hotel and product IDs
             var hotel_id = $(this).data('hotel'),
-                product_id = $(this).data('product');
+                product_id = $(this).data('product'),
+                field_text = $(this).find('.field-text-hotel').val();
 
             // Create an object to hold the data for the current box
             var boxData = {
                 hotel_id: hotel_id,
                 product_id: product_id,
+                field_text: field_text,
                 variations_data: []  // Initialize an empty array for variations data
             };
 

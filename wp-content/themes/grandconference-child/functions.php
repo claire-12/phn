@@ -132,3 +132,8 @@ require get_theme_file_path('/admin/functions/admin-event.php');
  * functions booking
  */
 require get_theme_file_path('/booking/functions/booking.php');
+
+/**
+ * functions export
+ */
+require get_theme_file_path('/export/functions/export.php');

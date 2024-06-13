@@ -1,0 +1,432 @@
+2024-06-10T08:35:27+00:00 NOTICE Generating payment form for order #30563. CONTEXT: {"_legacy":true}
+2024-06-10T08:35:27+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => 1kEgsTjPrZnTSOU/JNLYrQLq4kjRWoLpdcWX+mnxZqk=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 22000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30563
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 1091
+    [vads_trans_date] => 20240610083527
+    [vads_trans_id] => 309271
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_hJutnLosPZdGR
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T08:35:53+00:00 NOTICE Payment successfull, let's complete order #30563. CONTEXT: {"_legacy":true}
+2024-06-10T08:36:10+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30563. CONTEXT: {"_legacy":true}
+2024-06-10T08:36:10+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:15:41+00:00 NOTICE Generating payment form for order #30565. CONTEXT: {"_legacy":true}
+2024-06-10T09:15:41+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => S1Fs8QcdJZbF2jztNDSsE/KO0qAKHdQMdH3/0wgqLxU=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30565
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610091541
+    [vads_trans_id] => 333411
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_BlrWR6WoTfqqj
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:16:03+00:00 NOTICE Payment successfull, let's complete order #30565. CONTEXT: {"_legacy":true}
+2024-06-10T09:16:16+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30565. CONTEXT: {"_legacy":true}
+2024-06-10T09:16:16+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:18:17+00:00 NOTICE Generating payment form for order #30567. CONTEXT: {"_legacy":true}
+2024-06-10T09:18:17+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => UTlSgsGvAcyx/B4si24o4kpTFtL3EJA4W4qVK60983s=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30567
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610091817
+    [vads_trans_id] => 334972
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_WLPilAZoOOjiO
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:18:34+00:00 NOTICE Payment successfull, let's complete order #30567. CONTEXT: {"_legacy":true}
+2024-06-10T09:18:47+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30567. CONTEXT: {"_legacy":true}
+2024-06-10T09:18:47+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:20:32+00:00 NOTICE Generating payment form for order #30569. CONTEXT: {"_legacy":true}
+2024-06-10T09:20:32+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => GXcYTfzE7nTkAzwLsxlBaWHbqZYUjhsGddpHb/MZUe0=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30569
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610092031
+    [vads_trans_id] => 336319
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_zdK01Zrdkhr9Q
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:20:53+00:00 NOTICE Payment successfull, let's complete order #30569. CONTEXT: {"_legacy":true}
+2024-06-10T09:21:06+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30569. CONTEXT: {"_legacy":true}
+2024-06-10T09:21:06+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:21:51+00:00 NOTICE Generating payment form for order #30571. CONTEXT: {"_legacy":true}
+2024-06-10T09:21:51+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => tuj23It949vRjUWzT8Jl9uZOYnfjc1fW2EqOsQxpS7s=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30571
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610092151
+    [vads_trans_id] => 337115
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_Nql1xrLJBgEbC
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:22:13+00:00 NOTICE Payment successfull, let's complete order #30571. CONTEXT: {"_legacy":true}
+2024-06-10T09:22:25+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30571. CONTEXT: {"_legacy":true}
+2024-06-10T09:22:25+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:33:37+00:00 NOTICE Generating payment form for order #30573. CONTEXT: {"_legacy":true}
+2024-06-10T09:33:37+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => n9rR9Q6sy4sfEfaI/2SYfn7Gl61jJ5lMgFh76rUaD9o=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30573
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610093337
+    [vads_trans_id] => 344171
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_mLKlhW64K5ZeK
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:34:08+00:00 NOTICE Payment successfull, let's complete order #30573. CONTEXT: {"_legacy":true}
+2024-06-10T09:34:21+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30573. CONTEXT: {"_legacy":true}
+2024-06-10T09:34:21+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:36:00+00:00 NOTICE Generating payment form for order #30575. CONTEXT: {"_legacy":true}
+2024-06-10T09:36:00+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => qMImJ61tT8tFF+npWK2e11O36u/WlUp9XzsJHIE3nFk=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30575
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 0
+    [vads_trans_date] => 20240610093600
+    [vads_trans_id] => 345603
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_7X54Naut0hZaM
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:36:25+00:00 NOTICE Payment successfull, let's complete order #30575. CONTEXT: {"_legacy":true}
+2024-06-10T09:36:37+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30575. CONTEXT: {"_legacy":true}
+2024-06-10T09:36:37+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
+2024-06-10T09:54:36+00:00 NOTICE Generating payment form for order #30578. CONTEXT: {"_legacy":true}
+2024-06-10T09:54:36+00:00 NOTICE Data to be sent to payment gateway : Array
+(
+    [signature] => OtXL3vqON3wMos0B+tLaA5x8SZ6XVJPz2RFZS0393AE=
+    [vads_action_mode] => INTERACTIVE
+    [vads_amount] => 10000
+    [vads_capture_delay] => 
+    [vads_contrib] => WooCommerce_2.x-8.x_1.13.1/6.5.4_8.7.0/8.0.0
+    [vads_ctx_mode] => TEST
+    [vads_currency] => 978
+    [vads_cust_address] => test test
+    [vads_cust_city] => test
+    [vads_cust_country] => FR
+    [vads_cust_email] => julien@pixodeo.net
+    [vads_cust_first_name] => julien
+    [vads_cust_id] => 1
+    [vads_cust_last_name] => dev
+    [vads_cust_phone] => 6125555555
+    [vads_cust_state] => 
+    [vads_cust_status] => 
+    [vads_cust_zip] => 33021
+    [vads_cust_national_id] => 
+    [vads_cust_address_number] => 
+    [vads_cust_district] => test
+    [vads_language] => en
+    [vads_order_id] => 30578
+    [vads_page_action] => PAYMENT
+    [vads_payment_cards] => CB;E-CARTEBLEUE;MAESTRO;MASTERCARD;VISA_ELECTRON;COM_BARRY_CDX_SB;CVCO;S-MONEY
+    [vads_payment_config] => SINGLE
+    [vads_return_mode] => POST
+    [vads_ship_to_city] => test
+    [vads_ship_to_country] => FR
+    [vads_ship_to_first_name] => julien
+    [vads_ship_to_last_name] => dev
+    [vads_ship_to_state] => 
+    [vads_ship_to_street] => test
+    [vads_ship_to_street2] => test
+    [vads_ship_to_zip] => 33021
+    [vads_shipping_amount] => 0
+    [vads_site_id] => 98191832
+    [vads_totalamount_vat] => 1667
+    [vads_trans_date] => 20240610095436
+    [vads_trans_id] => 356762
+    [vads_url_return] => http://localhost/phn-git/phn/?wc-api=WC_Gateway_Systempay
+    [vads_validation_mode] => 0
+    [vads_version] => V2
+    [vads_ext_info_order_key] => wc_order_gs9hzfUCQ7mt6
+    [vads_ext_info_blog_id] => 0
+    [vads_ext_info_session_id] => vW7QWynKdyDYTqtxS2QT87PvaC6Cwjan2oDR8nRZspO
+)
+ CONTEXT: {"_legacy":true}
+2024-06-10T09:54:58+00:00 NOTICE Payment successfull, let's complete order #30578. CONTEXT: {"_legacy":true}
+2024-06-10T09:55:11+00:00 NOTICE Warning! IPN URL call has not worked. Payment completed by return URL call for order #30578. CONTEXT: {"_legacy":true}
+2024-06-10T09:55:12+00:00 NOTICE RETURN URL PROCESS END CONTEXT: {"_legacy":true}
