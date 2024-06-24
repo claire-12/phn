@@ -65,6 +65,11 @@ $text_free = ($lan === 'french') ? get_field('text_free_fr','option') : get_fiel
             if (!empty($price)) : 
                 echo wc_price($price);
             endif; 
+            
+            $ticket_description = get_field('ticket_description',$event_id);
+            if($ticket_description){
+                echo "<div class='ticket-description'>".$ticket_description."</div>";
+            }
         ?>
         <?php if($max_tickets != 0): ?>
             <form action="" class="form-add-cart-tickets">

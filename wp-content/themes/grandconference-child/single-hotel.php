@@ -28,16 +28,6 @@ $event_id_url = get_query_var( 'event_id' );
 if($event_id_url){
     $event_id_url =  (int) $event_id_url;
 }
-// if($event_id_url){
-    
-// }else{
-//     if (isset($_SERVER["HTTP_REFERER"])) {
-//         $link = str_replace('hotels/', '', $_SERVER["HTTP_REFERER"]);
-//     } else {
-//         $event_id = get_event_first_hotel($post_id);
-//         $link = get_the_permalink($event_id);
-//     }
-// }
 
 $link = get_the_permalink($event_id_url);
 $event_id = $event_id_url;
@@ -49,6 +39,7 @@ $title_price = ($lan === 'french') ? get_field('price_title_hotel_fr', 'option')
 
 $desired_array = null;
 $hotel_stars = (!empty(get_field('hotel_stars',$post_id))) ? get_field('hotel_stars',$post_id) : 5;
+$hide_ticket = get_field('hide_ticket',$event_id);
 
 ?>
 <div class="content-details-hotel" data-lang="<?php echo $lan; ?>">
@@ -56,10 +47,16 @@ $hotel_stars = (!empty(get_field('hotel_stars',$post_id))) ? get_field('hotel_st
         <li>
             <a href="<?php echo esc_url($link); ?>" class="themelink"><?php echo esc_html($text_menu_evh); ?></a>
         </li>
-        <li>
-            <a href="<?php echo esc_url($link . 'tickets'); ?>"
-                class="themelink"><?php echo esc_html($text_menu_evt); ?></a>
-        </li>
+        <?php
+            if(!$hide_ticket || empty($hide_ticket)){
+                ?>
+                <li>
+                    <a href="<?php echo esc_url($link . 'tickets'); ?>"
+                        class="themelink"><?php echo esc_html($text_menu_evt); ?></a>
+                </li>
+                <?php
+            }
+        ?>
         <li>
             <a href="<?php echo esc_url($link . 'planning'); ?>"
                 class="themelink"><?php echo esc_html($text_menu_evp); ?></a>

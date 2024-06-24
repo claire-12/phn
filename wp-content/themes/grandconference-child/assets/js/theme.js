@@ -23,8 +23,9 @@ jQuery( document ).ready(function($) {
     });
 
     // click show description
-    $(".wrap-scheduleday").on("click",".session_speakers", function(e) {
+    $(".wrap-scheduleday").on("click",".session_speakers_action", function(e) {
         e.preventDefault();
+        $(this).closest(".session_speakers").toggleClass("active");
         $(this).closest(".engineering").find(".session_content_extend").toggleClass("hide");
     });
 

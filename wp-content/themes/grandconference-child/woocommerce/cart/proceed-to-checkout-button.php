@@ -20,7 +20,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-$checkout_url = (ticket_in_cart() == true) ? home_url('form-during-checkout') : esc_url( wc_get_checkout_url() ) ;
+$checkout_url = (ticket_in_cart() == true) ? home_url('form-during-checkout') : home_url('form-room-checkout') ;
 // $checkout_url = wc_get_checkout_url();
 ?>
 

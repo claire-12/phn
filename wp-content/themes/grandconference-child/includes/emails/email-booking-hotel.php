@@ -214,10 +214,6 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
             #body_content td ul.wc-item-meta li p {
                 padding: 0;
             }
-            #body_content td ul.wc-item-meta li:nth-child(3),
-            #body_content td ul.wc-item-meta li:nth-child(4){
-                display: none;
-            }
         </style>
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -264,7 +260,7 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                     $margin_side = is_rtl() ? 'left' : 'right';
                                                                 ?>
                                                                 <p><?php printf( esc_html__( 'Bonjour %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
-                                                                <p><?php printf( esc_html__( 'Juste pour vous informer - nous avons reçu votre commande #%s et elle est en cours de traitement:', 'woocommerce' ), esc_html( $order->get_order_number() ) ); ?></p>
+                                                                <p><?php printf( esc_html__( 'Juste pour vous informer - nous avons reçu votre commande #%s', 'woocommerce' ), esc_html( $order->get_order_number() ) ); ?></p>
                                                                 <h2>
                                                                     <?php
                                                                         setlocale(LC_TIME, 'fr_FR.utf8', 'fr_FR', 'fr');
@@ -317,16 +313,60 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                                     <td class="td" style="text-align:<?php echo esc_attr( $text_align ); ?>; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap:break-word;">
                                                                                     <?php
 
-                                                                                    echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', $item->get_name(), $item, false ) );
+                                                                                    echo "<strong>".wp_kses_post( apply_filters( 'woocommerce_order_item_name', get_the_title($product_id), $item, false ) )."</strong>";
                                                                                     // allow other plugins to add additional product information here.
                                                                                     do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
 
-                                                                                    wc_display_item_meta(
-                                                                                        $item,
+                                                                                    // wc_display_item_meta(
+                                                                                    //     $item,
+                                                                                    //     array(
+                                                                                    //         'label_before' => '<strong class="wc-item-meta-label" style="float: ' . esc_attr( $text_align ) . '; margin-' . esc_attr( $margin_side ) . ': .25em; clear: both">',
+                                                                                    //     )
+                                                                                    // );
+
+                                                                                    $strings = array();
+                                                                                    $html    = '';
+                                                                                    $args    = wp_parse_args(
+                                                                                        $args,
                                                                                         array(
+                                                                                            'before'       => '<ul class="wc-item-meta"><li>',
+                                                                                            'after'        => '</li></ul>',
+                                                                                            'separator'    => '</li><li>',
+                                                                                            'echo'         => true,
+                                                                                            'autop'        => false,
                                                                                             'label_before' => '<strong class="wc-item-meta-label" style="float: ' . esc_attr( $text_align ) . '; margin-' . esc_attr( $margin_side ) . ': .25em; clear: both">',
+                                                                                            'label_after'  => ':</strong> ',
                                                                                         )
                                                                                     );
+                                                                                    $i = 0;
+                                                                                    foreach ( $item->get_all_formatted_meta_data() as $meta_id => $meta ) {
+                                                                                        $i++;
+                                                                                        if($i < 3){
+                                                                                            $value     = $args['autop'] ? wp_kses_post( $meta->display_value ) : wp_kses_post( make_clickable( trim( $meta->display_value ) ) );
+                                                                                            if($meta->display_key === 'type of rooms'){
+                                                                                                $strings[] = $value;
+                                                                                                $address = get_field('address',$product_id);
+                                                                                                if(!empty($address)){
+                                                                                                    $strings[] = $address['address'];
+                                                                                                } 
+                                                                                            }else{
+                                                                                                $strings[] = $args['label_before'] . wp_kses_post( $meta->display_key ) . $args['label_after'] . $value;
+                                                                                            }   
+                                                                                        }
+                                                                                    }
+
+                                                                                    if ( $strings ) {
+                                                                                        $html = $args['before'] . implode( $args['separator'], $strings ) . $args['after'];
+                                                                                    }
+
+                                                                                    $html = apply_filters( 'woocommerce_display_item_meta', $html, $item, $args );
+
+                                                                                    if ( $args['echo'] ) {
+                                                                                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                                        echo $html;
+                                                                                    } else {
+                                                                                        return $html;
+                                                                                    }
 
                                                                                     // allow other plugins to add additional product information here.
                                                                                     do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );

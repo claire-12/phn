@@ -180,6 +180,8 @@ jQuery(document).ready(function($) {
                 var currency = $("#currency").val();
                 var price_html = price_js+currency;
                 $(".form-booking .day-available").html(response.day_available);
+                setMinDay();
+                $("#calendar-booking").datepicker("option", "minDate", $('#setminday').val());
                 $('#calendar-booking').datepicker('refresh');
                 $(".field-text-html").slideDown(100);
                 $("#calendar-booking").slideDown(100);
@@ -191,6 +193,36 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    // set min day
+    function setMinDay() {
+        var timestampArr = [];
+        var minDate = 0;
+    
+        function getMinStockValue(stocksInRange) {
+            if (stocksInRange.length === 0) {
+                return null; // or any other value indicating no stocks in range
+            }
+            return Math.min(...stocksInRange);
+        }
+    
+        $('.day-available input').each(function() {
+            var timestamp = $(this).data('timestamp');
+            timestampArr.push(timestamp);
+        });
+    
+        var mintimestamp = getMinStockValue(timestampArr);
+    
+        $('.day-available input').each(function() {
+            var timestamp = $(this).data('timestamp');
+            if (timestamp == mintimestamp) {
+                minDate = $(this).val();
+                return false;
+            }
+        });
+    
+        $('#setminday').val(minDate);
+    }
 
     // add hotel to cart
     $("body").on("click",".add-to-cart-hotel", function (e) { 
@@ -241,50 +273,116 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // change quantity cart
-    $("body").on("change",".woocommerce-cart-form .qty", function (e) { 
-        console.log($(this).val());
+    // update cart
+    let timeout;
+    let ajaxInProgress = false;
+    $("body").on("input",".woocommerce-cart-form .qty", function (e) { 
+        if (!ajaxInProgress) {
+            ajaxInProgress = true;
+            if (timeout !== undefined) {
+                clearTimeout(timeout);
+            }
+            let element = $(this); // store the context of this
+            timeout = setTimeout(function() {
+                $("[name='update_cart']").addClass('disabled');
+                let quantity = element.val() - element.closest(".product-quantity").find(".input-variation").data("quantity"),
+                    quantity_old = element.closest(".product-quantity").find(".input-variation").data("quantity"),
+                    quantity_check = element.val(),
+                    event_id = element.closest(".product-quantity").find(".input-variation").data("event"),
+                    variation_id = element.closest(".product-quantity").find(".input-variation").data("variation"),
+                    hotel_id = element.closest(".product-quantity").find(".input-variation").data("hotel"),
+                    current_day_ts = element.closest(".product-quantity").find(".input-variation").data("day"),
+                    start_day_ts = element.closest(".product-quantity").find(".input-variation").data("start"),
+                    end_day_ts = element.closest(".product-quantity").find(".input-variation").data("end"),
+                    id = element.closest(".product-quantity").attr('id'),
+                    max = element.attr('max');
+                
+                $(".product-quantity").removeClass('error');
+                $('.woocommerce-cart-form').css("position","relative");
+        
+                if (quantity_old != quantity_check && quantity_check != "") {
+                    $('.woocommerce-cart-form').append('<div class="blockOverlay-custom" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: wait; position: absolute;"></div>');
+                }
+                
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'cart_quantity_change',
+                        quantity: quantity,
+                        event_id: event_id,
+                        variation_id: variation_id,
+                        hotel_id: hotel_id,
+                        current_day_ts: current_day_ts,
+                        start_day_ts: start_day_ts,
+                        end_day_ts: end_day_ts,
+                        quantity_check: quantity_check,
+                        quantity_old: quantity_old,
+                        max: max,
+                        id: id,
+                    },
+                    success: function (response) {
+                        $(".woocommerce-notices-wrapper .woocommerce-message").remove();
+                        if (response.success == true) {
+                            $("[name='update_cart']").removeClass('disabled');
+                            $("[name='update_cart']").trigger("click");
+                        } else {  
+                            if (response.same == false) {
+                                var id = "#" + response.id;
+                                $(id).addClass('error');
+                                $(".blockOverlay-custom").remove();
+                                $(".woocommerce-notices-wrapper").append('<div class="woocommerce-message error" role="alert">Quantity invalid.</div>');
+                            }   
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                    complete: function() {
+                        ajaxInProgress = false;
+                    }
+                });
+            }, 800);
+        }
     });
 
-    let timeout;
-    $("body").on("keyup",".woocommerce-cart-form .quantity1", function (e) { 
-        $("[name='update_cart']").addClass('disabled');
-        var quantity = $(this).val() - $(this).closest(".product-quantity").find(".input-variation").data("quantity"),
-        quantity_check = $(this).val(),
-        event_id = $(this).closest(".product-quantity").find(".input-variation").data("event"),
-        variation_id = $(this).closest(".product-quantity").find(".input-variation").data("variation"),
-        hotel_id = $(this).closest(".product-quantity").find(".input-variation").data("hotel"),
-        current_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("day"),
-        start_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("start"),
-        end_day_ts = $(this).closest(".product-quantity").find(".input-variation").data("end");
-        $('.woocommerce-cart-form').css("position","relative");
-        // $('.woocommerce-cart-form').append('<div class="blockOverlay-custom" style="z-index: 1000; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background: rgb(255, 255, 255); opacity: 0.6; cursor: wait; position: absolute;"></div>');
-        if ( timeout !== undefined ) {
-			clearTimeout( timeout );
-		}
-		timeout = setTimeout(function() {
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'cart_quantity_change',
-                    quantity: quantity,
-                    event_id: event_id,
-                    variation_id: variation_id,
-                    hotel_id: hotel_id,
-                    current_day_ts: current_day_ts,
-                    start_day_ts: start_day_ts,
-                    end_day_ts: end_day_ts,
-                    quantity_check: quantity_check,
-                },
-                success: function (response) {
-                    $("[name='update_cart']").removeClass('disabled');
-                    // $("[name='update_cart']").trigger("click");
-                },
-                error: function (err) {
-                    console.log(err);
+    // check stock before checkout
+    $("body").on("click",".checkout-trigger", function (e) { 
+        e.preventDefault();
+        $('.modal-checkout-error').hide();
+        $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'check_stock_checkout'
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('.cart_item').each(function() {
+                        $(this).removeClass('error');
+                    });
+                    $('#place_order').trigger('click');
+                } else {
+                    var error = response.error;
+                    $('.cart_item').each(function() {
+                        var errorValue = $(this).data('error');
+                        if ($.inArray(errorValue, error) !== -1) {
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                        }
+                    });
+                    $('.modal-checkout-error').show();
                 }
-            });
-		}, 800 );
+            },
+            error: function() {
+               
+            }
+        });
+    });
+
+    // close modal
+    $("body").on("click",".modal-checkout-error .close", function (e) { 
+        $('.modal-checkout-error').hide();
     });
 });

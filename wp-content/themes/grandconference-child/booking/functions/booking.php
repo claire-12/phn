@@ -76,6 +76,7 @@ function phn_form_booking_hotel($event_id,$post_id,$title_price,$rooms,$option_d
             echo "<input type='hidden' id='start_day' size='10'><input type='hidden' id='end_day' size='10'>";
             echo "<input type='hidden' id='currency' value='".$currency."'>";
             echo "<div class='day-available'></div>";
+            echo "<input type='hidden' id='setminday' value='0'>";
             echo "<h6 class='description-typeroom description-typeroom-new'>Nombre de nuit : <span class='number-night'></span></h6>";
             echo "<h6 class='price-typeroom price-typeroom-new'>Prix total : <span class='js-price-html'></span></h6>";
             echo "<button type='submit' name='add-to-cart-hotel' value='' class='add-to-cart-hotel button alt'>".$checkout."</button>";
@@ -249,42 +250,44 @@ function add_to_cart_hotel(){
     $msg = '<a href="' . $cart_url . '" tabindex="1" class="button wc-forward">' . $view_cart . '</a> ';
     $num_day = ($end_day_ts - $start_day_ts)/86400;
 
-    if (ticket_in_cart() == true) {
-        $id_ticket = (int) id_ticket_in_cart();
-        if ($id_ticket === $event_id){
-            $is_stock_add = is_stock_add($event_id,$variation_id,$hotel_id,$current_day_ts,$start_day_ts,$end_day_ts,$quantity);
-            if($is_stock_add == true){
-                $cart_data = array(
-                    "start_day" => $start_day_str,
-                    "start_day_timestamp" => $start_day_ts,
-                    "end_day" => $end_day_str,
-                    "end_day_timestamp" => $end_day_ts,
-                    "maximum" => $max,
-                    "number_day" => $num_day,
-                    "price" => $price,
-                    "variation_id" => $variation_id,
-                    "event_id" => $event_id,
-                    "hotel_id" => $hotel_id,
-                    "current_day_ts" => $current_day_ts
-                );
+    // if (ticket_in_cart() == true) {
+    $id_ticket = (int) id_ticket_in_cart();
+        // if ($id_ticket === $event_id){
+    $is_stock_add = is_stock_add($event_id,$variation_id,$hotel_id,$current_day_ts,$start_day_ts,$end_day_ts,$quantity);
+    if($is_stock_add == true){
+        session_start();
+        $_SESSION['event_id'] = $event_id;
+        $cart_data = array(
+            "start_day" => $start_day_str,
+            "start_day_timestamp" => $start_day_ts,
+            "end_day" => $end_day_str,
+            "end_day_timestamp" => $end_day_ts,
+            "maximum" => $max,
+            "number_day" => $num_day,
+            "price" => $price,
+            "variation_id" => $variation_id,
+            "event_id" => $event_id,
+            "hotel_id" => $hotel_id,
+            "current_day_ts" => $current_day_ts
+        );
 
-                $add_to_cart = WC()->cart->add_to_cart($variation_id, $quantity, 0, array(), $cart_data);
-                
-                if ($add_to_cart) {
-                    $msg .= $msg_success;
-                    $success = true;
-                } else {
-                    $message .= $message_error;
-                }
-            }else{
-                $msg .= $msg_limit;
-            }
-        }else{
-            $msg .= $msg_err_add_hotel;
+        $add_to_cart = WC()->cart->add_to_cart($variation_id, $quantity, 0, array(), $cart_data);
+        
+        if ($add_to_cart) {
+            $msg .= $msg_success;
+            $success = true;
+        } else {
+            $message .= $message_error;
         }
-    }else {
-        $msg .= $msg_add_tickets_first;
+    }else{
+        $msg .= $msg_limit;
     }
+        // }else{
+        //     $msg .= $msg_err_add_hotel;
+        // }
+    // }else {
+    //     $msg .= $msg_add_tickets_first;
+    // }
 
     $quantity_total = quantity_cart();
 
@@ -305,7 +308,7 @@ function save_custom_data_to_order_items($item, $cart_item_key, $values, $order)
         if($values['start_day_timestamp'] == $values['end_day_timestamp']){
             $date = $values['start_day'];
         }else{
-            $date = $values['start_day']." to ".$values['end_day'];
+            $date = $values['start_day']." au ".$values['end_day']." ".$values['number_day']." nuits";
         }
         $item->add_meta_data('Date', $date, true);
         $item->add_meta_data('start_day_ts', $values['start_day_timestamp'], true);
@@ -357,6 +360,10 @@ function update_stock_each_day_variation_hotel_of_event($order_id) {
         $stock_day_data = mergeArray($stock_day);
     }
 
+    session_start();
+    if($event_id == 0 || $event_id == ''){
+        $event_id = $_SESSION['event_id'];
+    }
     $data_hotel_event = get_post_meta($event_id, 'data_hotel_event', true);
     if($data_hotel_event){
         foreach ($data_hotel_event as &$hotel) {
@@ -471,16 +478,44 @@ function is_stock_add_cart($event_id, $variation_id, $hotel_id, $current_day_ts,
 
 // cart quantity change
 function cart_quantity_change(){
+    $success = false;
     $event_id = isset($_POST['event_id']) ? (int) $_POST['event_id'] : '';
     $variation_id = isset($_POST['variation_id']) ? (int) $_POST['variation_id'] : '';
     $hotel_id = isset($_POST['hotel_id']) ? (int) $_POST['hotel_id'] : '';
     $current_day_ts = isset($_POST['current_day_ts']) ? (int) $_POST['current_day_ts'] : '';
     $start_day_ts = isset($_POST['start_day_ts']) ? (int)$_POST['start_day_ts'] : '';
     $end_day_ts = isset($_POST['end_day_ts']) ? (int) $_POST['end_day_ts'] : '';
+    $quantity_old = isset($_POST['quantity_old']) ? (int) $_POST['quantity_old'] : '';
     $quantity = isset($_POST['quantity']) ? (int) $_POST['quantity'] : '';
     $quantity_check = ($_POST['quantity_check']!="") ? (int) $_POST['quantity_check'] : '';
+    $max = ($_POST['max']!="") ? (int) $_POST['max'] : '';
+    $id = ($_POST['id']!="") ? $_POST['id'] : '';
     $is_stock_add_cart = is_stock_add_cart($event_id, $variation_id, $hotel_id, $current_day_ts, $start_day_ts, $end_day_ts, $quantity,$quantity_check);
-    // var_dump($is_stock_add_cart);
+    if($max !="" || $max > 0){
+        if($quantity_check <= $max){
+            $success = true;
+        }
+    }else{
+        if($is_stock_add_cart == true){
+            $success = true;
+        }
+    }
+
+    if($quantity_old == $quantity_check){
+        $success = false;
+        $same = true;
+    }else{
+        $same = false;
+    }
+
+    $return = array(
+        'success' => $success,
+        'same' => $same,
+        'id' => $id
+    );
+
+    wp_send_json($return);
+    die();
 }
 add_action('wp_ajax_cart_quantity_change', 'cart_quantity_change');
 add_action('wp_ajax_nopriv_cart_quantity_change', 'cart_quantity_change');
@@ -506,4 +541,153 @@ function create_invoice_number_order($order_id) {
         update_post_meta( $order_id, 'invoice_number', $invoice_number );
     }
 }
+
+// get array day timestamp available variation hotel
+function get_day_and_stock_variation_hotel($event_id,$variation_id,$hotel_id,$start_day,$end_day){
+    $data_hotel_event = get_post_meta($event_id, 'data_hotel_event', true);
+    $variation_data = [];
+    if(!empty($data_hotel_event)){
+        foreach($data_hotel_event as $key => $value){
+            if((int)$value['hotel_id'] === $hotel_id ){
+                $variations_data = $value['variations_data'];
+                if(!empty($variations_data)){
+                    foreach($variations_data as $k => $v){
+                        if((int)$v['variations_id'] === $variation_id){
+                            if(isset($v['date_available'])){
+                                $day_available = $v['date_available'];
+                                foreach($day_available as $kk => $vl){
+                                    $stock = isset($vl['stock']) ? (int) $vl['stock'] : 0;
+                                    if($vl['stock'] != 0 && (int)$vl['timestamp'] >= $start_day && (int)$vl['timestamp'] < $end_day){
+                                        $variation_data[(int)$vl['timestamp']] = (int) $vl['stock'];
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                }
+            } 
+        }
+    }
+    return $variation_data;
+}
+
+// sum value
+function sumValues(&$array, $index, $key, $value) {
+    for ($i = $index + 1; $i < count($array); $i++) {
+        if (array_key_exists($key, $array[$i])) {
+            $array[$i][$key] += $value;
+        }
+    }
+}
+
+// Function to subtract values of $b from $a
+function subtract_arrays($a, $b) {
+    $result = array();
+    $data_invalid = array();
+    
+    foreach ($a as $key => $subArray) {
+        $result[$key] = array();
+        if(empty($subArray)){
+            $data_invalid[] = "variation-error-".$key;
+        }
+        foreach ($subArray as $timestamp => $valueA) {
+            $valueB = isset($b[$key][$timestamp]) ? $b[$key][$timestamp] : 0;
+            $value = $valueA - $valueB;
+            $result[$key][$timestamp] = $value;
+            if($value < 0){
+                $data_invalid[] = "variation-error-".$key;
+            }
+        }
+    }
+
+    if($data_invalid){
+        $data_invalid = array_unique($data_invalid);
+    }
+    
+    return $data_invalid;
+}
+
+// check stock checkout
+function is_stock_checkout(){
+    $cart = WC()->cart;
+    $cart_items = $cart->get_cart();
+    $event_id = (int) id_ticket_in_cart();
+    $i = 0;
+    $variation_invalid = [];
+    $stock_day_total = [];
+    $variation_data_total = [];
+
+    foreach ($cart_items as $cart_item) {
+        if ($cart_item['variation_id'] != 0 ) {
+            $i++;
+            $variation_id  = $cart_item['variation_id'];
+            $hotel_id  = $cart_item['hotel_id'];
+            $start_day  = $cart_item['start_day_timestamp'];
+            $end_day  = $cart_item['end_day_timestamp'];
+            $quantity  = $cart_item['quantity'];
+            if($event_id == 0 || $event_id == ""){
+                $event_id = $cart_item['event_id'];
+            }
+            $variation_data = get_day_and_stock_variation_hotel($event_id,$variation_id,$hotel_id,$start_day,$end_day);
+
+            $total_days = ($end_day - $start_day) / 86400;
+            $stock_day = [];
+            for ($i = 0; $i < $total_days; $i++) {
+                $current_day_timestamp = $start_day + (86400 * $i);
+                $stock_day[$current_day_timestamp] = $quantity;
+            }
+            $stock_day_total[] = $stock_day;
+            $variation_data_total[] = $variation_data;
+        }
+    }
+
+    foreach ($stock_day_total as $index => &$subArray) {
+        foreach ($subArray as $key => $value) {
+            sumValues($stock_day_total, $index, $key, $value);
+        }
+    }
+
+    $result = subtract_arrays($variation_data_total, $stock_day_total);
+
+    return $result;
+}
+
+// check stock checkout
+function check_stock_checkout(){
+    $success = false;
+    $is_stock_checkout = is_stock_checkout();
+
+    if(empty($is_stock_checkout)){
+        $success = true;
+    }
+
+    $return = array(
+        'success' => $success,
+        'error' => $is_stock_checkout
+    );
+
+    wp_send_json($return);
+}
+add_action('wp_ajax_check_stock_checkout', 'check_stock_checkout');
+add_action('wp_ajax_nopriv_check_stock_checkout', 'check_stock_checkout');
+
+// custom button html
+function woo_custom_button_html( $button_html ){
+	$button_html .= '<a class="checkout-trigger">Place order</a>';
+	return $button_html;
+}
+add_filter( 'woocommerce_order_button_html', 'woo_custom_button_html' );
+
+// modal error checkout
+function modal_error_checkout(){
+    ?>
+    <div class="modal-checkout-error">
+        <div class="modal">
+            <span class="close">&times;</span>
+            <p>Unable to checkout, some booked dates are sold out!</p>
+        </div>
+    </div>
+    <?php
+}
+add_action('wp_footer','modal_error_checkout');
 ?>

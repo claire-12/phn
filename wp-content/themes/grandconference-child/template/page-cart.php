@@ -119,6 +119,10 @@ if(empty($page_show_title))
 					<h1>
 						<?php 
 						$id_ticket = id_ticket_in_cart();
+						session_start();
+						if($id_ticket == 0){
+							$id_ticket = $_SESSION['event_id'];
+						}
 						if($id_ticket != 0){
 							$lan = get_field('language',$id_ticket);
 							if($lan === 'french'){

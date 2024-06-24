@@ -41,6 +41,9 @@ if (!get_query_var('tickets') && !get_query_var('planning') && !get_query_var('h
         $class_partners = 'active';
     }
 }
+
+$hide_ticket = get_field('hide_ticket',$event_id);
+
 ?>
 
 <div id="tribe-events-content" class="tribe-events-single">
@@ -49,9 +52,15 @@ if (!get_query_var('tickets') && !get_query_var('planning') && !get_query_var('h
         <li>
             <a href="<?php echo esc_url($link); ?>" class="themelink <?php echo esc_attr($class); ?>"><?php echo esc_html($text_menu_evh); ?></a>
         </li>
-        <li>
-            <a href="<?php echo esc_url($link . 'tickets'); ?>" class="themelink <?php echo esc_attr($class_tickets); ?>"><?php echo esc_html($text_menu_evt); ?></a>
-        </li>
+        <?php
+            if(!$hide_ticket || empty($hide_ticket)){
+                ?>
+                <li>
+                    <a href="<?php echo esc_url($link . 'tickets'); ?>" class="themelink <?php echo esc_attr($class_tickets); ?>"><?php echo esc_html($text_menu_evt); ?></a>
+                </li>
+                <?php
+            }
+        ?>
         <li>
             <a href="<?php echo esc_url($link . 'planning'); ?>" class="themelink <?php echo esc_attr($class_planning); ?>"><?php echo esc_html($text_menu_evp); ?></a>
         </li>

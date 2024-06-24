@@ -104,7 +104,12 @@ $where = ($lan === 'french') ? "LOCALISATION" : "Where";
                                     <div class="session_title">
                                         <h6><?php echo $v['title']; ?></h6>
                                     </div>
-                                    <div class="session_speakers"><?php echo $by; ?> <strong><a href=""><?php echo $v['author_name']; ?></a></strong> <?php echo $v['author_position']; ?></div>
+                                    <div class="session_speakers">
+                                        <strong><a href=""><?php echo $v['author_name']; ?></a></strong> 
+                                        <?php echo $v['author_position']; ?>
+                                        <i class="fas fa-chevron-down session_speakers_action"></i>
+                                        <i class="fas fa-chevron-up session_speakers_action"></i>
+                                    </div>
                                 </div>
                                 <br class="clear">
                             </div>

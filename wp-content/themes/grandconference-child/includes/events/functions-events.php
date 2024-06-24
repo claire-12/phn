@@ -1,8 +1,8 @@
 <?php
-// update product wooCommerce events ticket logo
-function update_product_wooCommerce_events_ticket_logo() {
+// update meta product wooCommerce events
+function update_meta_product_wooCommerce_events() {
     // Ensure the function only runs once
-    if (get_option('update_product_wooCommerce_events_ticket_logo_done')) {
+    if (get_option('update_meta_product_wooCommerce_events_action')) {
         return;
     }
 
@@ -25,7 +25,7 @@ function update_product_wooCommerce_events_ticket_logo() {
             $thumbnail_url = wp_get_attachment_url($thumbnail_id);
             $phn_type_product = get_post_meta($product_id, 'phn_type_product', true);
             if($phn_type_product === "event"){
-                update_post_meta($product_id, 'WooCommerceEventsTicketLogo', $thumbnail_url);
+                update_post_meta($product_id, 'WooCommerceEventsEmailSubjectSingle', '{OrderNumber} Billet');
             }
         }
     }
@@ -34,9 +34,9 @@ function update_product_wooCommerce_events_ticket_logo() {
     wp_reset_postdata();
 
     // Set an option to indicate that the function has run
-    update_option('update_product_wooCommerce_events_ticket_logo_done', true);
+    update_option('update_meta_product_wooCommerce_events_action', true);
 }
-add_action('init', 'update_product_wooCommerce_events_ticket_logo');
+add_action('init', 'update_meta_product_wooCommerce_events');
 
 // Automatically create WooCommerce product from Tribe Events
 function auto_create_woocommerce_product_from_events($original_post_id, $original_post)
@@ -141,7 +141,7 @@ function auto_create_woocommerce_product_from_events($original_post_id, $origina
                 'WooCommerceEventsTextColor' => '#ffffff',
                 'WooCommerceEventsTicketIdentifierOutput' => 'ticketid',
                 'WooCommerceEventsTicketNumberOutput' => 1,
-                'WooCommerceEventsEmailSubjectSingle' => '{OrderNumber} Ticket',
+                'WooCommerceEventsEmailSubjectSingle' => '{OrderNumber} Billet',
                 'WooCommerceEventsViewBookingsOptions' => 'checkout',
                 'WooCommerceEventsBookingsMethod' => 'slotdate',
                 'WooCommercePrintTicketSort' => 'most_recent',

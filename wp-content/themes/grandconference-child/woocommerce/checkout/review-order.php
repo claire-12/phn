@@ -17,6 +17,10 @@
 
 defined( 'ABSPATH' ) || exit;
 $id_ticket = id_ticket_in_cart();
+session_start();
+if($id_ticket == 0){
+	$id_ticket = $_SESSION['event_id'];
+}
 if($id_ticket != 0){
 	$lan = get_field('language',$id_ticket);
 	if($lan === 'french'){
@@ -38,13 +42,19 @@ if($id_ticket != 0){
 	<tbody>
 		<?php
 		do_action( 'woocommerce_review_order_before_cart_contents' );
-
+		$i = -1;
+		$data_error = '';
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			$_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+			
+			if ($cart_item['variation_id'] != 0 ){
+				$i++;
+				$data_error = "variation-error-".$i;
+			}
 
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				?>
-				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>" data-error="<?php echo $data_error; ?>">
 
 					<td class="product-name">
 						<?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ) . '&nbsp;'; ?>

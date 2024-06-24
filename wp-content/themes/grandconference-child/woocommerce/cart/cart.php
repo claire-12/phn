@@ -44,7 +44,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
 			<?php
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			$i = 0;
+			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) { 
+				$i++;
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 				/**
@@ -142,7 +144,15 @@ do_action( 'woocommerce_before_cart' ); ?>
 							?>
 						</td>
 
-						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+						<?php
+							if(isset($cart_item['variation_id']) && $cart_item['variation_id'] !=0){
+								$id = 'quantity-'.$cart_item['variation_id'].$i;
+							}else{
+								$id = 'quantity-9999';
+							}
+						?>
+
+						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>" id="<?php echo $id; ?>">
 						<?php
 						
 						
