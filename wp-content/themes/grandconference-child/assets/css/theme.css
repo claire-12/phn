@@ -5,7 +5,8 @@
     float: right;
 }
 .session_speakers .fa-chevron-up,
-.session_speakers.active .fa-chevron-down{
+.session_speakers.active .fa-chevron-down,
+.tribe-events-event-cost-label,.tribe-events-event-cost{
     display: none;
 }
 .session_speakers.active .fa-chevron-up{

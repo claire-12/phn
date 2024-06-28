@@ -25,7 +25,9 @@ $after = apply_filters('tribe_events_single_event_title_html_after', '</h1>');
 $title = apply_filters('tribe_events_single_event_title_html', the_title($before, $after, false), $event_id);
 
 $cost = tribe_get_formatted_cost($event_id);
+$EventCost = get_field('_EventCost',$event_id);
 $lan = get_field('language',$event_id);
+
 ?>
 
 <p class="tribe-events-back">
@@ -46,7 +48,7 @@ $lan = get_field('language',$event_id);
                     echo tribe_events_event_schedule_details($event_id, '<h2>', '</h2>'); 
                 }
             ?>
-            <?php if (!empty($cost)) : ?>
+            <?php if (!empty($EventCost) && $EventCost != 0): ?>
                 <span class="tribe-events-cost"><?php echo esc_html($cost) ?></span>
             <?php endif; ?>
         </div>

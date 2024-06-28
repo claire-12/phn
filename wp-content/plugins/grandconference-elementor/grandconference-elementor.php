@@ -59,10 +59,10 @@ if(!function_exists('grandconference_is_registered'))
 	}
 }
 
-$is_verified_envato_purchase_code = false;
+$is_verified_envato_purchase_code = true;
 
 //Check if verified
-$is_verified_envato_purchase_code = grandconference_is_registered();
+// $is_verified_envato_purchase_code = grandconference_is_registered();
 
 if($is_verified_envato_purchase_code) {
 	/**

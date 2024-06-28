@@ -125,6 +125,7 @@ function export_ticket_list() {
         echo "\xEF\xBB\xBF";
 
         $headers = array(
+            'Date de commande',
             'Numéro de commande',
             'Genre',
             'Prénom',
@@ -174,6 +175,7 @@ function export_ticket_list() {
                                     }
                                 }
                                 $row = array(
+                                    $order->date_created_gmt,
                                     $order->ID,
                                     $order->gender,
                                     $order->first_name,
@@ -210,6 +212,7 @@ function get_order_data(){
     $product_id = $_POST['event_export'];
     global $wpdb;
     $sql = "SELECT 
+                o.date_created_gmt,
                 o.ID,
                 d.first_name,
                 d.last_name,
@@ -326,6 +329,7 @@ function export_rooming_list() {
         echo "\xEF\xBB\xBF";
         
         $headers = array(
+            'Date de commande',
             'Numéro de commande',
             'Nom de l\'hôtel',
             'Type de chambre',

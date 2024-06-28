@@ -475,6 +475,11 @@ $text_lighter_40 = wc_hex_lighter( $text, 40 );
                                                                         <?php echo str_replace('https://','',home_url());  ?>
                                                                     </a>!
                                                                 </p>
+                                                                <p style="margin:0 0 16px;">Pour toute annulation merci d'écrire à 
+                                                                    <a class="defaultMailLink defaultMailLink" href="mailto:contact@phn-events.com" target="_blank" rel="noopener noreferrer" data-ik="ik-secure">
+                                                                    contact@phn-events.com
+                                                                    </a>
+                                                                </p>
                                                             </div>
 														</td>
 													</tr>
